@@ -1,0 +1,4 @@
+# exclude installation files
+build/*
+dist/*
+pynada.egg-info/*
