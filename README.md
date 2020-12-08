@@ -1,5 +1,5 @@
 # PyNADA
-A  client for NADA API
+A Python client for NADA API
 
 ## Setup
 This library is currently under development. A pip installation is also available through test PyPI using:
