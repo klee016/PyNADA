@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 PACKAGE_DIR = pathlib.Path(__file__).parent
 
 PACKAGE_NAME = 'pynada'
-VERSION = '0.0.3' 
+VERSION = '0.0.8' 
 AUTHOR = 'Kamwoo Lee'
 URL = 'https://github.com/kl9ch/PyNADA'
 
@@ -13,7 +13,7 @@ DESCRIPTION = 'Python client for NADA API'
 LONG_DESCRIPTION = (PACKAGE_DIR / "README.md").read_text()
 LONG_DESC_TYPE = "text/markdown"
 
-INSTALL_REQUIRES = []
+INSTALL_REQUIRES = ['requests', 'pandas']
 
 
 # Setting up

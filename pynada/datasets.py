@@ -1,13 +1,15 @@
-def list_all_datasets():
-    """returns a list of all datasets in the FCV catalog
-    Parameters:
-    Returns:
-    """
+from .commons import *
+import requests
+import pandas as pd
 
-    collections = requests.get('http://training.ihsn.org/index.php/api/datasets')
-    if collections.status_code != 200:
-        # This means something went wrong.
-        raise Exception('GET /tasks/ {}'.format(collections.json()))
+
+def list_datasets():
+    """
+    returns a list of all datasets in the FCV catalog
+    Returns: list of datasets
+    """
     
-    for item in collections.json():
-        print(item)
+    params = {}
+    response = make_get_request('datasets', params)
+ 
+    return pd.DataFrame.from_dict(response['datasets']).set_index('id')

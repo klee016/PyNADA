@@ -1,1 +1,1 @@
-from datasets import list_all_datasets
+from .datasets import *
