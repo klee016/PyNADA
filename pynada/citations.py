@@ -24,3 +24,15 @@ def citation_info(uuid):
     response = make_get_request('citations/' + uuid, params)
  
     return response
+
+
+def citations_by_study(idno):
+    """
+    Return citations by a study
+    Returns: Get citations by a study
+    """
+    
+    params = {}
+    response = make_get_request('citations/by_dataset/' + idno, params)
+ 
+    return response
