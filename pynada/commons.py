@@ -57,9 +57,24 @@ def make_get_request(endpoint, params):
     response = requests.get(api_base_url+endpoint, headers=headers, params=params)
     
     if response.status_code != 200:
-        # This means something went wrong.
-        raise Exception('GET /tasks/ {}'.format(response.status_code))
+        raise Exception('GET /'+endpoint+'/ {}'.format(response.status_code) + ' ' + f'{response.text}'  )
+    
+    return response.json()
+
+
+   
+def make_post_request(endpoint, params):
+    
+    headers = {
+        'X-API-KEY': api_key
+    }
+    
+    response = requests.post(api_base_url+endpoint, headers=headers, params=params)
+    
+    if response.status_code != 200:
+        print(response.request.body)
+        raise Exception('POST /'+endpoint+'/ {}'.format(response.status_code) + ' ' + f'{response.text}'  )
     
     return response.json()
    
-    
+        
