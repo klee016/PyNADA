@@ -48,7 +48,7 @@ def make_get_request(endpoint, params):
     """
     Make a general GET HTTP request
     Parameters: API endpoint, params
-    Returns: HTTP response in JSON
+    Returns: HTTP response in dict
     """
     
     headers = {
@@ -65,7 +65,12 @@ def make_get_request(endpoint, params):
 
    
 def make_post_request(endpoint, data):
-    
+    """
+    Make a general POST HTTP request
+    Parameters: API endpoint, data
+    Returns: HTTP response in dict
+    """
+
     headers = {
         'X-API-KEY': api_key
     }
@@ -80,6 +85,12 @@ def make_post_request(endpoint, data):
 
 
 def make_delete_request(endpoint):
+    """
+    Make a general DELETE HTTP request
+    Parameters: API endpoint
+    Returns: success result in dict
+    """
+
     headers = {
         'X-API-KEY': api_key
     }
