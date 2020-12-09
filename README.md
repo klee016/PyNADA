@@ -9,7 +9,7 @@ pip install -i https://test.pypi.org/simple/ pynada
 
 ## Examples
 Jupyter Notebooks under examples folder show some use cases utilizing PyNADA. The examples are grouped into three categories:
-* Search Catalog: codes for finding specific datasets
+* Search Catalog: codes for finding specific datasets and resources
     - search by partial id, partial title, ...
     - list all datasets
     
