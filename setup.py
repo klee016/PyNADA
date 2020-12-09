@@ -1,16 +1,16 @@
 import pathlib
 from setuptools import setup, find_packages
 
-PACKAGE_DIR = pathlib.Path(__file__).parent
+BASE_DIR = pathlib.Path(__file__).parent
 
 PACKAGE_NAME = 'pynada'
-VERSION = '0.0.8' 
+VERSION = '0.0.10'
 AUTHOR = 'Kamwoo Lee'
 URL = 'https://github.com/kl9ch/PyNADA'
 
 LICENSE = 'GPLv3+'
 DESCRIPTION = 'Python client for NADA API'
-LONG_DESCRIPTION = (PACKAGE_DIR / "README.md").read_text()
+LONG_DESCRIPTION = (BASE_DIR / "README.md").read_text()
 LONG_DESC_TYPE = "text/markdown"
 
 INSTALL_REQUIRES = ['requests', 'pandas']
@@ -26,5 +26,5 @@ setup(
         long_description = LONG_DESCRIPTION,
         long_description_content_type = LONG_DESC_TYPE,
         install_requires = INSTALL_REQUIRES,
-        packages = find_packages()
+        packages = find_packages(include=['pynada'])
 )

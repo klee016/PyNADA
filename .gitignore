@@ -3,3 +3,4 @@ build/*
 dist/*
 pynada.egg-info/*
 maintenance_commands.txt
+tests/*

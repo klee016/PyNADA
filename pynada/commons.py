@@ -1,4 +1,4 @@
-import requests
+import requests, json
 
 api_key = ''
 api_base_url = ''
@@ -57,24 +57,36 @@ def make_get_request(endpoint, params):
     response = requests.get(api_base_url+endpoint, headers=headers, params=params)
     
     if response.status_code != 200:
-        raise Exception('GET /'+endpoint+'/ {}'.format(response.status_code) + ' ' + f'{response.text}'  )
+        raise Exception('GET /'+endpoint+'/ {}'.format(response.status_code) + ' ' + f'{response.text}')
     
     return response.json()
 
 
    
-def make_post_request(endpoint, params):
+def make_post_request(endpoint, data):
     
     headers = {
         'X-API-KEY': api_key
     }
     
-    response = requests.post(api_base_url+endpoint, headers=headers, params=params)
+    response = requests.post(api_base_url+endpoint, headers=headers, data=json.dumps(data))
     
     if response.status_code != 200:
         print(response.request.body)
-        raise Exception('POST /'+endpoint+'/ {}'.format(response.status_code) + ' ' + f'{response.text}'  )
+        raise Exception('POST /'+endpoint+'/ {}'.format(response.status_code) + ' ' + f'{response.text}')
     
     return response.json()
-   
-        
+
+
+def make_delete_request(endpoint):
+    headers = {
+        'X-API-KEY': api_key
+    }
+
+    response = requests.delete(api_base_url+endpoint, headers=headers)
+
+    if response.status_code != 200:
+        print(response.request.body)
+        raise Exception('DELETE /' + endpoint + '/ {}'.format(response.status_code) + ' ' + f'{response.text}')
+
+    return {'result': 'success'}
