@@ -2,7 +2,7 @@ from .commons import *
 import pandas as pd
 
 
-def list_all():
+def list_all_datasets():
     """Returns a list of all datasets in the catalog
 
     Returns
@@ -17,7 +17,7 @@ def list_all():
     return pd.DataFrame.from_dict(response['datasets']).set_index('id')
 
 
-def filter_by_idno(partial_idno):
+def search_by_idno(partial_idno):
     """Returns a list of datasets whose idno contains a partial match
 
     Parameters
@@ -35,7 +35,7 @@ def filter_by_idno(partial_idno):
     return datasets[datasets['idno'].str.contains(partial_idno)]
 
 
-def filter_by_title(partial_title):
+def search_by_title(partial_title):
     """Returns a list of datasets whose title contains a partial match
 
     Parameters
