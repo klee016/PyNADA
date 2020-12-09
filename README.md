@@ -7,3 +7,19 @@ This library is currently under development. A pip installation is available thr
 pip install -i https://test.pypi.org/simple/ pynada
  ```
 
+## Examples
+Jupyter Notebooks under examples folder show some use cases utilizing PyNADA. The examples are grouped into three categories:
+* Search Catalog: codes for finding specific datasets
+    - search by partial id
+    - search by partial title
+    - list all datasets
+    
+* Create Dataset: codes for adding datasets to the catalog
+    - add survey
+    - add documents
+    - add images
+    
+* Manage Catalog: codes for managing existing datasets and resources
+    - delete dataset
+    - upload thumbnail
+    - ...
