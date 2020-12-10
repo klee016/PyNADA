@@ -62,7 +62,7 @@ study_desc = {
     }
 }
 
-response = create_dataset.add_survey(
+response = create_and_import.add_survey(
     idno=idno,
     repositoryid=repositoryid,
     access_policy=access_policy,

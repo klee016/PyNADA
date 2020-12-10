@@ -134,5 +134,5 @@ def list_files(idno):
     params = {}
     response = make_get_request('datasets/'+idno+'/files/', params)
 
-    return response
-    #return pd.DataFrame.from_dict(response['resources']).set_index('resource_id')
+    #return response
+    return pd.DataFrame.from_dict(response['files'])
