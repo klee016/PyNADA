@@ -9,14 +9,14 @@ pip install -i https://test.pypi.org/simple/ pynada
 
 ## Examples
 Jupyter Notebooks under examples folder show some use cases utilizing PyNADA. The examples are grouped into three categories:
-* Search Catalog: codes for finding specific datasets and resources
+* Search & Browse: codes for finding specific datasets and resources
     - search by partial id, partial title, ...
     - list all datasets
     
-* Create Dataset: codes for adding datasets to the catalog
+* Create & Import: codes for adding datasets to the catalog
     - add survey, document, ... 
     
-* Manage Catalog: codes for managing existing datasets and resources
+* Manage & Update: codes for managing existing datasets and resources
     - delete dataset
     - upload thumbnail
     - ...
