@@ -31,7 +31,7 @@ def search_by_idno(partial_idno):
         dataset information
     """
 
-    datasets = list_datasets()
+    datasets = list_all_datasets()
     return datasets[datasets['idno'].str.contains(partial_idno)]
 
 
@@ -49,7 +49,7 @@ def search_by_title(partial_title):
         dataset information
     """
 
-    datasets = list_datasets()
+    datasets = list_all_datasets()
     return datasets[datasets['title'].str.contains(partial_title)]
 
 
