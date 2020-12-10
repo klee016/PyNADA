@@ -116,7 +116,6 @@ def list_datafiles(idno):
     #return pd.DataFrame.from_dict(response['resources']).set_index('resource_id')
 
 
-
 def list_files(idno):
     """Get a list of all files for a dataset
 

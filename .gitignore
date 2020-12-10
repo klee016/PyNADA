@@ -3,3 +3,5 @@ build/*
 dist/*
 pynada.egg-info/*
 maintenance_commands.txt
+/tests/API Key.txt
+/examples/API Key.txt

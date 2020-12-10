@@ -1,5 +1,6 @@
 from .commons import *
 
+
 def add_survey(
         idno=None,
         repositoryid=None,
@@ -63,8 +64,6 @@ def add_survey(
 
     return response
     #return pd.DataFrame.from_dict(response['datasets']).set_index('id')
-
-
 
 
 def add_document(

@@ -16,7 +16,6 @@ def delete_dataset(idno):
         print('Successfully deleted.')
 
 
-
 def upload_file(idno, file_path):
     """upload a single file and attach it to a dataset.
 
@@ -38,7 +37,6 @@ def upload_file(idno, file_path):
         print('Successfully deleted.')
 
 
-
 def delete_file(idno, file_name):
     """delete a single file from a dataset.
 
@@ -58,7 +56,6 @@ def delete_file(idno, file_name):
     #print(response)
     if response['status'] == 'success':
         print('Successfully deleted.')
-
 
 
 def update_survey(idno=None):
