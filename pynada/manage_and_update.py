@@ -34,7 +34,7 @@ def upload_file(idno, file_path):
 
     #print(response)
     if response['status'] == 'success':
-        print('Successfully deleted.')
+        print('Successfully uploaded.')
 
 
 def delete_file(idno, file_name):

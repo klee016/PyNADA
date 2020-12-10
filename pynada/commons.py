@@ -54,12 +54,13 @@ def make_get_request(endpoint, params):
     headers = {
         'X-API-KEY': api_key
     }
-    
-    response = requests.get(api_base_url+endpoint, headers=headers, params=params)
+    print(api_base_url + endpoint)
+    response = requests.get(api_base_url + endpoint, headers=headers, params=params)
     
     if response.status_code != 200:
         raise Exception('GET /'+endpoint+'/ {}'.format(response.status_code) + ' ' + f'{response.text}')
-    
+
+    print(response.text)
     return response.json()
 
 
@@ -80,12 +81,15 @@ def make_post_request(endpoint, data, files=None):
     else:
         data = json.dumps(data)
 
-    response = requests.post(api_base_url+endpoint, headers=headers, data=data, files=files)
+    response = requests.post(api_base_url + endpoint, headers=headers, data=data, files=files)
+    #response = requests.post(api_base_url + urllib.parse.quote(endpoint), headers=headers, json=data)
 
+    print(response.status_code)
     if response.status_code != 200:
         print(response.request.body)
         raise Exception('POST /'+endpoint+'/ {}'.format(response.status_code) + ' ' + f'{response.text}')
-    
+
+    print(response.text)
     return response.json()
 
 
@@ -106,4 +110,5 @@ def make_delete_request(endpoint):
         print(response.request.body)
         raise Exception('DELETE /' + endpoint + '/ {}'.format(response.status_code) + ' ' + f'{response.text}')
 
-    return {'status': 'success'}
+    print(response.text)
+    return response.json()

@@ -1,7 +1,7 @@
-from .commons import *
+from .manage_and_update import *
 
 
-def add_survey(
+def add_survey_dataset(
         idno=None,
         repositoryid=None,
         access_policy=None,
@@ -14,7 +14,7 @@ def add_survey(
         variable_groups=None,
         additional=None
 ):
-    """Add a new survey
+    """Add a new survey dataset to the catalog
 
     Parameters
     ----------
@@ -59,6 +59,8 @@ def add_survey(
         "additional": additional
     }
 
+    assert idno == study_desc["title_statement"]["idno"]
+
     data = {key: value for key, value in data.items() if value is not None}
     response = make_post_request('datasets/create/survey/'+idno, data)
 
@@ -66,7 +68,7 @@ def add_survey(
     #return pd.DataFrame.from_dict(response['datasets']).set_index('id')
 
 
-def add_document(
+def add_document_dataset(
         idno=None,
         repositoryid=None,
         published=None,
@@ -76,7 +78,7 @@ def add_document(
         tags=None,
         files=None
 ):
-    """Add a new document
+    """Add a new document dataset to the catalog
 
     Parameters
     ----------
@@ -112,7 +114,101 @@ def add_document(
         "files": files
     }
 
+    assert idno == document_description["title_statement"]["idno"]
+
     data = {key: value for key, value in data.items() if value is not None}
     response = make_post_request('datasets/create/document/'+idno, data)
+
+    return response
+
+
+def add_image_dataset(
+        idno=None,
+        repositoryid=None,
+        published=None,
+        overwrite=None,
+        metadata_information=None,
+        image_description=None
+):
+    """Add a new image dataset to the catalog using the IPTC Photo Metadata Standard 2017
+
+    Parameters
+    ----------
+    idno : str
+        Dataset IDNo
+    repositoryid : str
+        Collection ID that owns the survey
+    published : int
+        Set status for study - 0 = Draft, 1 = Published
+    overwrite : str
+        Overwrite if a study with the same ID already exists? Valid values "yes", "no"
+    metadata_information : dict
+        Document metadata information
+    image_description : dict
+        Image Description
+
+    Returns
+    -------
+    DataFrame
+        Information on the added image
+    """
+    data = {
+        "repositoryid": repositoryid,
+        "published": published,
+        "overwrite": overwrite,
+        "metadata_information": metadata_information,
+        "image_description": image_description
+    }
+
+    assert idno == image_description["iptc"]["photoVideoMetadataIPTC"]["digitalImageGuid"]
+
+    data = {key: value for key, value in data.items() if value is not None}
+    response = make_post_request('datasets/create/image/'+idno, data)
+
+    return response
+
+
+def add_script_dataset(
+        idno=None,
+        repositoryid=None,
+        published=None,
+        overwrite=None,
+        doc_desc=None,
+        project_desc=None
+):
+    """Add a new script dataset to the catalog
+
+    Parameters
+    ----------
+    idno : str
+        Dataset IDNo
+    repositoryid : str
+        Collection ID that owns the survey
+    published : int
+        Set status for study - 0 = Draft, 1 = Published
+    overwrite : str
+        Overwrite if a study with the same ID already exists? Valid values "yes", "no"
+    doc_desc : dict
+        Script metadata information
+    project_desc : dict
+        Description of the research project
+
+    Returns
+    -------
+    DataFrame
+        Information on the added script dataset
+    """
+    data = {
+        "repositoryid": repositoryid,
+        "published": published,
+        "overwrite": overwrite,
+        "doc_desc": doc_desc,
+        "project_desc": project_desc
+    }
+
+    assert idno == project_desc["title_statement"]["idno"]
+
+    data = {key: value for key, value in data.items() if value is not None}
+    response = make_post_request('datasets/create/script/'+idno, data)
 
     return response

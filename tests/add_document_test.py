@@ -5,9 +5,9 @@ api_key = 'cf16a23a3cfc6a928f63dd3c8daf8796'
 create_and_import.set_api_key(api_key)
 
 
-####################
-# add_document test
-####################
+############################
+# add_document_dataset test
+############################
 idno = "WPS8038"
 repositoryid = "central"
 published = 1
@@ -41,7 +41,7 @@ files = [
 ]
 
 
-response = create_and_import.add_document(
+response = create_and_import.add_document_dataset(
     idno=idno,
     repositoryid=repositoryid,
     published=published,
