@@ -4,12 +4,12 @@ create_and_import.set_api_url('http://training.ihsn.org/index.php/api/')
 api_key = 'cf16a23a3cfc6a928f63dd3c8daf8796'
 create_and_import.set_api_key(api_key)
 
-##################
-# add_survey test
-##################
+##########################
+# add_survey_dataset test
+##########################
 idno = "SURVEY_DATASET_SAMPLE_01"
 
-repositoryid = "string"
+repositoryid = "central"
 access_policy = "data_na"
 published = 0
 overwrite = "yes"

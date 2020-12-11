@@ -9,7 +9,7 @@ create_and_import.set_api_key(api_key)
 ##########################
 idno = "TABLE_DATASET_SAMPLE_01"
 
-repositoryid = "string"
+repositoryid = "central"
 published = 0
 overwrite = "no"
 metadata_information = {

@@ -9,7 +9,7 @@ create_and_import.set_api_key(api_key)
 #################################
 idno = "GEOSPATIAL_DATASET_SAMPLE_01"
 
-repositoryid = "string"
+repositoryid = "central"
 published = 0
 overwrite = "no"
 metadata_maintenance = {
@@ -126,13 +126,13 @@ dataset_description = {
 			"use_limitations": "geospatial dataset use_limitations",
 			"other_constraints": "geospatial dataset other_constraints"
 		},
-		"spatial_representation_type": "vector",  #Spatial Representation type - vector, grid, textTable, tin, stereoModel, video
-		"representative_fraction_denominator": "100000",  #Spatial Resolution Fraction
+		"spatial_representation_type": "vector",  # Spatial Representation type - vector, grid, textTable, tin, stereoModel, video
+		"representative_fraction_denominator": "100000",  # Spatial Resolution Fraction
 		"language": "identification_info language",
 		"charset_code": "identification_info charset_code",
 		"topics": [
 			{
-				"topic": "geospatial dataset topic",  #Topic code e.g. farming, biota, boundaries, climatologyMeterologyAtmosphere, economy
+				"topic": "geospatial dataset topic",  # Topic code e.g. farming, biota, boundaries, climatologyMeterologyAtmosphere, economy
 				"vocab": "geospatial dataset topic vocab",
 				"vocab_uri": "http://example.org/dataset_description/topics/vocab_uri"
 			}
@@ -173,7 +173,7 @@ dataset_description = {
 				"url": "http://example.org/dataset_description/distribution_info/online_resource",
 				"name": "distribution_info online_resource name",
 				"description": "distribution_info online_resource description",
-				"format": "CSV"  #distribution_info online_resource file format e.g. CSV, ZIP
+				"format": "CSV"  # distribution_info online_resource file format e.g. CSV, ZIP
 			}
 		]
 	},
@@ -182,12 +182,12 @@ dataset_description = {
 		"lineage": "data_quality_info lineage statement"
 	},
 	"spatial_representation_info": {
-		"topology_level": "geometryOnly",  #Topology Level Code: {geometryOnly, topology1D, planarGraph, fullPlanarGraph, surfaceGraph, fullSurfaceGraph, topology3D, fullTopology3D, abstract}
-		"Geometric_object_code": "complex"  #Geometric Object Type Code codes ={complex, composite, curve, point, solid, surface}
+		"topology_level": "geometryOnly",  # Topology Level Code: {geometryOnly, topology1D, planarGraph, fullPlanarGraph, surfaceGraph, fullSurfaceGraph, topology3D, fullTopology3D, abstract}
+		"Geometric_object_code": "complex"  # Geometric Object Type Code codes ={complex, composite, curve, point, solid, surface}
 	},
 	"reference_system_info": {
-		"code": "EPSG:5701",  #reference_system Identifier Code
-		"code_space": "urn:ogc:def:crs"  #spatial reference system code_space
+		"code": "EPSG:5701",  # reference_system Identifier Code
+		"code_space": "urn:ogc:def:crs"  # spatial reference system code_space
 	}
 }
 additional = {
