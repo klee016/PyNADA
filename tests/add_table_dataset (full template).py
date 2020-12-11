@@ -246,13 +246,16 @@ additional = {
 	"additional": "additional info"
 }
 
-response = create_and_import.add_script_dataset(
+response = create_and_import.add_table_dataset(
 	idno=idno,
 	repositoryid=repositoryid,
 	published=published,
 	overwrite=overwrite,
-	doc_desc=doc_desc,
-	project_desc=project_desc
+	metadata_information=metadata_information,
+	table_description=table_description,
+	files=files,
+	tags=tags,
+	additional=additional
 )
 
 print(response)
