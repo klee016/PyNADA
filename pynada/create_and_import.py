@@ -270,3 +270,57 @@ def add_table_dataset(
     response = make_post_request('datasets/create/table/'+idno, data)
 
     return response
+
+
+def add_visualization_dataset(
+        idno=None,
+        repositoryid=None,
+        published=None,
+        overwrite=None,
+        metadata_information=None,
+        visualization_description=None,
+        files=None,
+        additional=None
+):
+    """Add a new visualization dataset to the catalog
+
+    Parameters
+    ----------
+    idno : str
+        Dataset IDNo
+    repositoryid : str
+        Collection ID that owns the survey
+    published : int
+        Set status for study - 0 = Draft, 1 = Published
+    overwrite : str
+        Overwrite if a study with the same ID already exists? Valid values "yes", "no"
+    metadata_information : dict
+        Visualization metadata
+    visualization_description : dict
+        Description of the visualization
+    files : list of dict
+        Table files
+    additional : dict
+        Additional metadata
+
+    Returns
+    -------
+    DataFrame
+        Information on the added visualization dataset
+    """
+    data = {
+        "repositoryid": repositoryid,
+        "published": published,
+        "overwrite": overwrite,
+        "metadata_information": metadata_information,
+        "visualization_description": visualization_description,
+        "files": files,
+        "additional": additional
+    }
+
+    assert idno == visualization_description["title_statement"]["idno"]
+
+    data = {key: value for key, value in data.items() if value is not None}
+    response = make_post_request('datasets/create/visualization/'+idno, data)
+
+    return response
