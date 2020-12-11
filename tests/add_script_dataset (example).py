@@ -19,32 +19,32 @@ project_desc = {
 		"idno": "RR_WLD_2020_PFC_v01",
 		"title": "Reproducible code for the World Bank Policy Research Working Paper No 9142 - Predicting Food Crises"
 	},
-	"abstract": inspect.cleandoc(
-		"""\
+	"abstract": inspect.cleandoc("""\
+		
 		This package contains code and data for a statistical forecasting approach to predict the outbreak of food crises.
-		"""
-	),
+		
+	"""),
 	"output": [
 		{
 			"type": "Working paper",
 			"title": "Predicting Food Crises",
 			"authors": "Bo Pieter Johannes Andrée, Andres Chamorro, Aart Kraay, Phoebe Spencer, Dieter Wang",
-			"description": inspect.cleandoc(
-				"""\
+			"description": inspect.cleandoc("""\
+				
 				World Bank Policy Research Working Paper No 9412.
 				This paper is a product of the Fragility, Conflict and Violence Global Theme and the Development Economics Vice Presidency. It is part of a larger effort by the World Bank to provide open access to its research and make a contribution to development policy discussions around the world.
-				"""
-			),
-			"abstract": inspect.cleandoc(
-				"""\
+				
+			"""),
+			"abstract": inspect.cleandoc("""\
+				
 				Globally, more than 130 million people are estimated to be in food crisis. These humanitarian disasters are associated with severe impacts on livelihoods that can reverse years of development gains. 
 				The existing outlooks of crisis-affected populations rely on expert assessment of evidence and are limited in their temporal frequency and ability to look beyond several months.
 				This paper presents a statistical forecasting approach to predict the outbreak of food crises with sufficient lead time for preventive action. 
 				Different use cases are explored related to possible alternative targeting policies and the levels at which finance is typically unlocked. 
 				The results indicate that, particularly at longer forecasting horizons, the statistical predictions compare favorably to expert-based outlooks. 
 				The paper concludes that statistical models demonstrate good ability to detect future outbreaks of food crises and that using statistical forecasting approaches may help increase lead time for action.
-				"""
-			),
+				
+			"""),
 			"uri": "http://hdl.handle.net/10986/34510"
 		}
 	],
@@ -67,13 +67,13 @@ project_desc = {
 			"affiliation": "World Bank",
 		}
 	],
-	"acknowledgement_statement": inspect.cleandoc(
-		"""\
+	"acknowledgement_statement": inspect.cleandoc("""\
+		
 		This work was prepared as background for the Famine Action Mechanism (FAM). 
 		The authors would like to thank Nadia Piffaretti, Zacharey Carmichael, Harun Dogo, Arif Hussain, Luca Russo, Jose Lopez, Colin Bruce, Nick Haan, Frank Davenport, Dan Maxwell, Joanna Macrae, Soomin Park, Marco Zambotti, Sardar Azari, Therese Norman-Monroe, Jacob LaRiviere, and the IPC, WFP mVAM, and FAO teams for invaluable contributions in the initial phase of this work. 
 		In particular, we'd like to thank the participants of the FAM Workshop in Geneva on February 2018 hosted by ICRC, Artemis Working Days in Rome on April 2018 hosted by WFP, the FAM Data and Analytics meetings with global tech partners in Rome and New York on September 2018, and the participants to the Predictive Analytics workshop hosted by UN OCHA, at the Center for Humanitarian data in the Hague in April 2019.
-		"""
-	),
+		
+	"""),
 	"geographic_units": [
 		{"name": "Afghanistan", "code": "AFG", "type": "Country"},
 		{"name": "Burkina Faso", "code": "BFA", "type": "Country"},
@@ -149,15 +149,15 @@ project_desc = {
 			"uri": "https://creativecommons.org/licenses/by/4.0"
 		}
 	],
-	"technology_requirements": inspect.cleandoc(
-		"""\
+	"technology_requirements": inspect.cleandoc("""\
+		
 		- The code was developed and last ran in Microsoft Open R 3.5.1, on Ubuntu 16.04.5 LTS and has not been tested on other OS. It should run in R 3.5.1 but the code benefits from multithreaded BLAS/LAPACK and contains a call to automatically sets MKL threads. This may throw an error in R 3.5.1 but should not break the remainder of the code.
 		- The results presented in the paper have been generated on a virtual machine with 64 CPUs and 256GB RAM. Producing the full set of results in the paper consumed around 12,000 core hours and was run on a D64s_v3 VM with 64CPUs and 256 GiB RAM. Some simplifications have been made to make the final code more usable, comments are left in the main R file.
 		- Viewing plots: R Studio server is recommended.
-		"""
-	),
-	"reproduction_instructions": inspect.cleandoc(
-		"""\
+		
+	"""),
+	"reproduction_instructions": inspect.cleandoc("""\
+		
 		>> INSTALLATION
 		
 		The user will need to follow standard installation instructions for R. 
@@ -213,8 +213,8 @@ project_desc = {
 		
 		NA values in validation metrics:
 		* A common issue with caret is that validation metrics return as NA. This is likely result of a missing dependency in the slave environment, which may occur because different OS handle parallelization differently. See if the issue persists when setting MODEL_METHOD to another value, for example 'multinom'.
-		"""
-	),
+		
+	"""),
 	"methods": [
 		{"name": "inverse distance interpolation", "note": ""},
 		{"name": "outliers smoothing", "note": ""},
