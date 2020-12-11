@@ -46,6 +46,7 @@ def add_survey_dataset(
     DataFrame
         Added dataset
     """
+
     data = {
         "repositoryid": repositoryid,
         "access_policy": access_policy,
@@ -104,6 +105,7 @@ def add_document_dataset(
     DataFrame
         Information on the added document
     """
+
     data = {
         "repositoryid": repositoryid,
         "published": published,
@@ -152,6 +154,7 @@ def add_image_dataset(
     DataFrame
         Information on the added image
     """
+
     data = {
         "repositoryid": repositoryid,
         "published": published,
@@ -198,6 +201,7 @@ def add_script_dataset(
     DataFrame
         Information on the added script dataset
     """
+
     data = {
         "repositoryid": repositoryid,
         "published": published,
@@ -253,6 +257,7 @@ def add_table_dataset(
     DataFrame
         Information on the added table dataset
     """
+
     data = {
         "repositoryid": repositoryid,
         "published": published,
@@ -308,6 +313,7 @@ def add_visualization_dataset(
     DataFrame
         Information on the added visualization dataset
     """
+
     data = {
         "repositoryid": repositoryid,
         "published": published,
@@ -322,5 +328,56 @@ def add_visualization_dataset(
 
     data = {key: value for key, value in data.items() if value is not None}
     response = make_post_request('datasets/create/visualization/'+idno, data)
+
+    return response
+
+
+def add_geospatial_dataset(
+        idno=None,
+        repositoryid=None,
+        published=None,
+        overwrite=None,
+        metadata_maintenance=None,
+        dataset_description=None,
+        additional=None
+):
+    """Add a new geospatial dataset to the catalog
+
+    Parameters
+    ----------
+    idno : str
+        Dataset IDNo
+    repositoryid : str
+        Collection ID that owns the survey
+    published : int
+        Set status for study - 0 = Draft, 1 = Published
+    overwrite : str
+        Overwrite if a study with the same ID already exists? Valid values "yes", "no"
+    metadata_maintenance : dict
+        Metadata information for the geospatial dataset
+    dataset_description : dict
+        Description of the geospatial dataset
+    additional : dict
+        Additional metadata
+
+    Returns
+    -------
+    DataFrame
+        Information on the added geospatial dataset
+    """
+
+    data = {
+        "repositoryid": repositoryid,
+        "published": published,
+        "overwrite": overwrite,
+        "metadata_maintenance": metadata_maintenance,
+        "dataset_description": dataset_description,
+        "additional": additional
+    }
+
+    assert idno == dataset_description["file_identifier"]
+
+    data = {key: value for key, value in data.items() if value is not None}
+    response = make_post_request('datasets/create/geospatial/'+idno, data)
 
     return response
