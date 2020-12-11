@@ -21,7 +21,7 @@ def add_survey_dataset(
     idno : str
         Dataset IDNo
     repositoryid : str
-        Collection ID that owns the survey
+        Collection ID that owns the survey dataset
     access_policy : str
         Data access policy. Valid values - "open" "direct" "public" "licensed" "enclave" "remote" "other"
     published : int
@@ -69,6 +69,66 @@ def add_survey_dataset(
     #return pd.DataFrame.from_dict(response['datasets']).set_index('id')
 
 
+def add_timeseries_dataset(
+        idno=None,
+        repositoryid=None,
+        access_policy=None,
+        data_remote_url=None,
+        published=None,
+        overwrite=None,
+        metadata_creation=None,
+        series_description=None,
+        additional=None
+):
+    """Add a new timeseries dataset to the catalog
+
+    Parameters
+    ----------
+    idno : str
+        Dataset IDNo
+    repositoryid : str
+        Collection that owns the timeseries dataset
+    access_policy : str
+        Data access policy. Valid values - "direct" "open" "public" "licensed" "remote" "na"
+    data_remote_url: str
+        Link to the website where the data is available, this is only needed if access_policy is set to "remote"
+    published : int
+        Set status for study - 0 = Draft, 1 = Published
+    overwrite : str
+        Overwrite if a study with the same ID already exists? Valid values "yes", "no"
+    metadata_creation : dict
+        Information on who generated the documentation
+    series_description : dict
+        Description on the timeseries dataset
+    additional : dict
+        Additional metadata
+
+    Returns
+    -------
+    DataFrame
+        Information on the added timeseries dataset
+    """
+
+    data = {
+        "repositoryid": repositoryid,
+        "access_policy": access_policy,
+        "data_remote_url": data_remote_url,
+        "published": published,
+        "overwrite": overwrite,
+        "metadata_creation": metadata_creation,
+        "series_description": series_description,
+        "additional": additional
+    }
+
+    assert idno == series_description["idno"]
+
+    data = {key: value for key, value in data.items() if value is not None}
+    response = make_post_request('datasets/create/timeseries/'+idno, data)
+
+    return response
+    #return pd.DataFrame.from_dict(response['datasets']).set_index('id')
+
+
 def add_document_dataset(
         idno=None,
         repositoryid=None,
@@ -86,7 +146,7 @@ def add_document_dataset(
     idno : str
         Dataset IDNo
     repositoryid : str
-        Collection ID that owns the survey
+        Collection ID that owns the document dataset
     published : int
         Set status for study - 0 = Draft, 1 = Published
     overwrite : str
@@ -139,7 +199,7 @@ def add_image_dataset(
     idno : str
         Dataset IDNo
     repositoryid : str
-        Collection ID that owns the survey
+        Collection ID that owns the image dataset
     published : int
         Set status for study - 0 = Draft, 1 = Published
     overwrite : str
@@ -186,7 +246,7 @@ def add_script_dataset(
     idno : str
         Dataset IDNo
     repositoryid : str
-        Collection ID that owns the survey
+        Collection ID that owns the script dataset
     published : int
         Set status for study - 0 = Draft, 1 = Published
     overwrite : str
@@ -236,7 +296,7 @@ def add_table_dataset(
     idno : str
         Dataset IDNo
     repositoryid : str
-        Collection ID that owns the survey
+        Collection ID that owns the table dataset
     published : int
         Set status for study - 0 = Draft, 1 = Published
     overwrite : str
@@ -294,7 +354,7 @@ def add_visualization_dataset(
     idno : str
         Dataset IDNo
     repositoryid : str
-        Collection ID that owns the survey
+        Collection ID that owns the visualization dataset
     published : int
         Set status for study - 0 = Draft, 1 = Published
     overwrite : str
@@ -348,7 +408,7 @@ def add_geospatial_dataset(
     idno : str
         Dataset IDNo
     repositoryid : str
-        Collection ID that owns the survey
+        Collection ID that owns the geospatial dataset
     published : int
         Set status for study - 0 = Draft, 1 = Published
     overwrite : str
