@@ -1,4 +1,5 @@
 from .commons import *
+import sys
 import pandas as pd
 
 
@@ -96,7 +97,7 @@ def list_resources(idno):
 
 
 def list_datafiles(idno):
-    """Get a list of all data files for a dataset
+    """Get a list of all data files for a survey
 
     Parameters
     ----------

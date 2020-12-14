@@ -39,7 +39,7 @@ def add_survey_dataset(
     variable_groups : list of dict
         List of variable groups
     additional : dict
-        Additional metadata
+        Any other custom metadata not covered by the schema
 
     Returns
     -------
@@ -64,6 +64,103 @@ def add_survey_dataset(
 
     data = {key: value for key, value in data.items() if value is not None}
     response = make_post_request('datasets/create/survey/'+idno, data)
+
+    return response
+    #return pd.DataFrame.from_dict(response['datasets']).set_index('id')
+
+
+def add_survey_dataset_by_importing_DDI(
+        file=None,
+        overwrite=None,
+        repositoryid=None,
+        access_policy=None,
+        data_remote_url=None,
+        rdf=None,
+        published=None
+):
+    """Add a new survey dataset to the catalog
+
+    Parameters
+    ----------
+    file : str
+        DDI XML file path or URL pointing to the XML file
+    overwrite : str
+        Valid values: "yes" "no"
+    repositoryid : str
+        Collection identifier where the survey will be added to
+    access_policy : str
+        Valid values: "open" "direct" "public" "licensed" "enclave" "remote" "other"
+    data_remote_url : str
+        Link to the website for 'Data available from external repository' section
+    rdf : str
+        RDF file path or URL to the file
+    published : int
+        0=draft, 1=published
+    """
+
+    if validators.url(file):
+        print("You provided a URL for the DDI XML. Processing...")
+    elif os.path.exists(file):
+        print("You provided a file for the DDI XML. Processing...")
+        file = {'file': open(file, 'rb')}
+    else:
+        raise Exception("The DDI XML file you provided doesn't seem to be a valid file path or URL." 
+                        "If it is a file, please check the path."
+                        "If it is a URL, make sure to add a proper prefix such as http://")
+
+    if rdf is not None:
+        if validator.url(rdf):
+            print("You provided a URL for the RDF. Processing...")
+        elif os.path.exists(rdf):
+            print("You provided a file for the RDF. Processing...")
+            rdf = {'file': open(rdf, 'rb')}
+        else:
+            raise Exception("The RDF file you provided doesn't seem to be a valid file path or URL."
+                            "If it is a file, please check the path."
+                            "If it is a URL, make sure to add a proper prefix such as http://")
+
+    data = {
+        "file": file,
+        "overwrite": overwrite,
+        "repositoryid": repositoryid,
+        "access_policy": access_policy,
+        "data_remote_url": data_remote_url,
+        "rdf": rdf,
+        "published": published
+    }
+
+    data = {key: value for key, value in data.items() if value is not None}
+    response = make_post_request('datasets/import_ddi', data)
+
+    return response
+    #return pd.DataFrame.from_dict(response['datasets']).set_index('id')
+
+
+def add_resource_by_importing_RDF(
+        idno=None,
+        file=None
+):
+    """Import an RDF file to batch import external resoruces
+
+    Parameters
+    ----------
+    idno : str
+        Dataset IDNo
+    file : str
+        Dublin core RDF file (rdf, xml)
+    """
+
+    if os.path.exists(file):
+        print("You provided a file for Dublin core RDF. Processing...")
+        file = {'file': open(file, 'rb')}
+    else:
+        raise Exception("The RDF file you provided doesn't seem to be a valid file path. Please check the path.")
+
+    data = {
+    }
+
+    data = {key: value for key, value in data.items() if value is not None}
+    response = make_post_request('datasets/resources/import_rdf', data, file)
 
     return response
     #return pd.DataFrame.from_dict(response['datasets']).set_index('id')
@@ -101,7 +198,64 @@ def add_timeseries_dataset(
     series_description : dict
         Description on the timeseries dataset
     additional : dict
-        Additional metadata
+        Any other custom metadata not covered by the schema
+
+    Returns
+    -------
+    DataFrame
+        Information on the added timeseries dataset
+    """
+
+    data = {
+        "repositoryid": repositoryid,
+        "access_policy": access_policy,
+        "data_remote_url": data_remote_url,
+        "published": published,
+        "overwrite": overwrite,
+        "metadata_creation": metadata_creation,
+        "series_description": series_description,
+        "additional": additional
+    }
+
+    assert idno == series_description["idno"]
+
+    data = {key: value for key, value in data.items() if value is not None}
+    response = make_post_request('datasets/create/timeseries/'+idno, data)
+
+    return response
+    #return pd.DataFrame.from_dict(response['datasets']).set_index('id')
+
+
+def add_timeseries_database(
+        idno=None,
+        repositoryid=None,
+        published=None,
+        overwrite=None,
+        database_description=None,
+        additional=None
+):
+    """Add a new timeseries database to the catalog
+
+    Parameters
+    ----------
+    idno : str
+        Dataset IDNo
+    repositoryid : str
+        Collection that owns the timeseries dataset
+    access_policy : str
+        Data access policy. Valid values - "direct" "open" "public" "licensed" "remote" "na"
+    data_remote_url: str
+        Link to the website where the data is available, this is only needed if access_policy is set to "remote"
+    published : int
+        Set status for study - 0 = Draft, 1 = Published
+    overwrite : str
+        Overwrite if a study with the same ID already exists? Valid values "yes", "no"
+    metadata_creation : dict
+        Information on who generated the documentation
+    series_description : dict
+        Description on the timeseries dataset
+    additional : dict
+        Any other custom metadata not covered by the schema
 
     Returns
     -------
@@ -137,7 +291,8 @@ def add_document_dataset(
         metadata_information=None,
         document_description=None,
         tags=None,
-        files=None
+        files=None,
+        thumbnail=None,
 ):
     """Add a new document dataset to the catalog
 
@@ -159,6 +314,8 @@ def add_document_dataset(
         Tags
     files : list of dict
         Files
+    thumbnail : str
+        Thumbnail file path
 
     Returns
     -------
@@ -180,6 +337,12 @@ def add_document_dataset(
 
     data = {key: value for key, value in data.items() if value is not None}
     response = make_post_request('datasets/create/document/'+idno, data)
+
+    if response['status'] == 'success':
+        print("Document successfully added.")
+
+    if thumbnail is not None:
+        add_thumbnail(idno, thumbnail)
 
     return response
 
@@ -310,7 +473,7 @@ def add_table_dataset(
     tags : list of dict
         Tags
     additional : dict
-        Additional metadata
+        Any other custom metadata not covered by the schema
 
     Returns
     -------
@@ -366,7 +529,7 @@ def add_visualization_dataset(
     files : list of dict
         Table files
     additional : dict
-        Additional metadata
+        Any other custom metadata not covered by the schema
 
     Returns
     -------
@@ -418,7 +581,7 @@ def add_geospatial_dataset(
     dataset_description : dict
         Description of the geospatial dataset
     additional : dict
-        Additional metadata
+        Any other custom metadata not covered by the schema
 
     Returns
     -------
