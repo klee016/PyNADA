@@ -18,7 +18,7 @@ def list_all_datasets():
     return pd.DataFrame.from_dict(response['datasets']).set_index('id')
 
 
-def search_by_idno(partial_idno):
+def search_dataset_by_idno(partial_idno):
     """Returns a list of datasets whose idno contains a partial match
 
     Parameters
@@ -36,7 +36,7 @@ def search_by_idno(partial_idno):
     return datasets[datasets['idno'].str.contains(partial_idno)]
 
 
-def search_by_title(partial_title):
+def search_dataset_by_title(partial_title):
     """Returns a list of datasets whose title contains a partial match
 
     Parameters
@@ -55,7 +55,7 @@ def search_by_title(partial_title):
 
 
 def dataset_info(idno):
-    """Returns information of a dataset
+    """Returns information on a dataset
 
     Parameters
     ----------
@@ -136,3 +136,59 @@ def list_files(idno):
 
     #return response
     return pd.DataFrame.from_dict(response['files'])
+
+
+def list_all_citations():
+    """Get all citations
+
+    Returns
+    -------
+    pd.DataFrame
+        citation information
+    """
+
+    params = {}
+    response = make_get_request('citations', params)
+    return pd.DataFrame.from_dict(response['citations']).set_index('id')
+
+
+def citation_info(uuid):
+    """Returns information on a citation
+
+    Parameters
+    ----------
+    uuid : str
+        citation ID
+
+    Returns
+    -------
+    pd.DataFrame
+        citation information
+    """
+
+    params = {}
+    response = make_get_request('citation/'+uuid, params)
+
+    return response
+    # return pd.DataFrame.from_dict(response['dataset']).set_index('id')
+
+
+def search_citation_by_study(idno):
+    """Returns a list of publications that cite the dataset
+
+    Parameters
+    ----------
+    idno : str
+        Dataset IDNo
+
+    Returns
+    -------
+    pd.DataFrame
+        citation information
+    """
+
+    params = {}
+    response = make_get_request('citations/by_dataset/' + idno, params)
+
+    return response
+    # return pd.DataFrame.from_dict(response['dataset']).set_index('id')

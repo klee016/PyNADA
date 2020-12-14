@@ -13,4 +13,4 @@ manage_and_update.set_api_key(api_key)
 
 #manage_and_update.upload_file('study_id', 'WBG-logo.jpg')
 
-manage_and_update.delete_file('study_id', 'WBG-logo.jpg')
+#manage_and_update.delete_file('study_id', 'WBG-logo.jpg')
