@@ -1,4 +1,5 @@
 from pynada import create_and_import
+from pynada import utils
 
 create_and_import.set_api_url('http://training.ihsn.org/index.php/api/')
 api_key = 'cf16a23a3cfc6a928f63dd3c8daf8796'
@@ -11,7 +12,7 @@ idno = "TABLE_DATASET_SAMPLE_01"
 
 repositoryid = "central"
 published = 0
-overwrite = "no"
+overwrite = "yes"
 metadata_information = {
 	"idno": "metadata info id",
 	"producers": [
@@ -259,3 +260,6 @@ response = create_and_import.add_table_dataset(
 )
 
 print(response)
+
+utils.text_to_thumbnail("Table\nDataset")
+create_and_import.add_thumbnail(idno, "temp_thumbnail.jpg")

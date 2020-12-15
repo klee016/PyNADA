@@ -1,4 +1,5 @@
 from pynada import create_and_import
+from pynada import utils
 
 create_and_import.set_api_url('http://training.ihsn.org/index.php/api/')
 api_key = 'cf16a23a3cfc6a928f63dd3c8daf8796'
@@ -17,14 +18,14 @@ doc_desc = {
 	"idno": "metadata document idno",
 	"producers": [
 		{
-			"name": "doc producer name",
-			"abbr": "doc producer abbr",
-			"affiliation": "doc producer affiliation",
-			"role": "doc producer role"
+			"name": "metadata producer name",
+			"abbr": "metadata producer abbr",
+			"affiliation": "metadata producer affiliation",
+			"role": "metadata producer role"
 		}
 	],
 	"prod_date": "2020-12-31",
-	"version": "doc version"
+	"version": "metadata version"
 }
 project_desc = {
 	"title_statement": {
@@ -43,7 +44,7 @@ project_desc = {
 			"authors": "project output authors",
 			"description": "project output description",
 			"abstract": "project output abstract",
-			"uri": "project output uri",
+			"uri": "http://example.org/project_desc/output/uri",
 			"doi": "project output doi"
 		}
 	],
@@ -109,7 +110,7 @@ project_desc = {
 			"affiliation": "project contributor affiliation",
 			"abbreviation": "project contributor abbreviation",
 			"email": "project contributor email",
-			"url": "project contributor url"
+			"url": "http://example.org/project_desc/contributor/uri"
 		}
 	],
 	"sponsors": [
@@ -127,7 +128,7 @@ project_desc = {
 			"affiliation": "project curator affiliation",
 			"abbreviation": "project curator abbreviation",
 			"email": "project curator email",
-			"url": "project curator url"
+			"url": "http://example.org/project_desc/curator/uri"
 		}
 	],
 	"reviews_comments": {
@@ -147,75 +148,75 @@ project_desc = {
 	"related_projects": [
 		{
 			"name": "project related_project name",
-			"uri": "project related_project uri",
+			"uri": "http://example.org/project_desc/related_project/uri",
 			"note": "project related_project note"
 		}
 	],
 	"geographic_units": [
 		{
-			"name": "project geographic_unit name",
-			"code": "project geographic_unit code",
-			"type": "project geographic_unit type"
+			"name": "geographic_unit name",
+			"code": "geographic_unit code",
+			"type": "geographic_unit type"
 		}
 	],
 	"keywords": [
 		{
-			"name": "project keyword name",
-			"vocabulary": "project keyword vocabulary",
-			"uri": "project keyword uri"
+			"name": "keyword name",
+			"vocabulary": "keyword vocabulary",
+			"uri": "http://example.org/project_desc/keyword/uri"
 		}
 	],
 	"themes": [
 		{
-			"name": "project theme name",
-			"vocabulary": "project theme vocabulary",
-			"uri": "project theme uri"
+			"name": "theme name",
+			"vocabulary": "theme vocabulary",
+			"uri": "http://example.org/project_desc/theme/uri"
 		}
 	],
 	"topics": [
 		{
-			"id": "project topic id",
-			"name": "project topic name",
-			"parent_id": "project topic parent_id",
-			"vocabulary": "project topic vocabulary",
-			"uri": "project topic uri"
+			"id": "topic id",
+			"name": "topic name",
+			"parent_id": "topic parent_id",
+			"vocabulary": "topic vocabulary",
+			"uri": "http://example.org/project_desc/topic/uri"
 		}
 	],
 	"disciplines": [
 		{
-			"name": "project disciplines name",
-			"vocabulary": "project disciplines vocabulary",
-			"uri": "project disciplines uri"
+			"name": "disciplines name",
+			"vocabulary": "disciplines vocabulary",
+			"uri": "http://example.org/project_desc/discipline/uri"
 		}
 	],
 	"repository_uri": [
 		{
-			"name": "project repository name",
-			"type": "project repository type",
-			"uri": "project repository uri"
+			"name": "repository name",
+			"type": "repository type",
+			"uri": "http://example.org/project_desc/repository_uri/uri"
 		}
 	],
 	"license": [
 		{
-			"name": "project license name",
-			"uri": "project license uri"
+			"name": "license name",
+			"uri": "http://example.org/project_desc/license/uri"
 		}
 	],
-	"technology_environment": "project technology_environment",
-	"technology_requirements": "project technology_requirements",
-	"reproduction_instructions": "project reproduction_instructions",
+	"technology_environment": "technology_environment",
+	"technology_requirements": "technology_requirements",
+	"reproduction_instructions": "reproduction_instructions",
 	"methods": [
 		{
-			"name": "project method name",
-			"note": "project method note"
+			"name": "method name",
+			"note": "method note"
 		}
 	],
 	"software": [
 		{
-			"name": "project software name",
-			"version": "project software version",
+			"name": "software name",
+			"version": "software version",
 			"library": [
-				"project software library"
+				"software library"
 			]
 		}
 	],
@@ -256,28 +257,28 @@ project_desc = {
 			"note": "project dataset note",
 			"access_type": "project dataset access_type",
 			"license": "project dataset license",
-			"license_uri": "project dataset license_uri",
-			"uri": "project dataset uri"
+			"license_uri": "http://example.org/project_desc/dataset/license_uri",
+			"uri": "http://example.org/project_desc/dataset/uri"
 		}
 	],
 	"contacts": [
 		{
-			"name": "project contact name",
-			"affiliation": "project contact affiliation",
-			"role": "project contact role",
-			"uri": "project contact uri",
-			"phone": "project contact phone"
+			"name": "contact name",
+			"affiliation": "contact affiliation",
+			"role": "contact role",
+			"uri": "http://example.org/project_desc/contact/uri",
+			"phone": "contact phone"
 		}
 	],
 	"tags": [
 		{
-			"tag": "project tag"
+			"tag": "tag"
 		}
 	],
-	"copyright": "project copyright",
-	"disclaimer": "project disclaimer",
-	"confidentiality": "project confidentiality",
-	"citation_requirement": "project citation_requirement"
+	"copyright": "copyright",
+	"disclaimer": "disclaimer",
+	"confidentiality": "confidentiality",
+	"citation_requirement": "citation_requirement"
 }
 
 response = create_and_import.add_script_dataset(
@@ -290,3 +291,6 @@ response = create_and_import.add_script_dataset(
 )
 
 print(response)
+
+utils.text_to_thumbnail("Geospatial\nDataset")
+create_and_import.add_thumbnail(idno, "temp_thumbnail.jpg")

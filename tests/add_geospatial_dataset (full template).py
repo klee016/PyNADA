@@ -1,4 +1,5 @@
 from pynada import create_and_import
+from pynada import utils
 
 create_and_import.set_api_url('http://training.ihsn.org/index.php/api/')
 api_key = 'cf16a23a3cfc6a928f63dd3c8daf8796'
@@ -11,7 +12,7 @@ idno = "GEOSPATIAL_DATASET_SAMPLE_01"
 
 repositoryid = "central"
 published = 0
-overwrite = "no"
+overwrite = "yes"
 metadata_maintenance = {
 	"update_frequency": "maintenance update_frequency",
 	"note": "maintenance note",
@@ -44,20 +45,20 @@ dataset_description = {
 	"date_stamp": "2009-11-17T10:00:00",
 	"contact": [
 		{
-			"person_name": "geospatial dataset contact person_name",
-			"role": "geospatial dataset contact role",
-			"organisation": "geospatial dataset contact organisation",
-			"position": "geospatial dataset contact position",
-			"instructions": "geospatial dataset contact instruction",
-			"phone": "geospatial dataset contact phone",
-			"fax": "geospatial dataset contact fax",
-			"email": "geospatial dataset contact email",
-			"website": "geospatial dataset contact website",
-			"address": "geospatial dataset contact address",
-			"city": "geospatial dataset contact city",
-			"administrative_area": "geospatial dataset contact administrative_area",
-			"postal_code": "geospatial dataset contact postal_code",
-			"country": "geospatial dataset contact country"
+			"person_name": "contact person_name",
+			"role": "contact role",
+			"organisation": "contact organisation",
+			"position": "contact position",
+			"instructions": "contact instruction",
+			"phone": "contact phone",
+			"fax": "contact fax",
+			"email": "contact email",
+			"website": "contact website",
+			"address": "contact address",
+			"city": "contact city",
+			"administrative_area": "contact administrative_area",
+			"postal_code": "contact postal_code",
+			"country": "contact country"
 		}
 	],
 	"identification_info": {
@@ -82,20 +83,20 @@ dataset_description = {
 		"status": "status code e.g. historicalArchive",
 		"point_of_contact": [
 			{
-				"person_name": "geospatial dataset point_of_contact person_name",
-				"role": "geospatial dataset point_of_contact role",
-				"organisation": "geospatial dataset point_of_contact organisation",
-				"position": "geospatial dataset point_of_contact position",
-				"instructions": "geospatial dataset point_of_contact instruction",
-				"phone": "geospatial dataset point_of_contact phone",
-				"fax": "geospatial dataset point_of_contact fax",
-				"email": "geospatial dataset point_of_contact email",
-				"website": "geospatial dataset point_of_contact website",
-				"address": "geospatial dataset point_of_contact address",
-				"city": "geospatial dataset point_of_contact city",
-				"administrative_area": "geospatial dataset point_of_contact administrative_area",
-				"postal_code": "geospatial dataset point_of_contact postal_code",
-				"country": "geospatial dataset point_of_contact country"
+				"person_name": "point_of_contact person_name",
+				"role": "point_of_contact role",
+				"organisation": "point_of_contact organisation",
+				"position": "point_of_contact position",
+				"instructions": "point_of_contact instruction",
+				"phone": "point_of_contact phone",
+				"fax": "point_of_contact fax",
+				"email": "point_of_contact email",
+				"website": "point_of_contact website",
+				"address": "point_of_contact address",
+				"city": "point_of_contact city",
+				"administrative_area": "point_of_contact administrative_area",
+				"postal_code": "point_of_contact postal_code",
+				"country": "point_of_contact country"
 			}
 		],
 		"resource_maintenance": {
@@ -103,9 +104,9 @@ dataset_description = {
 		},
 		"graphic_overview": [
 			{
-				"name": "geospatial dataset graphic_overview name",
-				"type": "geospatial dataset graphic_overview type",
-				"description": "geospatial dataset graphic_overview description"
+				"name": "graphic_overview name",
+				"type": "graphic_overview type",
+				"description": "graphic_overview description"
 			}
 		],
 		"keywords": [
@@ -123,8 +124,8 @@ dataset_description = {
 					"value": "legal_constraints value"
 				}
 			],
-			"use_limitations": "geospatial dataset use_limitations",
-			"other_constraints": "geospatial dataset other_constraints"
+			"use_limitations": "use_limitations",
+			"other_constraints": "other_constraints"
 		},
 		"spatial_representation_type": "vector",  # Spatial Representation type - vector, grid, textTable, tin, stereoModel, video
 		"representative_fraction_denominator": "100000",  # Spatial Resolution Fraction
@@ -147,7 +148,7 @@ dataset_description = {
 				}
 			]
 		},
-		"supplemental_information": "geospatial dataset supplemental_information"
+		"supplemental_information": "supplemental_information"
 	},
 	"distribution_info": {
 		"distributors": [
@@ -205,3 +206,6 @@ response = create_and_import.add_geospatial_dataset(
 )
 
 print(response)
+
+utils.text_to_thumbnail("Geospatial\nDataset")
+create_and_import.add_thumbnail(idno, "temp_thumbnail.jpg")

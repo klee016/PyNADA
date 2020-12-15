@@ -65,8 +65,10 @@ def add_survey_dataset(
     data = {key: value for key, value in data.items() if value is not None}
     response = make_post_request('datasets/create/survey/'+idno, data)
 
-    return response
-    #return pd.DataFrame.from_dict(response['datasets']).set_index('id')
+    if response['status'] == 'success':
+        print("Survey dataset successfully added!")
+
+    return pd.DataFrame.from_dict(response['dataset'], orient='index')
 
 
 def add_survey_dataset_by_importing_DDI(
@@ -222,8 +224,10 @@ def add_timeseries_dataset(
     data = {key: value for key, value in data.items() if value is not None}
     response = make_post_request('datasets/create/timeseries/'+idno, data)
 
-    return response
-    #return pd.DataFrame.from_dict(response['datasets']).set_index('id')
+    if response['status'] == 'success':
+        print("Timeseries dataset successfully added!")
+
+    return pd.DataFrame.from_dict(response['dataset'], orient='index')
 
 
 def add_timeseries_database(
@@ -279,8 +283,10 @@ def add_timeseries_database(
     data = {key: value for key, value in data.items() if value is not None}
     response = make_post_request('datasets/create/timeseries/'+idno, data)
 
-    return response
-    #return pd.DataFrame.from_dict(response['datasets']).set_index('id')
+    if response['status'] == 'success':
+        print("Timeseries database successfully added!")
+
+    return pd.DataFrame.from_dict(response['dataset'], orient='index')
 
 
 def add_document_dataset(
@@ -344,7 +350,10 @@ def add_document_dataset(
     if thumbnail is not None:
         add_thumbnail(idno, thumbnail)
 
-    return response
+    if response['status'] == 'success':
+        print("Document dataset successfully added!")
+
+    return pd.DataFrame.from_dict(response['dataset'], orient='index')
 
 
 def add_image_dataset(
@@ -391,7 +400,10 @@ def add_image_dataset(
     data = {key: value for key, value in data.items() if value is not None}
     response = make_post_request('datasets/create/image/'+idno, data)
 
-    return response
+    if response['status'] == 'success':
+        print("Image dataset successfully added!")
+
+    return pd.DataFrame.from_dict(response['dataset'], orient='index')
 
 
 def add_script_dataset(
@@ -438,7 +450,10 @@ def add_script_dataset(
     data = {key: value for key, value in data.items() if value is not None}
     response = make_post_request('datasets/create/script/'+idno, data)
 
-    return response
+    if response['status'] == 'success':
+        print("Script dataset successfully added!")
+
+    return pd.DataFrame.from_dict(response['dataset'], orient='index')
 
 
 def add_table_dataset(
@@ -497,7 +512,10 @@ def add_table_dataset(
     data = {key: value for key, value in data.items() if value is not None}
     response = make_post_request('datasets/create/table/'+idno, data)
 
-    return response
+    if response['status'] == 'success':
+        print("Table dataset successfully added!")
+
+    return pd.DataFrame.from_dict(response['dataset'], orient='index')
 
 
 def add_visualization_dataset(
@@ -552,7 +570,10 @@ def add_visualization_dataset(
     data = {key: value for key, value in data.items() if value is not None}
     response = make_post_request('datasets/create/visualization/'+idno, data)
 
-    return response
+    if response['status'] == 'success':
+        print("Visualization dataset successfully added!")
+
+    return pd.DataFrame.from_dict(response['dataset'], orient='index')
 
 
 def add_geospatial_dataset(
@@ -603,4 +624,7 @@ def add_geospatial_dataset(
     data = {key: value for key, value in data.items() if value is not None}
     response = make_post_request('datasets/create/geospatial/'+idno, data)
 
-    return response
+    if response['status'] == 'success':
+        print("Geospatial dataset successfully added!")
+
+    return pd.DataFrame.from_dict(response['dataset'], orient='index')

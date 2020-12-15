@@ -1,4 +1,5 @@
 from pynada import create_and_import
+from pynada import utils
 
 create_and_import.set_api_url('http://training.ihsn.org/index.php/api/')
 api_key = 'cf16a23a3cfc6a928f63dd3c8daf8796'
@@ -13,7 +14,7 @@ repositoryid = "central"  # Collection that owns the series
 access_policy = "na"  # Valid values - "direct" "open" "public" "licensed" "remote" "na"
 data_remote_url = "http://example.org/data_remote_url"  # Link to the website where the data is available, this is only needed if access_policy is set to "remote".
 published = 0  # 0=draft, 1=published
-overwrite = "no"  # Valid values - "yes" "no"
+overwrite = "yes"  # Valid values - "yes" "no"
 metadata_creation = {  # Information on who generated the documentation
 	"producers": [
 		{
@@ -199,18 +200,18 @@ series_description = {
 }
 additional = {}
 
-response = create_and_import.add_survey_dataset(
+response = create_and_import.add_timeseries_dataset(
 	idno=idno,
 	repositoryid=repositoryid,
 	access_policy=access_policy,
 	published=published,
 	overwrite=overwrite,
-	doc_desc=doc_desc,
-	study_desc=study_desc,
-	data_files=data_files,
-	variables=variables,
-	variable_groups=variable_groups,
+	metadata_creation=metadata_creation,
+	series_description=series_description,
 	additional=additional
 )
 
 print(response)
+
+utils.text_to_thumbnail("Timeseries\nDataset")
+create_and_import.add_thumbnail(idno, "temp_thumbnail.jpg")

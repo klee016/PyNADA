@@ -54,7 +54,7 @@ def make_get_request(endpoint, params):
     headers = {
         'X-API-KEY': api_key
     }
-    print(api_base_url + endpoint)
+
     response = requests.get(api_base_url + endpoint, headers=headers, params=params)
     
     if response.status_code != 200:
@@ -82,7 +82,6 @@ def make_post_request(endpoint, data, files=None):
         data = json.dumps(data)
 
     response = requests.post(api_base_url + endpoint, headers=headers, data=data, files=files)
-    #response = requests.post(api_base_url + urllib.parse.quote(endpoint), headers=headers, json=data)
 
     print(response.status_code)
     if response.status_code != 200:

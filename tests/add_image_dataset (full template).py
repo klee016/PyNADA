@@ -1,4 +1,5 @@
 from pynada import create_and_import
+from pynada import utils
 
 create_and_import.set_api_url('http://training.ihsn.org/index.php/api/')
 api_key = 'cf16a23a3cfc6a928f63dd3c8daf8796'
@@ -7,268 +8,268 @@ create_and_import.set_api_key(api_key)
 #########################
 # add_image_dataset test
 #########################
-idno = "IMAGE_DATASET_SAMPLE_01"
+idno = "IMAGE-DATASET-SAMPLE-01"
 
 repositoryid = "central"
 published = 0
 overwrite = "yes"
 metadata_information = {
-	"title": "string",
-	"idno": "string",
+	"title": "metadata title",
+	"idno": "metadata idno",
 	"producers": [
 		{
-			"name": "string",
-			"abbr": "string",
-			"affiliation": "string",
-			"role": "string"
+			"name": "producer name",
+			"abbr": "producer abbr",
+			"affiliation": "producer affiliation",
+			"role": "producer role"
 		}
 	],
-	"production_date": "string",
-	"version": "string"
+	"production_date": "2020-12-10",
+	"version": "version"
 }
+
 image_description = {
 	"iptc": {
 		"mediafragment": {
-			"uri": "http://example.com",
+			"uri": "http://example.org/iptc/mediafragment/url",
 			"delimitertype": "spatial",
-			"description": "string"
+			"description": "iptc mediafragment description"
 		},
 		"photoVideoMetadataIPTC": {
 			"aboutCvTerms": [
 				{
-					"cvId": "http://example.com",
-					"cvTermName": "string",
-					"cvTermId": "http://example.com",
-					"cvTermRefinedAbout": "http://example.com"
+					"cvId": "http://example.org/iptc/photoVideoMetadataIPTC/aboutCvTerms/cvId",
+					"cvTermName": "IPTC Cv Term Name",
+					"cvTermId": "http://example.org/iptc/photoVideoMetadataIPTC/aboutCvTerms/cvTermId",
+					"cvTermRefinedAbout": "http://example.org/iptc/photoVideoMetadataIPTC/aboutCvTerms/cvTermRefinedAbout"
 				}
 			],
-			"additionalModelInfo": "string",
+			"additionalModelInfo": "IPTC additional Module Info",
 			"artworkOrObjects": [
 				{
-					"circaDateCreated": "string",
-					"contentDescription": "string",
-					"contributionDescription": "string",
-					"copyrightNotice": "string",
+					"circaDateCreated": "IPTC artworkOrObjects circaDateCreated",
+					"contentDescription": "IPTC artworkOrObjects contentDescription",
+					"contributionDescription": "IPTC artworkOrObjects contributionDescription",
+					"copyrightNotice": "IPTC artworkOrObjects copyrightNotice",
 					"creatorIdentifiers": [
-						"string"
+						"IPTC artworkOrObjects creatorIdentifier"
 					],
 					"creatorNames": [
-						"string"
+						"IPTC artworkOrObjects creatorName"
 					],
-					"currentCopyrightOwnerIdentifier": "http://example.com",
-					"currentCopyrightOwnerName": "string",
-					"currentLicensorIdentifier": "http://example.com",
-					"currentLicensorName": "string",
+					"currentCopyrightOwnerIdentifier": "http://example.org/iptc/photoVideoMetadataIPTC/artworkOrObjects/currentCopyrightOwnerIdentifier",
+					"currentCopyrightOwnerName": "IPTC artworkOrObjects currentCopyrightOwnerName",
+					"currentLicensorIdentifier": "http://example.org/iptc/photoVideoMetadataIPTC/artworkOrObjects/currentLicensorIdentifier",
+					"currentLicensorName": "IPTC artworkOrObjects currentLicensorName",
 					"dateCreated": "2020-12-06T18:29:44Z",
-					"physicalDescription": "string",
-					"source": "string",
-					"sourceInventoryNr": "string",
-					"sourceInventoryUrl": "http://example.com",
+					"physicalDescription": "IPTC artworkOrObjects physicalDescription",
+					"source": "IPTC artworkOrObjects source",
+					"sourceInventoryNr": "IPTC artworkOrObjects sourceInventoryNr",
+					"sourceInventoryUrl": "http://example.org/iptc/photoVideoMetadataIPTC/artworkOrObjects/sourceInventoryUrl",
 					"stylePeriod": [
-						"string"
+						"IPTC  artworkOrObjects stylePeriod"
 					],
-					"title": "string"
+					"title": "IPTC artworkOrObjects title"
 				}
 			],
-			"captionWriter": "string",
-			"cityName": "string",
-			"copyrightNotice": "string",
+			"captionWriter": "IPTC captionWriter",
+			"cityName": "IPTC cityName",
+			"copyrightNotice": "IPTC copyrightNotice",
 			"copyrightOwners": [
 				{
-					"name": "string",
+					"name": "IPTC copyrightOwner name",
 					"role": [
-						"http://example.com"
+						"http://example.org/iptc/photoVideoMetadataIPTC/copyrightOwners/role"
 					],
 					"identifiers": [
-						"http://example.com"
+						"http://example.org/iptc/photoVideoMetadataIPTC/copyrightOwners/identifier"
 					]
 				}
 			],
-			"countryCode": "string",
-			"countryName": "string",
+			"countryCode": "IPTC countryCode",
+			"countryName": "IPTC countryName",
 			"creatorContactInfo": {
-				"country": "string",
-				"emailwork": "string",
-				"region": "string",
-				"phonework": "string",
-				"weburlwork": "string",
-				"address": "string",
-				"city": "string",
-				"postalCode": "string"
+				"country": "IPTC creatorContactInfo country",
+				"emailwork": "IPTC creatorContactInfo emailwork",
+				"region": "IPTC creatorContactInfo region",
+				"phonework": "IPTC creatorContactInfo phonework",
+				"weburlwork": "IPTC creatorContactInfo weburlwork",
+				"address": "IPTC creatorContactInfo address",
+				"city": "IPTC creatorContactInfo city",
+				"postalCode": "IPTC creatorContactInfo postalCode"
 			},
 			"creatorNames": [
-				"string"
+				"IPTC creatorNames"
 			],
-			"creditLine": "string",
+			"creditLine": "IPTC creditLine",
 			"dateCreated": "2020-12-06T18:29:44Z",
-			"description": "string",
-			"digitalImageGuid": "IMAGE_DATASET_SAMPLE_01",
-			"digitalSourceType": "http://example.com",
+			"description": "IPTC description",
+			"digitalImageGuid": "IMAGE-DATASET-SAMPLE-01",
+			"digitalSourceType": "http://example.org/iptc/photoVideoMetadataIPTC/digitalSourceType",
 			"embdEncRightsExpr": [
 				{
-					"encRightsExpr": "string",
-					"rightsExprEncType": "string",
-					"rightsExprLangId": "http://example.com"
+					"encRightsExpr": "IPTC embdEncRightsExpr encRightsExpr",
+					"rightsExprEncType": "IPTC embdEncRightsExpr rightsExprEncType",
+					"rightsExprLangId": "http://example.org/iptc/photoVideoMetadataIPTC/embdEncRightsExpr/rightsExprLangId"
 				}
 			],
-			"eventName": "string",
+			"eventName": "IPTC eventName",
 			"genres": [
 				{
-					"cvId": "http://example.com",
-					"cvTermName": "string",
-					"cvTermId": "http://example.com",
-					"cvTermRefinedAbout": "http://example.com"
+					"cvId": "http://example.org/iptc/photoVideoMetadataIPTC/genres/cvId",
+					"cvTermName": "IPTC genres cvTermName",
+					"cvTermId": "http://example.org/iptc/photoVideoMetadataIPTC/genres/cvTermId",
+					"cvTermRefinedAbout": "http://example.org/iptc/photoVideoMetadataIPTC/genres/cvTermRefinedAbout"
 				}
 			],
 			"headline": "IMAGE DATASET SAMPLE 01",
 			"imageRating": 0,
-			"imageSupplierImageId": "string",
-			"instructions": "string",
-			"intellectualGenre": "string",
-			"jobid": "string",
-			"jobtitle": "string",
+			"imageSupplierImageId": "IPTC imageSupplierImageId",
+			"instructions": "IPTC instructions",
+			"intellectualGenre": "IPTC intellectualGenre",
+			"jobid": "IPTC jobid",
+			"jobtitle": "IPTC jobtitle",
 			"keywords": [
-				"string"
+				"IPTC keyword"
 			],
 			"linkedEncRightsExpr": [
 				{
-					"linkedRightsExpr": "http://example.com",
-					"rightsExprEncType": "string",
-					"rightsExprLangId": "http://example.com"
+					"linkedRightsExpr": "http://example.org/iptc/photoVideoMetadataIPTC/linkedEncRightsExpr/linkedRightsExpr",
+					"rightsExprEncType": "IPTC linkedEncRightsExpr rightsExprEncType",
+					"rightsExprLangId": "http://example.org/iptc/photoVideoMetadataIPTC/linkedEncRightsExpr/rightsExprLangId"
 				}
 			],
 			"locationsShown": [
 				{
-					"city": "string",
-					"countryCode": "string",
-					"countryName": "string",
+					"city": "IPTC locationsShown city",
+					"countryCode": "IPTC locationsShown countryCode",
+					"countryName": "IPTC locationsShown countryName",
 					"gpsAltitude": 0,
 					"gpsLatitude": 0,
 					"gpsLongitude": 0,
 					"identifiers": [
-						"http://example.com"
+						"http://example.org/iptc/photoVideoMetadataIPTC/locationsShown/identifier"
 					],
-					"name": "string",
-					"provinceState": "string",
-					"sublocation": "string",
-					"worldRegion": "string"
+					"name": "IPTC locationsShown name",
+					"provinceState": "IPTC locationsShown provinceState",
+					"sublocation": "IPTC locationsShown sublocation",
+					"worldRegion": "IPTC locationsShown worldRegion"
 				}
 			],
 			"maxAvailHeight": 0,
 			"maxAvailWidth": 0,
-			"minorModelAgeDisclosure": "http://example.com",
+			"minorModelAgeDisclosure": "http://example.org/iptc/photoVideoMetadataIPTC/minorModelAgeDisclosure",
 			"modelAges": [
 				0
 			],
 			"modelReleaseDocuments": [
-				"string"
+				"IPTC modelReleaseDocument"
 			],
 			"modelReleaseStatus": {
-				"cvId": "http://example.com",
-				"cvTermName": "string",
-				"cvTermId": "http://example.com",
-				"cvTermRefinedAbout": "http://example.com"
+				"cvId": "http://example.org/iptc/photoVideoMetadataIPTC/modelReleaseStatus/cvId",
+				"cvTermName": "IPTC modelReleaseStatus cvTermName",
+				"cvTermId": "http://example.org/iptc/photoVideoMetadataIPTC/modelReleaseStatus/cvTermId",
+				"cvTermRefinedAbout": "http://example.org/iptc/photoVideoMetadataIPTC/modelReleaseStatus/cvTermRefinedAbout"
 			},
 			"organisationInImageCodes": [
-				"string"
+				"IPTC organisationInImageCode"
 			],
 			"organisationInImageNames": [
-				"string"
+				"IPTC organisationInImageName"
 			],
 			"personInImageNames": [
-				"string"
+				"IPTC personInImageNames"
 			],
 			"personsShown": [
 				{
-					"name": "string",
-					"description": "string",
+					"name": "IPTC personsShown name",
+					"description": "IPTC personsShown description",
 					"identifiers": [
-						"http://example.com"
+						"http://example.org/iptc/photoVideoMetadataIPTC/personsShown/identifier"
 					],
 					"characteristics": [
 						{
-							"cvId": "http://example.com",
-							"cvTermName": "string",
-							"cvTermId": "http://example.com",
-							"cvTermRefinedAbout": "http://example.com"
+							"cvId": "http://example.org/iptc/photoVideoMetadataIPTC/personsShown/characteristics/cvId",
+							"cvTermName": "IPTC personsShown cvTermName",
+							"cvTermId": "http://example.org/iptc/photoVideoMetadataIPTC/personsShown/characteristics/cvTermId",
+							"cvTermRefinedAbout": "http://example.org/iptc/photoVideoMetadataIPTC/personsShown/characteristics/cvTermRefinedAbout"
 						}
 					]
 				}
 			],
 			"productsShown": [
 				{
-					"description": "string",
-					"gtin": "string",
-					"name": "string"
+					"description": "IPTC productsShown description",
+					"gtin": "IPTC productsShown gtin",
+					"name": "IPTC productsShown name"
 				}
 			],
 			"propertyReleaseDocuments": [
-				"string"
+				"IPTC propertyReleaseDocument"
 			],
 			"propertyReleaseStatus": {
-				"cvId": "http://example.com",
-				"cvTermName": "string",
-				"cvTermId": "http://example.com",
-				"cvTermRefinedAbout": "http://example.com"
+				"cvId": "http://example.org/iptc/photoVideoMetadataIPTC/propertyReleaseStatus/cvId",
+				"cvTermName": "IPTC propertyReleaseStatus cvTermName",
+				"cvTermId": "http://example.org/iptc/photoVideoMetadataIPTC/propertyReleaseStatus/cvTermId",
+				"cvTermRefinedAbout": "http://example.org/iptc/photoVideoMetadataIPTC/propertyReleaseStatus/cvTermRefinedAbout"
 			},
-			"provinceStatePhoto": "string",
+			"provinceStatePhoto": "IPTC provinceStatePhoto",
 			"registryEntries": [
 				{
-					"role": "http://example.com",
-					"assetIdentifier": "string",
-					"registryIdentifier": "http://example.com"
+					"role": "http://example.org/iptc/photoVideoMetadataIPTC/registryEntries/role",
+					"assetIdentifier": "IPTC registryEntries assetIdentifier",
+					"registryIdentifier": "http://example.org/iptc/photoVideoMetadataIPTC/registryEntries/registryIdentifier"
 				}
 			],
 			"sceneCodes": [
-				"string"
+				"IPTC sceneCode"
 			],
-			"source": "string",
+			"source": "IPTC source",
 			"subjectCodes": [
-				"string"
+				"IPTC subjectCodes"
 			],
-			"sublocationName": "string",
+			"sublocationName": "IPTC sublocationName",
 			"supplier": [
 				{
-					"name": "string",
+					"name": "IPTC supplier name",
 					"identifiers": [
-						"http://example.com"
+						"http://example.org/iptc/photoVideoMetadataIPTC/supplier/identifiers"
 					]
 				}
 			],
-			"title": "string",
-			"usageTerms": "string",
-			"webstatementRights": "http://example.com"
+			"title": "IPTC title",
+			"usageTerms": "IPTC usageTerms",
+			"webstatementRights": "http://example.org/iptc/photoVideoMetadataIPTC/webstatementRights"
 		}
 	},
 	"license": [
 		{
-			"name": "string",
-			"uri": "string"
+			"name": "license name",
+			"uri": "license uri"
 		}
 	],
 	"album": [
 		{
-			"name": "string",
-			"description": "string",
-			"owner": "string",
-			"uri": "string"
+			"name": "album name",
+			"description": "album description",
+			"owner": "album owner",
+			"uri": "album uri"
 		}
 	],
 	"tags": [
 		{
-			"tag": "string"
+			"tag": "tag"
 		}
 	],
 	"files": [
 		{
-			"file_uri": "string",
-			"format": "string",
-			"note": "string",
+			"file_uri": "file uri",
+			"format": "file format",
+			"note": "file note",
 			"show": True
 		}
 	]
 }
-
 
 response = create_and_import.add_image_dataset(
 	idno=idno,
@@ -280,3 +281,7 @@ response = create_and_import.add_image_dataset(
 )
 
 print(response)
+
+
+utils.text_to_thumbnail("Image\nDataset")
+create_and_import.add_thumbnail(idno, "temp_thumbnail.jpg")

@@ -11,7 +11,7 @@ idno = "survey-add-test-01"
 repositoryid = "central"
 access_policy = "data_na"
 published = 0
-overwrite = "no"
+overwrite = "yes"
 doc_desc = {
     "title": "test survey 01",
     "idno": "survey-doc-01",

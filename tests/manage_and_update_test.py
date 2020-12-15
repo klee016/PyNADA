@@ -9,7 +9,7 @@ manage_and_update.set_api_key(api_key)
 
 #print(manage_and_update.update_survey('ALB_2000_MICS_V01_M'))
 
-#manage_and_update.delete_dataset('survey-add-test-01')
+manage_and_update.delete_dataset('string')
 
 #manage_and_update.upload_file('study_id', 'WBG-logo.jpg')
 

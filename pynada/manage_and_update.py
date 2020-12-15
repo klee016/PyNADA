@@ -78,7 +78,7 @@ def add_thumbnail(idno, file_path):
 
     data = {}
     if os.path.exists(file_path):
-        print("Uploading the file...")
+        print("Uploading thumbnail...")
         file = {'file': open(file_path, 'rb')}
     else:
         raise Exception("The thumbnail file you provided doesn't seem to be a valid file. Please check the path.")

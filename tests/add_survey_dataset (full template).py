@@ -1,4 +1,5 @@
 from pynada import create_and_import
+from pynada import utils
 
 create_and_import.set_api_url('http://training.ihsn.org/index.php/api/')
 api_key = 'cf16a23a3cfc6a928f63dd3c8daf8796'
@@ -63,7 +64,7 @@ study_desc = {
 			}
 		],
 		"copyright": "study production_statement copyright",
-		"prod_date": "study production_statement prod_date",
+		"prod_date": "2020-12-31",
 		"prod_place": "study production_statement prod_place",
 		"funding_agencies": [
 			{
@@ -77,23 +78,23 @@ study_desc = {
 	"distribution_statement": {
 		"distributors": [
 			{
-				"name": "study distribution distributors name",
-				"abbr": "study distribution distributors abbr",
-				"affiliation": "study distribution distributors affiliation"
+				"name": "distribution distributors name",
+				"abbr": "distribution distributors abbr",
+				"affiliation": "distribution distributors affiliation"
 			}
 		],
 		"contact": [
 			{
-				"name": "study distribution contact name",
-				"affiliation": "study distribution contact affiliation",
-				"email": "study distribution contact email"
+				"name": "distribution contact name",
+				"affiliation": "distribution contact affiliation",
+				"email": "distribution contact email"
 			}
 		],
 		"depositor": [
 			{
-				"name": "study distribution depositor name",
-				"abbr": "study distribution depositor abbr",
-				"affiliation": "study distribution depositor affiliation"
+				"name": "distribution depositor name",
+				"abbr": "distribution depositor abbr",
+				"affiliation": "distribution depositor affiliation"
 			}
 		],
 		"deposit_date": "2020-12-10",
@@ -104,13 +105,13 @@ study_desc = {
 		"series_info": "study series_info"
 	},
 	"version_statement": {
-		"version": "study version",
-		"version_date": "study version_date",
-		"version_resp": "study version_resp",
-		"version_notes": "study version_notes"
+		"version": "version",
+		"version_date": "version_date",
+		"version_resp": "version_resp",
+		"version_notes": "version_notes"
 	},
 	"bib_citation": "study bib_citation",
-	"bib_citation_format": "study bib_citation_format",
+	"bib_citation_format": "APA",  # Specification of the particular citation style used
 	"holdings": [
 		{
 			"name": "study holdings name",
@@ -121,7 +122,7 @@ study_desc = {
 	],
 	"study_notes": "study_notes",
 	"study_authorization": {
-		"date": "study_authorization date",
+		"date": "2020-12-31",
 		"agency": [
 			{
 				"name": "study_authorization agency",
@@ -137,43 +138,43 @@ study_desc = {
 			{
 				"keyword": "study_info keyword",
 				"vocab": "study_info keyword vocab",
-				"uri": "study_info keyword uri"
+				"uri": "http://example.org/study_desc/study_info/keyword/uri"
 			}
 		],
 		"topics": [
 			{
 				"topic": "study_info topic",
 				"vocab": "study_info topic vocab",
-				"uri": "study_info topic tui"
+				"uri": "http://example.org/study_desc/study_info/topic/uri"
 			}
 		],
 		"abstract": "study_info abstract",
 		"time_periods": [
 			{
-				"start": "study time_periods start",
-				"end": "study time_periods end",
+				"start": "2020-01-01",
+				"end": "2020-12-31",
 				"cycle": "study time_periods cycle"
 			}
 		],
 		"coll_dates": [
 			{
-				"start": "study coll_dates start",
-				"end": "study coll_dates end",
+				"start": "2020-01-01",
+				"end": "2020-12-31",
 				"cycle": "study coll_dates cycle"
 			}
 		],
 		"nation": [
 			{
 				"name": "study nation name",
-				"abbreviation": "study nation abb"
+				"abbreviation": "ISO"
 			}
 		],
 		"bbox": [
 			{
-				"west": "study_info bbox west",
-				"east": "study_info bbox east",
-				"south": "study_info bbox south",
-				"north": "study_info bbox north"
+				"west": "0",
+				"east": "20",
+				"south": "0",
+				"north": "20"
 			}
 		],
 		"bound_poly": [
@@ -194,31 +195,31 @@ study_desc = {
 				"lon": "10.0"
 			}
 		],
-		"geog_coverage": "study_info geog_coverage",
-		"geog_coverage_notes": "study_info geog_coverage_notes",
-		"geog_unit": "study_info geog_unit",
-		"analysis_unit": "study_info analysis_unit",
-		"universe": "study_info universe",
-		"data_kind": "study_info data_kind",
+		"geog_coverage": "geog_coverage",
+		"geog_coverage_notes": "geog_coverage_notes",
+		"geog_unit": "geog_unit",
+		"analysis_unit": "analysis_unit",
+		"universe": "universe",
+		"data_kind": "data_kind",
 		"notes": "study_info notes",
 		"quality_statement": {
-			"standard_name": "study_info quality standard_name",
-			"standard_producer": "study_info quality standard_producer",
-			"standard_compliance_desc": "study_info quality standard_compliance_desc",
-			"other_quality_statement": "study_info quality other_quality_statement"
+			"standard_name": "quality standard_name",
+			"standard_producer": "quality standard_producer",
+			"standard_compliance_desc": "quality standard_compliance_desc",
+			"other_quality_statement": "quality other_quality_statement"
 		},
 		"ex_post_evaluation": {
-			"completion_date": "study_info ex_post_evaluation completion_date",
-			"type": "study_info ex_post_evaluation type",
+			"completion_date": "ex_post_evaluation completion_date",
+			"type": "ex_post_evaluation type",
 			"evaluator": [
 				{
-					"name": "study_info ex_post_evaluation evaluator name",
-					"abbr": "study_info ex_post_evaluation evaluator abbr",
-					"role": "study_info ex_post_evaluation evaluator role"
+					"name": "ex_post_evaluation evaluator name",
+					"abbr": "ex_post_evaluation evaluator abbr",
+					"role": "ex_post_evaluation evaluator role"
 				}
 			],
-			"evaluation_process": "study_info ex_post_evaluation evaluation_process",
-			"outcomes": "study_info ex_post_evaluation outcomes"
+			"evaluation_process": "ex_post_evaluation evaluation_process",
+			"outcomes": "ex_post_evaluation outcomes"
 		}
 	},
 	"study_development": {
@@ -244,7 +245,7 @@ study_desc = {
 	},
 	"method": {
 		"data_collection": {
-			"time_method": "method data_collection time_method",
+			"time_method": "panel survey",  # The time method or time dimension of the data collection. Examples: panel survey, h>cross-section, trend study, time-series
 			"data_collectors": [
 				{
 					"name": "method data_collection data_collector name",
@@ -256,8 +257,8 @@ study_desc = {
 				"type": "method data_collection collector_training type",
 				"training": "method data_collection collector_training training"
 			},
-			"frequency": "method data_collection frequency",
-			"sampling_procedure": "method data_collection sampling_procedure",
+			"frequency": "monthly",  # For data collected at more than one point in time, the frequency with which the data were collected. Examples monthly, quarterly, yearly
+			"sampling_procedure": "National multistage area probability sample",  # The type of sample and sample design used to select the survey respondents to represent the population. This field only applies to sample surveys. Information on sampling procedure is crucial
 			"sample_frame": {
 				"name": "method data_collection sample_frame name",
 				"valid_period": [
@@ -271,7 +272,7 @@ study_desc = {
 				"frame_unit": {
 					"is_primary": True,
 					"unit_type": "method data_collection sample_frame frame_unit unit_type",
-					"num_of_units": "method data_collection sample_frame frame_unit num_of_units"
+					"num_of_units": "10"
 				},
 				"reference_period": [
 					{
@@ -283,7 +284,7 @@ study_desc = {
 			},
 			"sampling_deviation": "method data_collection sampling_deviation",
 			"coll_mode": "method data_collection coll_mode",
-			"research_instrument": "Structured | Semi-structured | Unstructured",
+			"research_instrument": "Structured",  # The type of data collection instrument used. Structured | Semi-structured | Unstructured
 			"instru_development": "method data_collection instru_development",
 			"instru_development_type": "method data_collection instru_development_type",
 			"sources": {
@@ -304,7 +305,7 @@ study_desc = {
 		},
 		"method_notes": "method_notes",
 		"analysis_info": {
-			"response_rate": "method analysis_info response_rate",
+			"response_rate": "50%",  # The percentage of sample members who provided information
 			"sampling_error_estimates": "method analysis_info sampling_error_estimates",
 			"data_appraisal": "method analysis_info data_appraisal"
 		},
@@ -316,13 +317,13 @@ study_desc = {
 			"type": "method coding_instruction type",
 			"txt": "method coding_instruction txt",
 			"command": "method coding_instruction command",
-			"command_language": "method coding_instruction command_language"
+			"command_language": "STATA"  # Identifies the language of the command code.
 		}
 	},
 	"data_access": {
 		"dataset_availability": {
 			"access_place": "dataset_availability access_place",
-			"access_place_url": "dataset_availability access_place_url",
+			"access_place_url": "http://example.org/study_desc/data_access/dataset_availability/access_place_url",
 			"original_archive": "dataset_availability original_archive",
 			"status": "dataset_availability status",
 			"coll_size": "dataset_availability coll_size",
@@ -352,8 +353,8 @@ study_desc = {
 				{
 					"name": "dataset_use contact name",
 					"affiliation": "dataset_use contact affiliation",
-					"uri": "dataset_use contact uri",
-					"email": "dataset_use contact email"
+					"uri": "http://example.org/study_desc/data_access/dataset_use/contact/uri",
+					"email": "dataset_use.contact.email@example.org"
 				}
 			],
 			"cit_req": "dataset_use cit_req",
@@ -366,7 +367,7 @@ study_desc = {
 }
 data_files = [
 	{
-		"file_id": "data_file id",
+		"file_id": "data_file_id",
 		"file_name": "data_file name",
 		"description": "data_file description",
 		"case_count": 0,
@@ -378,78 +379,78 @@ data_files = [
 		"notes": "data_file notes"
 	}
 ]
-variables = [
-	{
-		"file_id": "variable file_id",
-		"vid": "variable vid",
-		"name": "variable name",
-		"labl": "variable labl",
-		"var_intrvl": "variable var_intrvl",
-		"var_dcml": "variable var_dcml",
-		"var_wgt": 0,
-		"var_start_pos": 0,
-		"var_end_pos": 0,
-		"var_width": 0,
-		"var_imputation": "variable var_imputation",
-		"var_security": "variable var_security",
-		"var_respunit": "variable var_respunit",
-		"var_qstn_preqtxt": "variable var_qstn_preqtxt",
-		"var_qstn_qstnlit": "variable var_qstn_qstnlit",
-		"var_qstn_postqtxt": "variable var_qstn_postqtxt",
-		"var_qstn_ivulnstr": "variable var_qstn_ivulnstr",
-		"var_universe": "variable var_universe",
-		"var_sumstat": [
-			{
-				"type": "variable var_sumstat type",
-				"value": "variable var_sumstat value",
-				"wgtd": "variable var_sumstat wgtd"
-			}
-		],
-		"var_txt": "variable var_txt",
-		"var_catgry": [
-			{
-				"value": "variable var_catgry value",
-				"label": "variable var_catgry label",
-				"stats": [
-					{
-						"type": "variable var_catgry stats type",
-						"value": "variable var_catgry stats value",
-						"wgtd": "variable var_catgry stats wgtd"
-					}
-				]
-			}
-		],
-		"var_codinstr": "variable var_codinstr",
-		"var_concept": [
-			{
-				"title": "variable var_concept title",
-				"vocab": "variable var_concept vocab",
-				"uri": "variable var_concept uri"
-			}
-		],
-		"var_format": {
-			"type": "variable var_format",
-			"name": "variable name",
-			"value": "variable value"
-		},
-		"var_notes": "variable var_notes"
-	}
-]
-variable_groups = [
-	{
-		"vgid": "variable_group vgid",
-		"variables": "variable_group variables",
-		"variable_groups": "variable_group variable_groups",
-		"group_type": "variable_group group_type",
-		"label": "variable_group label",
-		"universe": "variable_group universe",
-		"notes": "variable_group notes",
-		"txt": "variable_group txt",
-		"definition": "variable_group definition"
-	}
-]
+# variables = [
+# 	{
+# 		"file_id": "variable_file_id",
+# 		"vid": "variable_vid",
+# 		"name": "variable_name",
+# 		"labl": "variable_labl",
+# 		"var_intrvl": "discrete",  # valid values: "discrete" "contin"
+# 		"var_dcml": "3",  # Number of decimal points in the variable
+# 		"var_wgt": 0,
+# 		"var_start_pos": 0,
+# 		"var_end_pos": 0,
+# 		"var_width": 0,
+# 		"var_imputation": "variable var_imputation",
+# 		"var_security": "variable var_security",
+# 		"var_respunit": "variable var_respunit",
+# 		"var_qstn_preqtxt": "variable var_qstn_preqtxt",
+# 		"var_qstn_qstnlit": "variable var_qstn_qstnlit",
+# 		"var_qstn_postqtxt": "variable var_qstn_postqtxt",
+# 		"var_qstn_ivulnstr": "variable var_qstn_ivulnstr",
+# 		"var_universe": "variable var_universe",
+# 		"var_sumstat": [
+# 			{
+# 				"type": "variable var_sumstat type",
+# 				"value": "variable var_sumstat value",
+# 				"wgtd": "variable var_sumstat wgtd"
+# 			}
+# 		],
+# 		"var_txt": "variable var_txt",
+# 		"var_catgry": [
+# 			{
+# 				"value": "variable var_catgry value",
+# 				"label": "variable var_catgry label",
+# 				"stats": [
+# 					{
+# 						"type": "variable var_catgry stats type",
+# 						"value": "variable var_catgry stats value",
+# 						"wgtd": "variable var_catgry stats wgtd"
+# 					}
+# 				]
+# 			}
+# 		],
+# 		"var_codinstr": "variable var_codinstr",
+# 		"var_concept": [
+# 			{
+# 				"title": "variable var_concept title",
+# 				"vocab": "variable var_concept vocab",
+# 				"uri": "http://example.org/variables/var_concept/uri"
+# 			}
+# 		],
+# 		"var_format": {
+# 			"type": "variable var_format",
+# 			"name": "variable name",
+# 			"value": "variable value"
+# 		},
+# 		"var_notes": "variable var_notes"
+# 	}
+# ]
+# variable_groups = [
+# 	{
+# 		"vgid": "variable_group_vgid",
+# 		"variables": "variable_group_variables",
+# 		"variable_groups": "variable_group_variable_groups",
+# 		"group_type": "subject",  # valid values: "subject" "section" "multiResp" "grid" "display" "repetition" "version" "iteration" "analysis" "pragmatic" "record" "file" "randomized" "other"
+# 		"label": "variable_group label",
+# 		"universe": "variable_group universe",
+# 		"notes": "variable_group notes",
+# 		"txt": "variable_group txt",
+# 		"definition": "variable_group definition"
+# 	}
+# ]
 additional = {
-	"additional": "additional info"
+	"additional": "Additional metadata not covered by DDI elements"
 }
 
 response = create_and_import.add_survey_dataset(
@@ -461,9 +462,12 @@ response = create_and_import.add_survey_dataset(
 	doc_desc=doc_desc,
 	study_desc=study_desc,
 	data_files=data_files,
-	variables=variables,
-	variable_groups=variable_groups,
+	# variables=variables,
+	# variable_groups=variable_groups,
 	additional=additional
 )
 
 print(response)
+
+utils.text_to_thumbnail("Survey\nDataset")
+create_and_import.add_thumbnail(idno, "temp_thumbnail.jpg")

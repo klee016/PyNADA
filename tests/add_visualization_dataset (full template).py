@@ -1,4 +1,5 @@
 from pynada import create_and_import
+from pynada import utils
 
 create_and_import.set_api_url('http://training.ihsn.org/index.php/api/')
 api_key = 'cf16a23a3cfc6a928f63dd3c8daf8796'
@@ -11,19 +12,19 @@ idno = "VISUALIZATION_DATASET_SAMPLE_01"
 
 repositoryid = "central"
 published = 0
-overwrite = "no"
+overwrite = "yes"
 metadata_information = {
 	"idno": "metadata info id",
 	"producers": [
 		{
-			"name": "metadata_information producer name",
-			"abbr": "metadata_information producer abbr",
-			"affiliation": "metadata_information producer affiliation",
-			"role": "metadata_information producer role"
+			"name": "metadata producer name",
+			"abbr": "metadata producer abbr",
+			"affiliation": "metadata producer affiliation",
+			"role": "metadata producer role"
 		}
 	],
 	"production_date": "2020-12-31",
-	"version": "metadata_information version"
+	"version": "metadata version"
 }
 visualization_description = {
 	"title_statement": {
@@ -47,7 +48,7 @@ visualization_description = {
 		}
 	],
 	"id_numbers": {
-		"type": "ID number type such as DOI",
+		"type": "ID number type",
 		"value": "ID number"
 	},
 	"visualization_types": [
@@ -63,49 +64,49 @@ visualization_description = {
 	],
 	"authoring_entity": [
 		{
-			"name": "visualization authoring_entity name",
-			"affiliation": "visualization authoring_entity affiliation",
-			"abbreviation": "visualization authoring_entity abbreviation",
-			"uri": "visualization authoring_entity uri"
+			"name": "authoring_entity name",
+			"affiliation": "authoring_entity affiliation",
+			"abbreviation": "authoring_entity abbreviation",
+			"uri": "http://example.org/visualization_description/authoring_entity/uri"
 		}
 	],
 	"contributors": [
 		{
-			"name": "visualization contributor name",
-			"affiliation": "visualization contributor affiliation",
-			"abbreviation": "visualization contributor abbreviation",
-			"role": "visualization contributor role",
-			"uri": "visualization contributor uri"
+			"name": "contributor name",
+			"affiliation": "contributor affiliation",
+			"abbreviation": "contributor abbreviation",
+			"role": "contributor role",
+			"uri": "http://example.org/visualization_description/contributors/uri"
 		}
 	],
 	"publisher": [
 		{
-			"name": "visualization publisher name",
-			"affiliation": "visualization publisher affiliation",
-			"abbreviation": "visualization publisher abbreviation",
-			"role": "visualization publisher role",
-			"uri": "visualization publisher uri"
+			"name": "publisher name",
+			"affiliation": "publisher affiliation",
+			"abbreviation": "publisher abbreviation",
+			"role": "publisher role",
+			"uri": "http://example.org/visualization_description/publisher/uri"
 		}
 	],
 	"acknowledgements": {
-		"name": "visualization acknowledgement name",
-		"role": "visualization acknowledgement role"
+		"name": "acknowledgement name",
+		"role": "acknowledgement role"
 	},
-	"date_created": "visualization date_created",
-	"date_published": "visualization date_published",
-	"date_modified": "visualization date_modified",
-	"version": "visualization version",
+	"date_created": "date_created",
+	"date_published": "date_published",
+	"date_modified": "date_modified",
+	"version": "version",
 	"visualization_series": [
 		{
 			"name": "visualization_series name",
 			"maintainer": "visualization_series maintainer",
-			"uri": "visualization_series uri",
+			"uri": "http://example.org/visualization_description/visualization_series/uri",
 			"description": "visualization_series description"
 		}
 	],
 	"data_sources": [
 		{
-			"source": "visualization data source"
+			"source": "data source"
 		}
 	],
 	"time_periods": [
@@ -116,13 +117,13 @@ visualization_description = {
 	],
 	"universe": [
 		{
-			"value": "visualization universe"
+			"value": "universe"
 		}
 	],
 	"ref_country": [
 		{
-			"name": "visualization ref_country name",
-			"code": "visualization ref_country code"
+			"name": "ref_country name",
+			"code": "ref_country code"
 		}
 	],
 	"geographic_units": [
@@ -144,7 +145,7 @@ visualization_description = {
 		{
 			"dataset": "visualization data dataset",
 			"access_type": "visualization data access_type",
-			"uri": "visualization data uri",
+			"uri": "http://example.org/visualization_description/data/uri",
 			"note": "visualization data note"
 		}
 	],
@@ -154,28 +155,28 @@ visualization_description = {
 			"software_version": "visualization script software_version",
 			"software_library": "visualization script software_library",
 			"script_access": "visualization script script_access",
-			"script_uri": "visualization script script_uri"
+			"script_uri": "http://example.org/visualization_description/scripts/uri"
 		}
 	],
-	"embed_uri": "visualization embed_uri",
+	"embed_uri": "http://example.org/visualization_description/embed_uri/uri",
 	"publications": [
 		{
 			"title": "publication title",
-			"uri": "publication uri"
+			"uri": "http://example.org/visualization_description/publications/uri"
 		}
 	],
 	"keywords": [
 		{
 			"name": "keyword name",
 			"vocabulary": "keyword vocabulary",
-			"uri": "keyword uri"
+			"uri": "http://example.org/visualization_description/keywords/uri"
 		}
 	],
 	"themes": [
 		{
 			"name": "visualization theme name",
 			"vocabulary": "visualization theme vocabulary",
-			"uri": "visualization theme uri"
+			"uri": "http://example.org/visualization_description/themes/uri"
 		}
 	],
 	"topics": [
@@ -184,21 +185,21 @@ visualization_description = {
 			"name": "visualization topic name",
 			"parent_id": "visualization topic parent_id",
 			"vocabulary": "visualization topic vocabulary",
-			"uri": "visualization topic uri"
+			"uri": "http://example.org/visualization_description/topics/uri"
 		}
 	],
 	"disciplines": [
 		{
 			"name": "discipline name",
 			"vocabulary": "discipline vocabulary",
-			"uri": "discipline uri"
+			"uri": "http://example.org/visualization_description/disciplines/uri"
 		}
 	],
 	"definitions": [
 		{
 			"name": "definition name",
 			"definition": "definition text",
-			"uri": "definition uri"
+			"uri": "http://example.org/visualization_description/definitions/uri"
 		}
 	],
 	"classifications": [
@@ -206,14 +207,14 @@ visualization_description = {
 			"name": "classification name",
 			"version": "classification version",
 			"organization": "classification organization",
-			"uri": "classification uri"
+			"uri": "http://example.org/visualization_description/classifications/uri"
 		}
 	],
 	"rights": "visualization rights",
 	"license": [
 		{
 			"name": "license name",
-			"uri": "license uri"
+			"uri": "http://example.org/visualization_description/license/uri"
 		}
 	],
 	"citation": "reference for the resource",
@@ -225,7 +226,7 @@ visualization_description = {
 			"affiliation": "contact affiliation",
 			"email": "contact email",
 			"telephone": "contact telephone",
-			"uri": "contact uri"
+			"uri": "http://example.org/visualization_description/contacts/uri"
 		}
 	],
 	"notes": [
@@ -235,7 +236,7 @@ visualization_description = {
 	],
 	"links": [
 		{
-			"uri": "visualization link uri",
+			"uri": "http://example.org/visualization_description/links/uri",
 			"description": "visualization link description"
 		}
 	],
@@ -275,3 +276,6 @@ response = create_and_import.add_visualization_dataset(
 )
 
 print(response)
+
+utils.text_to_thumbnail("Visualization\nDataset")
+create_and_import.add_thumbnail(idno, "temp_thumbnail.jpg")
