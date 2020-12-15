@@ -7,9 +7,11 @@ search_and_browse.set_api_key(api_key)
 # result = search_and_browse.list_all_datasets()
 # print("okay")
 
-print(search_and_browse.list_all_datasets())
+#print(search_and_browse.list_all_collections())
 
-#print(search_and_browse.dataset_info('study_id'))
+#print(search_and_browse.list_all_datasets())
+
+print(search_and_browse.get_dataset_info('IMAGE-DATASET-SAMPLE-01'))
 
 #print(search_and_browse.list_resources('BGD_RRRC-UNHCR-IOM_20190108'))
 

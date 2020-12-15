@@ -3,6 +3,42 @@ import sys
 import pandas as pd
 
 
+def list_all_collections():
+    """Returns a list of all collections in the catalog
+
+    Returns
+    -------
+    pd.DataFrame
+        collection information
+    """
+
+    params = {}
+    response = make_get_request('collections', params)
+
+    return pd.DataFrame.from_dict(response, orient='index')
+
+
+def get_collection_info(repositoryId):
+    """Returns information on a collection
+
+    Parameters
+    ----------
+    repositoryId : str
+        Collection's unique IDNo
+
+    Returns
+    -------
+    pd.DataFrame
+        collection information
+    """
+
+    params = {}
+    response = make_get_request('collections/'+repositoryId, params)
+
+    return response
+    # return pd.DataFrame.from_dict(response['dataset']).set_index('id')
+
+
 def list_all_datasets():
     """Returns a list of all datasets in the catalog
 
@@ -54,7 +90,7 @@ def search_dataset_by_title(partial_title):
     return datasets[datasets['title'].str.contains(partial_title)]
 
 
-def dataset_info(idno):
+def get_dataset_info(idno):
     """Returns information on a dataset
 
     Parameters
@@ -71,8 +107,28 @@ def dataset_info(idno):
     params = {}
     response = make_get_request('datasets/'+idno, params)
 
-    return response
-    # return pd.DataFrame.from_dict(response['dataset']).set_index('id')
+    #return response
+    return pd.DataFrame.from_dict(response['dataset'], orient='index')
+
+
+def get_dataset_info_by_numid(numeric_id):
+    """Returns information on single dataset
+
+    Parameters
+    ----------
+    numeric_id : int
+        Dataset numeric id
+
+    Returns
+    -------
+    pd.DataFrame
+        dataset information
+    """
+
+    params = {}
+    response = make_get_request('datasets/find_by_id/'+numeric_id, params)
+
+    return pd.DataFrame.from_dict(response['dataset'], orient='index')
 
 
 def list_resources(idno):
@@ -94,6 +150,29 @@ def list_resources(idno):
 
     return response
     #return pd.DataFrame.from_dict(response['resources']).set_index('resource_id')
+
+
+def get_resource_info(datasetIDNo, resourceId):
+    """Returns information on a resource
+
+    Parameters
+    ----------
+    datasetIDNo : str
+        Dataset IDNo
+    resourceId : int
+        Resource ID
+
+    Returns
+    -------
+    pd.DataFrame
+        resource information
+    """
+
+    params = {}
+    response = make_get_request('datasets/'+datasetIDNo+'/resources/'+resourceId, params)
+
+    #return response
+    return pd.DataFrame.from_dict(response['resource'], orient='index')
 
 
 def list_datafiles(idno):

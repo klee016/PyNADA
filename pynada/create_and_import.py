@@ -1,6 +1,26 @@
 from .manage_and_update import *
 
 
+def create_collection(
+        repositoryId
+):
+    """Create new collection
+    
+    Parameters
+    ----------
+    repositoryId : str
+        Collection's unique IDNo
+    """
+
+    data = {}
+
+    response = make_post_request('collections/' + repositoryId, data)
+
+    if response['status'] == 'success':
+        print("Collection successfully created!")
+
+    return pd.DataFrame.from_dict(response, orient='index')
+
 def add_survey_dataset(
         idno=None,
         repositoryid=None,
