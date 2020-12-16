@@ -3,7 +3,7 @@ import sys
 import pandas as pd
 
 
-def list_all_collections():
+def list_collections():
     """Returns a list of all collections in the catalog
 
     Returns
@@ -35,11 +35,11 @@ def get_collection_info(repositoryId):
     params = {}
     response = make_get_request('collections/'+repositoryId, params)
 
-    return response
-    # return pd.DataFrame.from_dict(response['dataset']).set_index('id')
+    #return response
+    return pd.DataFrame.from_dict(response, orient='index')
 
 
-def list_all_datasets():
+def list_datasets():
     """Returns a list of all datasets in the catalog
 
     Returns
@@ -131,6 +131,46 @@ def get_dataset_info_by_numid(numeric_id):
     return pd.DataFrame.from_dict(response['dataset'], orient='index')
 
 
+def list_tags(idno):
+    """Get a list of all tags for a dataset
+
+    Parameters
+    ----------
+    idno : str
+        Dataset IDNo
+
+    Returns
+    -------
+    pd.DataFrame
+        tags
+    """
+
+    params = {}
+    response = make_get_request('datasets/tags/'+idno, params)
+
+    return pd.DataFrame(response['records'])
+
+
+def list_aliases(idno):
+    """Get a list of all aliases for a dataset
+
+    Parameters
+    ----------
+    idno : str
+        Dataset IDNo
+
+    Returns
+    -------
+    pd.DataFrame
+        aliases
+    """
+
+    params = {}
+    response = make_get_request('datasets/aliases/'+idno, params)
+
+    return pd.DataFrame(response['records'])
+
+
 def list_resources(idno):
     """Get a list of all external resources for a dataset
 
@@ -217,8 +257,75 @@ def list_files(idno):
     return pd.DataFrame.from_dict(response['files'])
 
 
-def list_all_citations():
-    """Get all citations
+def list_variables(idno):
+    """Get a list of variables for a dataset
+
+    Parameters
+    ----------
+    idno : str
+        Dataset IDNo
+
+    Returns
+    -------
+    pd.DataFrame
+        information on the variables
+    """
+
+    params = {}
+    response = make_get_request('datasets/variables/'+idno, params)
+
+    #return response
+    return pd.DataFrame(response['variables'])
+
+
+def list_variables_by_file(idno, file_id):
+    """Get a list of variables for a dataset
+
+    Parameters
+    ----------
+    idno : str
+        Dataset IDNo
+    file_id : str
+        File ID
+
+    Returns
+    -------
+    pd.DataFrame
+        information on the variables
+    """
+
+    params = {}
+    response = make_get_request('datasets/variables/'+idno+'/'+file_id, params)
+
+    #return response
+    return pd.DataFrame(response['variables'])
+
+
+def get_variable_info(idno, var_id):
+    """Returns information on a variable
+
+    Parameters
+    ----------
+    idno : str
+        Dataset IDNo
+    var_id : str
+        Variable ID IDNo
+
+    Returns
+    -------
+    pd.DataFrame
+        variable information
+    """
+
+    params = {}
+    response = make_get_request('datasets/variable/'+idno+'/'+var_id, params)
+
+    #return response
+    return pd.DataFrame.from_dict(response['variable'], orient='index')
+
+
+def list_citations():
+    """list all citations
 
     Returns
     -------

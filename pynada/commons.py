@@ -6,9 +6,12 @@ api_base_url = ''
 
 
 def set_api_key(key):
-    """
-    Set an API key for authorization. The key is sent in subsequent requests.
-    Parameters: API key string
+    """Set an API key for authorization.
+
+    Parameters
+    ----------
+    key : str
+        API key
     """
     
     global api_key
@@ -17,8 +20,12 @@ def set_api_key(key):
     
     
 def get_api_key():
-    """
-    Get API key
+    """Get API key
+
+    Returns
+    -------
+    api_key : str
+        API key
     """
     
     return api_key
@@ -26,9 +33,12 @@ def get_api_key():
     
     
 def set_api_url(url):
-    """
-    Set API Base URL
-    Parameters: URL string
+    """Set API Base URL
+
+    Parameters
+    ----------
+    url : str
+        URL string
     """
     
     global api_base_url
@@ -37,18 +47,31 @@ def set_api_url(url):
 
 
 def get_api_url():
-    """
-    Get API Base URL
+    """Get API Base URL
+
+    Returns
+    -------
+    base_url : str
+        API Base URL
     """
     
     return api_base_url
 
 
 def make_get_request(endpoint, params):
-    """
-    Make a general GET HTTP request
-    Parameters: API endpoint, params
-    Returns: HTTP response in dict
+    """Make a general GET HTTP request
+
+    Parameters
+    ----------
+    endpoint : str
+        API endpoint
+    params : dict
+        GET parameters
+
+    Returns
+    -------
+    response : dict
+        HTTP response
     """
     
     headers = {
@@ -66,10 +89,21 @@ def make_get_request(endpoint, params):
 
    
 def make_post_request(endpoint, data, files=None):
-    """
-    Make a general POST HTTP request
-    Parameters: API endpoint, data
-    Returns: HTTP response in dict
+    """Make a general POST HTTP request
+
+    Parameters
+    ----------
+    endpoint : str
+        API endpoint
+    data : dict
+        POST data
+    file : file object
+        File
+
+    Returns
+    -------
+    response : dict
+        HTTP response
     """
 
     headers = {
@@ -93,10 +127,17 @@ def make_post_request(endpoint, data, files=None):
 
 
 def make_delete_request(endpoint):
-    """
-    Make a general DELETE HTTP request
-    Parameters: API endpoint
-    Returns: success result in dict
+    """Make a general DELETE HTTP request
+
+    Parameters
+    ----------
+    endpoint : str
+        API endpoint
+
+    Returns
+    -------
+    response : dict
+        HTTP response
     """
 
     headers = {
