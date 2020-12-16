@@ -208,4 +208,4 @@ response = create_and_import.add_geospatial_dataset(
 print(response)
 
 utils.text_to_thumbnail("Geospatial\nDataset")
-create_and_import.add_thumbnail(idno, "temp_thumbnail.jpg")
+create_and_import.add_thumbnail(dataset_id, "temp_thumbnail.jpg")
