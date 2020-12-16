@@ -1,15 +1,16 @@
 from pynada import create_and_import
 from pynada import utils
+import inspect
 
 create_and_import.set_api_url('http://training.ihsn.org/index.php/api/')
 api_key = 'cf16a23a3cfc6a928f63dd3c8daf8796'
 create_and_import.set_api_key(api_key)
 
-#################################
-# add_visualization_dataset test
-#################################
-dataset_id = "VISUALIZATION_DATASET_SAMPLE_01"
+#####################################
+# add_visualization_dataset template
+#####################################
 
+dataset_id = "VISUALIZATION_DATASET_SAMPLE_01"
 repository_id = "central"
 published = 0
 overwrite = "yes"
@@ -29,12 +30,12 @@ metadata_information = {
 visualization_description = {
 	"title_statement": {
 		"idno": "VISUALIZATION_DATASET_SAMPLE_01",
-		"visualization_number": "visualization_number",
-		"title": "VISUALIZATION DATASET SAMPLE 01 (full title)",
-		"sub_title": "VISUALIZATION DATASET SAMPLE 01 (sub_title)",
-		"alternate_title": "VISUALIZATION DATASET SAMPLE 01 (alternate_title)",
-		"abbreviated_title": "VISUALIZATION DATASET SAMPLE 01 (abbreviated_title)",
-		"legend": "visualization legend"
+		"visualization_number": "visualization_no_01",
+		"title": "[Template] Visualization Dataset Sample 01",
+		"sub_title": "Visualization Dataset Sample 01 (sub_title)",
+		"alternate_title": "Visualization Dataset Sample 01 (alternate_title)",
+		"abbreviated_title": "Visualization Dataset Sample 01 (abbreviated_title)",
+		"legend": "legend"
 	},
 	"sub_chart_titles": [
 		{
@@ -49,7 +50,7 @@ visualization_description = {
 	],
 	"id_numbers": {
 		"type": "ID number type",
-		"value": "ID number"
+		"value": "type_ID_01"
 	},
 	"visualization_types": [
 		{
@@ -58,7 +59,14 @@ visualization_description = {
 		}
 	],
 	"animated": True,
-	"description": "visualization description",
+	"description": inspect.cleandoc("""\
+		
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vel ante venenatis, dictum leo in, eleifend lectus. Fusce blandit at nisl eu pellentesque. Curabitur massa ante, rutrum vitae nibh nec, volutpat dignissim urna. 
+		Aliquam luctus dolor sem, ac accumsan sapien elementum a. Aenean porttitor vel turpis ac consectetur. 
+		Nulla eget lacinia leo, at rutrum nibh. Phasellus vestibulum, lorem in ullamcorper lacinia, neque tellus convallis est, non elementum lorem nisl quis augue. Aenean lobortis augue et massa interdum faucibus. Vivamus mattis imperdiet urna, 
+		sit amet tempus eros tristique eu. Morbi ultrices mauris dignissim lacus dapibus efficitur. 
+		
+	"""),
 	"narrative": [
 		"visualization narrative"
 	],
@@ -67,7 +75,7 @@ visualization_description = {
 			"name": "authoring_entity name",
 			"affiliation": "authoring_entity affiliation",
 			"abbreviation": "authoring_entity abbreviation",
-			"uri": "http://example.org/visualization_description/authoring_entity/uri"
+			"uri": "authoring_entity@example.org"
 		}
 	],
 	"contributors": [
@@ -76,7 +84,7 @@ visualization_description = {
 			"affiliation": "contributor affiliation",
 			"abbreviation": "contributor abbreviation",
 			"role": "contributor role",
-			"uri": "http://example.org/visualization_description/contributors/uri"
+			"uri": "contributor@example.org"
 		}
 	],
 	"publisher": [
@@ -85,17 +93,17 @@ visualization_description = {
 			"affiliation": "publisher affiliation",
 			"abbreviation": "publisher abbreviation",
 			"role": "publisher role",
-			"uri": "http://example.org/visualization_description/publisher/uri"
+			"uri": "publisher@example.org"
 		}
 	],
 	"acknowledgements": {
 		"name": "acknowledgement name",
 		"role": "acknowledgement role"
 	},
-	"date_created": "date_created",
-	"date_published": "date_published",
-	"date_modified": "date_modified",
-	"version": "version",
+	"date_created": "2020-10-01",
+	"date_published": "2020-11-31",
+	"date_modified": "2020-12-31",
+	"version": "v_0.0.1",
 	"visualization_series": [
 		{
 			"name": "visualization_series name",
@@ -122,8 +130,8 @@ visualization_description = {
 	],
 	"ref_country": [
 		{
-			"name": "ref_country name",
-			"code": "ref_country code"
+			"name": "Templand",
+			"code": "TMP"
 		}
 	],
 	"geographic_units": [
@@ -174,17 +182,17 @@ visualization_description = {
 	],
 	"themes": [
 		{
-			"name": "visualization theme name",
-			"vocabulary": "visualization theme vocabulary",
+			"name": "theme name",
+			"vocabulary": "theme vocabulary",
 			"uri": "http://example.org/visualization_description/themes/uri"
 		}
 	],
 	"topics": [
 		{
-			"id": "visualization topic id",
-			"name": "visualization topic name",
-			"parent_id": "visualization topic parent_id",
-			"vocabulary": "visualization topic vocabulary",
+			"id": "topic id",
+			"name": "topic name",
+			"parent_id": "topic parent_id",
+			"vocabulary": "topic vocabulary",
 			"uri": "http://example.org/visualization_description/topics/uri"
 		}
 	],
@@ -210,7 +218,7 @@ visualization_description = {
 			"uri": "http://example.org/visualization_description/classifications/uri"
 		}
 	],
-	"rights": "visualization rights",
+	"rights": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
 	"license": [
 		{
 			"name": "license name",
@@ -218,20 +226,32 @@ visualization_description = {
 		}
 	],
 	"citation": "reference for the resource",
-	"disclaimer": "disclaimer text",
+	"disclaimer": inspect.cleandoc("""\
+						
+		Proin aliquam eleifend urna, ut rhoncus neque semper in. Integer a viverra tellus, quis tincidunt sem. 
+		Fusce vel ante venenatis, dictum leo in, eleifend lectus. Fusce blandit at nisl eu pellentesque. Curabitur massa ante, rutrum vitae nibh nec, volutpat dignissim urna.
+		
+	"""),
 	"contacts": [
 		{
 			"name": "contact name",
 			"role": "contact role",
 			"affiliation": "contact affiliation",
-			"email": "contact email",
+			"email": "contact@example.org",
 			"telephone": "contact telephone",
 			"uri": "http://example.org/visualization_description/contacts/uri"
 		}
 	],
 	"notes": [
 		{
-			"note": "note text"
+			"note": inspect.cleandoc("""\
+		
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+			Fusce vel ante venenatis, dictum leo in, eleifend lectus. Fusce blandit at nisl eu pellentesque. Curabitur massa ante, rutrum vitae nibh nec, volutpat dignissim urna. Aliquam luctus dolor sem, ac accumsan sapien elementum a. Aenean porttitor vel turpis ac consectetur. Nulla eget lacinia leo, at rutrum nibh. Phasellus vestibulum, lorem in ullamcorper lacinia, neque tellus convallis est, non elementum lorem nisl quis augue. Aenean lobortis augue et massa interdum faucibus.
+			Nulla eget lacinia leo, at rutrum nibh. Phasellus vestibulum, lorem in ullamcorper lacinia, neque tellus convallis est, non elementum lorem nisl quis augue. Aenean lobortis augue et massa interdum faucibus. Vivamus mattis imperdiet urna, sit amet tempus eros tristique eu. 
+			Morbi ultrices mauris dignissim lacus dapibus efficitur. 
+			
+		"""),
 		}
 	],
 	"links": [
@@ -277,5 +297,5 @@ response = create_and_import.add_visualization_dataset(
 
 print(response)
 
-utils.text_to_thumbnail("Visualization\nDataset")
-create_and_import.add_thumbnail(dataset_id, "temp_thumbnail.jpg")
+thumbnail_path = utils.text_to_thumbnail("Visualization\nDataset")
+create_and_import.add_thumbnail(dataset_id, thumbnail_path)

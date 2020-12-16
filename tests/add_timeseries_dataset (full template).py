@@ -1,15 +1,16 @@
 from pynada import create_and_import
 from pynada import utils
+import inspect
 
 create_and_import.set_api_url('http://training.ihsn.org/index.php/api/')
 api_key = 'cf16a23a3cfc6a928f63dd3c8daf8796'
 create_and_import.set_api_key(api_key)
 
-##############################
-# add_timeseries_dataset test
-##############################
-dataset_id = "TIMESERIES_DATASET_SAMPLE_01"
+##################################
+# add_timeseries_dataset template
+##################################
 
+dataset_id = "TIMESERIES_DATASET_SAMPLE_01"
 repository_id = "central"  # Collection that owns the series
 access_policy = "na"  # Valid values - "direct" "open" "public" "licensed" "remote" "na"
 data_remote_url = "http://example.org/data_remote_url"  # Link to the website where the data is available, this is only needed if access_policy is set to "remote".
@@ -18,29 +19,34 @@ overwrite = "yes"  # Valid values - "yes" "no"
 metadata_creation = {  # Information on who generated the documentation
 	"producers": [
 		{
-			"name": "timeseries producer name",
-			"abbr": "timeseries producer abbr",
-			"affiliation": "timeseries producer affiliation",
-			"role": "timeseries producer name"
+			"name": "producer name",
+			"abbr": "producer abbr",
+			"affiliation": "producer affiliation",
+			"role": "producer name"
 		}
 	],
 	"prod_date": "2020-12-31",  # Document production date using format(YYYY-MM-DD)
-	"version": "1.0.0"  # Identify and describe the current version of the document
+	"version": "v_0.0.1"  # Identify and describe the current version of the document
 }
 series_description = {
 	"idno": "TIMESERIES_DATASET_SAMPLE_01",  # Unique series ID
-	"name": "TIMESERIES DATASET SAMPLE 01",
-	"database_id": "TimeseriesDB ID",
+	"name": "[Template] Timeseries Dataset Sample 01",
+	"database_id": "TimeseriesDB_01",
 	"aliases": [
 		{
-			"alias": "timeseries alias"
+			"alias": "timeseries_alias"
 		}
 	],
 	"measurement_unit": "unit",  # Series unit of measure
 	"periodicity": "timeseries periodicity",
 	"base_period": "timeseries base_period",
 	"definition_short": "timeseries definition_short",
-	"definition_long": "timeseries definition_long ",
+	"definition_long": inspect.cleandoc("""\
+				
+		Nulla eget lacinia leo, at rutrum nibh. Phasellus vestibulum, lorem in ullamcorper lacinia, neque tellus convallis est, non elementum lorem nisl quis augue. Aenean lobortis augue et massa interdum faucibus. Vivamus mattis imperdiet urna, 
+		sit amet tempus eros tristique eu. Morbi ultrices mauris dignissim lacus dapibus efficitur. 
+		
+	"""),
 	"definition_references": [  # URL to standard definition of the indicator (international or national standard)
 		{
 			"source": "definition_reference source",
@@ -56,12 +62,27 @@ series_description = {
 			"uri": "http://example.org/series_description/concepts/uri"
 		}
 	],
-	"methodology": "methodology used",
-	"imputation": "imputation used",
+	"methodology": inspect.cleandoc("""\
+				
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vel ante venenatis, dictum leo in, eleifend lectus. Fusce blandit at nisl eu pellentesque. Curabitur massa ante, rutrum vitae nibh nec, volutpat dignissim urna. Aliquam luctus dolor sem, ac accumsan sapien elementum a. Aenean porttitor vel turpis ac consectetur. Nulla eget lacinia leo, at rutrum nibh. 
+		Phasellus vestibulum, lorem in ullamcorper lacinia, neque tellus convallis est, non elementum lorem nisl quis augue.
+		
+	"""),
+	"imputation": inspect.cleandoc("""\
+				
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vel ante venenatis, dictum leo in, eleifend lectus. Fusce blandit at nisl eu pellentesque. Curabitur massa ante, rutrum vitae nibh nec, volutpat dignissim urna. Aliquam luctus dolor sem, ac accumsan sapien elementum a. Aenean porttitor vel turpis ac consectetur. Nulla eget lacinia leo, at rutrum nibh. 
+		Phasellus vestibulum, lorem in ullamcorper lacinia, neque tellus convallis est, non elementum lorem nisl quis augue.
+		
+	"""),
 	"quality_checks": "Quality control methods",
 	"quality_note": "Note on data quality",
 	"series_break": "Breaks in series",
-	"limitation": "Limitations and exceptions",
+	"limitation": inspect.cleandoc("""\
+				
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vel ante venenatis, dictum leo in, eleifend lectus. Fusce blandit at nisl eu pellentesque. Curabitur massa ante, rutrum vitae nibh nec, volutpat dignissim urna. Aliquam luctus dolor sem, ac accumsan sapien elementum a. Aenean porttitor vel turpis ac consectetur. Nulla eget lacinia leo, at rutrum nibh. 
+		Phasellus vestibulum, lorem in ullamcorper lacinia, neque tellus convallis est, non elementum lorem nisl quis augue.
+		
+	"""),
 	"themes": [
 		{
 			"name": "timeseries theme name",
@@ -71,10 +92,10 @@ series_description = {
 	],
 	"topics": [  # Topics covered by the timeseries (ideally, the list of topics will be a controlled vocabulary)
 		{
-			"id": "timeseries topic id",
-			"name": "timeseries topic name",
-			"parent_id": "timeseries topic parent_id",  # For subtopics, provide the ID of the parent topic
-			"vocabulary": "timeseries topic vocabulary",  # Name of the controlled vocabulary, if the topic is from a taxonomy.
+			"id": "topic_id",
+			"name": "topic name",
+			"parent_id": "topic parent_id",  # For subtopics, provide the ID of the parent topic
+			"vocabulary": "topic vocabulary",  # Name of the controlled vocabulary, if the topic is from a taxonomy.
 			"uri": "http://example.org/series_description/topics/uri"  # Link to the controlled vocabulary web page, if the topic is from a taxonomy.
 		}
 	],
@@ -88,14 +109,14 @@ series_description = {
 	"relevance": "relevance",
 	"time_periods": [
 		{
-			"start": "time_period start",
-			"end": "time_period end"
+			"start": "2020-01-01",
+			"end": "2020-12-31"
 		}
 	],
 	"geographic_units": [  # List of geographic units (regions, countries, states, provinces, etc.) for which data are available in the database.
 		{
-			"name": "geographic_units name",  # Name of the geographic unit e.g. 'World', 'Africa', 'Afghanistan'
-			"code": "geographic_units code",  # Code of the geographic unit (for countries, preferred = ISO3 code)
+			"name": "Templand",  # Name of the geographic unit e.g. 'World', 'Africa', 'Afghanistan'
+			"code": "TMP",  # Code of the geographic unit (for countries, preferred = ISO3 code)
 			"type": "geographic_units type"  # Type of geographic unit e.g. country, state, region, province etc
 		}
 	],
@@ -104,7 +125,12 @@ series_description = {
 		"name": "access licence name",
 		"uri": "http://example.org/series_description/license/uri"
 	},
-	"confidentiality": "confidentiality statement",
+	"confidentiality": inspect.cleandoc("""\
+				
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vel ante venenatis, dictum leo in, eleifend lectus.
+		Maecenas sed odio sem. In ut sapien luctus, lacinia est ut, rutrum nunc. 
+		
+	"""),
 	"confidentiality_status": "confidentiality status",
 	"confidentiality_note": "confidentiality note",
 	"links": [  # Links to API calls, websites, etc.
@@ -136,7 +162,14 @@ series_description = {
 	],
 	"notes": [
 		{
-			"note": "note text"
+			"note": inspect.cleandoc("""\
+		
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+			Fusce vel ante venenatis, dictum leo in, eleifend lectus. Fusce blandit at nisl eu pellentesque. Curabitur massa ante, rutrum vitae nibh nec, volutpat dignissim urna. Aliquam luctus dolor sem, ac accumsan sapien elementum a. Aenean porttitor vel turpis ac consectetur. Nulla eget lacinia leo, at rutrum nibh. Phasellus vestibulum, lorem in ullamcorper lacinia, neque tellus convallis est, non elementum lorem nisl quis augue. Aenean lobortis augue et massa interdum faucibus.
+			Nulla eget lacinia leo, at rutrum nibh. Phasellus vestibulum, lorem in ullamcorper lacinia, neque tellus convallis est, non elementum lorem nisl quis augue. Aenean lobortis augue et massa interdum faucibus. Vivamus mattis imperdiet urna, sit amet tempus eros tristique eu. 
+			Morbi ultrices mauris dignissim lacus dapibus efficitur. 
+			
+		"""),
 		}
 	],
 	"related_indicators": [
@@ -213,5 +246,5 @@ response = create_and_import.add_timeseries_dataset(
 
 print(response)
 
-utils.text_to_thumbnail("Timeseries\nDataset")
-create_and_import.add_thumbnail(dataset_id, "temp_thumbnail.jpg")
+thumbnail_path = utils.text_to_thumbnail("Timeseries\nDataset")
+create_and_import.add_thumbnail(dataset_id, thumbnail_path)

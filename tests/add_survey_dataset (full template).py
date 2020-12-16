@@ -1,93 +1,94 @@
 from pynada import create_and_import
 from pynada import utils
+import inspect
 
 create_and_import.set_api_url('http://training.ihsn.org/index.php/api/')
 api_key = 'cf16a23a3cfc6a928f63dd3c8daf8796'
 create_and_import.set_api_key(api_key)
 
-##########################
-# add_survey_dataset test
-##########################
-dataset_id = "SURVEY_DATASET_SAMPLE_01"
+##############################
+# add_survey_dataset template
+##############################
 
+dataset_id = "SURVEY_DATASET_SAMPLE_01"
 repository_id = "central"
 access_policy = "data_na"
 published = 0
 overwrite = "yes"
 doc_desc = {
-	"title": "doc title",
-	"idno": "doc idno",
+	"title": "metadata title",
+	"idno": "metadata idno",
 	"producers": [
 		{
-			"name": "doc producer name",
-			"abbr": "doc producer abbr",
-			"affiliation": "doc producer affiliation",
-			"role": "doc producer role"
+			"name": "metadata producer name",
+			"abbr": "metadata producer abbr",
+			"affiliation": "metadata producer affiliation",
+			"role": "metadata producer role"
 		}
 	],
 	"prod_date": "2020-12-10",
 	"version_statement": {
-		"version": "doc verion",
-		"version_date": "doc version_date",
-		"version_resp": "doc version_resp",
-		"version_notes": "doc version_notes"
+		"version": "metadata verion",
+		"version_date": "2020-01-01",
+		"version_resp": "2020-03-01",
+		"version_notes": "metadata version_notes"
 	}
 }
 study_desc = {
 	"title_statement": {
 		"idno": "SURVEY_DATASET_SAMPLE_01",
-		"title": "SURVEY DATASET SAMPLE 01 (Full Title)",
-		"sub_title": "SURVEY DATASET SAMPLE 01",
-		"alternate_title": "SURVEY DATASET SAMPLE 01 (alternate_title)",
-		"translated_title": "SURVEY DATASET SAMPLE 01 (translated_title)"
+		"title": "[Template] Survey Dataset Sample 01",
+		"sub_title": "sub_title",
+		"alternate_title": "Survey Dataset Sample 01 (alternate_title)",
+		"translated_title": "Survey Dataset Sample 01 (translated_title)"
 	},
 	"authoring_entity": [
 		{
-			"name": "study authoring_entity name",
-			"affiliation": "study authoring_entity affiliation"
+			"name": "authoring_entity name",
+			"affiliation": "authoring_entity affiliation"
 		}
 	],
 	"oth_id": [
 		{
-			"name": "study oth_id name",
-			"role": "study oth_id role",
-			"affiliation": "study oth_id affiliation"
+			"name": "oth_id name",
+			"role": "oth_id role",
+			"affiliation": "oth_id affiliation"
 		}
 	],
 	"production_statement": {
 		"producers": [
 			{
-				"name": "study production_statement producer name",
-				"abbr": "study production_statement producer abbr",
-				"affiliation": "study production_statement producer affiliation",
-				"role": "study production_statement producer role"
+				"name": "producer name",
+				"abbr": "producer abbr",
+				"affiliation": "producer affiliation",
+				"role": "producer role"
 			}
 		],
-		"copyright": "study production_statement copyright",
+		"copyright": "production_statement copyright",
 		"prod_date": "2020-12-31",
-		"prod_place": "study production_statement prod_place",
+		"prod_place": "production_statement prod_place",
 		"funding_agencies": [
 			{
-				"name": "study production funding_agencies name",
-				"abbr": "study production funding_agencies abbr",
-				"grant": "study production funding_agencies grant",
-				"role": "study production funding_agencies role"
+				"name": "production funding_agencies name",
+				"abbr": "production funding_agencies abbr",
+				"grant": "production funding_agencies grant",
+				"role": "production funding_agencies role"
 			}
 		]
 	},
 	"distribution_statement": {
 		"distributors": [
 			{
-				"name": "distribution distributors name",
-				"abbr": "distribution distributors abbr",
-				"affiliation": "distribution distributors affiliation"
+				"name": "distributor name",
+				"abbr": "distributor abbr",
+				"affiliation": "distributor affiliation"
 			}
 		],
 		"contact": [
 			{
 				"name": "distribution contact name",
 				"affiliation": "distribution contact affiliation",
-				"email": "distribution contact email"
+				"email": "distribution.contact@example.org"
 			}
 		],
 		"depositor": [
@@ -148,7 +149,14 @@ study_desc = {
 				"uri": "http://example.org/study_desc/study_info/topic/uri"
 			}
 		],
-		"abstract": "study_info abstract",
+		"abstract": inspect.cleandoc("""\
+		
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+			Fusce vel ante venenatis, dictum leo in, eleifend lectus. Fusce blandit at nisl eu pellentesque. Curabitur massa ante, rutrum vitae nibh nec, volutpat dignissim urna. Aliquam luctus dolor sem, ac accumsan sapien elementum a. Aenean porttitor vel turpis ac consectetur. Nulla eget lacinia leo, at rutrum nibh. Phasellus vestibulum, lorem in ullamcorper lacinia, neque tellus convallis est, non elementum lorem nisl quis augue. Aenean lobortis augue et massa interdum faucibus.
+			Nulla eget lacinia leo, at rutrum nibh. Phasellus vestibulum, lorem in ullamcorper lacinia, neque tellus convallis est, non elementum lorem nisl quis augue. Aenean lobortis augue et massa interdum faucibus. Vivamus mattis imperdiet urna, sit amet tempus eros tristique eu. 
+			Morbi ultrices mauris dignissim lacus dapibus efficitur. 
+			
+		"""),
 		"time_periods": [
 			{
 				"start": "2020-01-01",
@@ -165,7 +173,7 @@ study_desc = {
 		],
 		"nation": [
 			{
-				"name": "study nation name",
+				"name": "templand",
 				"abbreviation": "ISO"
 			}
 		],
@@ -196,12 +204,25 @@ study_desc = {
 			}
 		],
 		"geog_coverage": "geog_coverage",
-		"geog_coverage_notes": "geog_coverage_notes",
+		"geog_coverage_notes": inspect.cleandoc("""\
+		
+			geog_coverage_notes
+			Fusce vel ante venenatis, dictum leo in, eleifend lectus. Fusce blandit at nisl eu pellentesque. Curabitur massa ante, rutrum vitae nibh nec, volutpat dignissim urna. Aliquam luctus dolor sem, ac accumsan sapien elementum a. Aenean porttitor vel turpis ac consectetur. Nulla eget lacinia leo, at rutrum nibh. Phasellus vestibulum, lorem in ullamcorper lacinia, neque tellus convallis est, non elementum lorem nisl quis augue. Aenean lobortis augue et massa interdum faucibus.
+			Nulla eget lacinia leo, at rutrum nibh. Phasellus vestibulum, lorem in ullamcorper lacinia, neque tellus convallis est, non elementum lorem nisl quis augue. Aenean lobortis augue et massa interdum faucibus. Vivamus mattis imperdiet urna, sit amet tempus eros tristique eu. 
+			
+		"""),
 		"geog_unit": "geog_unit",
 		"analysis_unit": "analysis_unit",
 		"universe": "universe",
 		"data_kind": "data_kind",
-		"notes": "study_info notes",
+		"notes": inspect.cleandoc("""\
+		
+			study_info notes
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+			Fusce vel ante venenatis, dictum leo in, eleifend lectus. Fusce blandit at nisl eu pellentesque. Curabitur massa ante, rutrum vitae nibh nec, volutpat dignissim urna. Aliquam luctus dolor sem, ac accumsan sapien elementum a. Aenean porttitor vel turpis ac consectetur. Nulla eget lacinia leo, at rutrum nibh. Phasellus vestibulum, lorem in ullamcorper lacinia, neque tellus convallis est, non elementum lorem nisl quis augue. Aenean lobortis augue et massa interdum faucibus.
+			Nulla eget lacinia leo, at rutrum nibh. Phasellus vestibulum, lorem in ullamcorper lacinia, neque tellus convallis est, non elementum lorem nisl quis augue. Aenean lobortis augue et massa interdum faucibus. Vivamus mattis imperdiet urna, sit amet tempus eros tristique eu. 
+			
+		"""),
 		"quality_statement": {
 			"standard_name": "quality standard_name",
 			"standard_producer": "quality standard_producer",
@@ -334,9 +355,14 @@ study_desc = {
 		"dataset_use": {
 			"conf_dec": [
 				{
-					"txt": "dataset_use conf_dec txt",
+					"txt": inspect.cleandoc("""\
+					
+						dataset_use conf_dec txt
+						Nulla eget lacinia leo, at rutrum nibh. Phasellus vestibulum, lorem in ullamcorper lacinia, neque tellus convallis est, non elementum lorem nisl quis augue. Aenean lobortis augue et massa interdum faucibus. Vivamus mattis imperdiet urna, sit amet tempus eros tristique eu. 
+						
+					"""),
 					"required": "dataset_use conf_dec required",
-					"form_url": "dataset_use conf_dec form_url",
+					"form_url": "http://example.org/study_desc/data_access/dataset_use/conf_dec/form_url",
 					"form_id": "dataset_use conf_dec form_id"
 				}
 			],
@@ -344,7 +370,7 @@ study_desc = {
 				{
 					"txt": "dataset_use spec_perm txt",
 					"required": "dataset_use spec_perm required",
-					"form_url": "dataset_use spec_perm form_url",
+					"form_url": "http://example.org/study_desc/data_access/dataset_use/spec_perm/form_url",
 					"form_id": "dataset_use spec_perm form_id"
 				}
 			],
@@ -357,10 +383,27 @@ study_desc = {
 					"email": "dataset_use.contact.email@example.org"
 				}
 			],
-			"cit_req": "dataset_use cit_req",
+			"cit_req": inspect.cleandoc("""\
+			
+				dataset_use cit_req
+				Fusce vel ante venenatis, dictum leo in, eleifend lectus. Fusce blandit at nisl eu pellentesque. Curabitur massa ante, rutrum vitae nibh nec, volutpat dignissim urna. Aliquam luctus dolor sem, ac accumsan sapien elementum a. Aenean porttitor vel turpis ac consectetur. Nulla eget lacinia leo, at rutrum nibh. Phasellus vestibulum, lorem in ullamcorper lacinia, neque tellus convallis est, non elementum lorem nisl quis augue. Aenean lobortis augue et massa interdum faucibus.
+				Nulla eget lacinia leo, at rutrum nibh. Phasellus vestibulum, lorem in ullamcorper lacinia, neque tellus convallis est, non elementum lorem nisl quis augue. Aenean lobortis augue et massa interdum faucibus. Vivamus mattis imperdiet urna, sit amet tempus eros tristique eu. 
+				
+			"""),
 			"deposit_req": "dataset_use deposit_req",
-			"conditions": "dataset_use conditions",
-			"disclaimer": "dataset_use disclaimer"
+			"conditions": inspect.cleandoc("""\
+			
+				dataset_use conditions
+				Fusce vel ante venenatis, dictum leo in, eleifend lectus. Fusce blandit at nisl eu pellentesque. Curabitur massa ante, rutrum vitae nibh nec, volutpat dignissim urna. Aliquam luctus dolor sem, ac accumsan sapien elementum a. Aenean porttitor vel turpis ac consectetur. Nulla eget lacinia leo, at rutrum nibh. Phasellus vestibulum, lorem in ullamcorper lacinia, neque tellus convallis est, non elementum lorem nisl quis augue. Aenean lobortis augue et massa interdum faucibus.
+				Nulla eget lacinia leo, at rutrum nibh. Phasellus vestibulum, lorem in ullamcorper lacinia, neque tellus convallis est, non elementum lorem nisl quis augue. Aenean lobortis augue et massa interdum faucibus. Vivamus mattis imperdiet urna, sit amet tempus eros tristique eu. 
+				
+			"""),
+			"disclaimer": inspect.cleandoc("""\
+			
+				dataset_use disclaimer
+				Maecenas sed odio sem. In ut sapien luctus, lacinia est ut, rutrum nunc. Nam dignissim lacus a elit auctor, sed ultricies dui vestibulum.
+				
+			"""),
 		},
 		"notes": "data_access notes"
 	}
@@ -469,5 +512,5 @@ response = create_and_import.add_survey_dataset(
 
 print(response)
 
-utils.text_to_thumbnail("Survey\nDataset")
-create_and_import.add_thumbnail(dataset_id, "temp_thumbnail.jpg")
+thumbnail_path = utils.text_to_thumbnail("Survey\nDataset")
+create_and_import.add_thumbnail(dataset_id, thumbnail_path)

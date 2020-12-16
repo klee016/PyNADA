@@ -1,13 +1,15 @@
 from pynada import create_and_import
+from pynada import utils
 
 create_and_import.set_api_url('http://training.ihsn.org/index.php/api/')
 api_key = 'cf16a23a3cfc6a928f63dd3c8daf8796'
 create_and_import.set_api_key(api_key)
 
 
-############################
-# add_document_dataset test
-############################
+###############################
+# add_document_dataset example
+###############################
+
 dataset_id = "WPS8038"
 repository_id = "central"
 published = 1
@@ -51,3 +53,9 @@ response = create_and_import.add_document_dataset(
 )
 
 print(response)
+
+
+# If you have pdf file, generate thumbnail from it.
+pdf_file_path = Path('../../../Documents/WPS8038.pdf')
+thumbnail_path = utils.pdf_to_thumbnail(pdf_file_path, page_no = 1)
+create_and_import.add_thumbnail(dataset_id, thumbnail_path)

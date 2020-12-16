@@ -1,15 +1,16 @@
 from pynada import create_and_import
 from pynada import utils
+import inspect
 
 create_and_import.set_api_url('http://training.ihsn.org/index.php/api/')
 api_key = 'cf16a23a3cfc6a928f63dd3c8daf8796'
 create_and_import.set_api_key(api_key)
 
-##########################
-# add_table_dataset test
-##########################
-dataset_id = "TABLE_DATASET_SAMPLE_01"
+#############################
+# add_table_dataset template
+#############################
 
+dataset_id = "TABLE_DATASET_SAMPLE_01"
 repository_id = "central"
 published = 0
 overwrite = "yes"
@@ -17,83 +18,95 @@ metadata_information = {
 	"idno": "metadata info id",
 	"producers": [
 		{
-			"name": "metadata_information producer name",
-			"abbr": "metadata_information producer abbr",
-			"affiliation": "metadata_information producer affiliation",
-			"role": "metadata_information producer role"
+			"name": "metadata producer name",
+			"abbr": "metadata producer abbr",
+			"affiliation": "metadata producer affiliation",
+			"role": "metadata producer role"
 		}
 	],
 	"production_date": "2020-12-31",
-	"version": "metadata_information version"
+	"version": "metadata version"
 }
 table_description = {
 	"title_statement": {
 		"idno": "TABLE_DATASET_SAMPLE_01",
-		"table_number": "table_number",
-		"title": "TABLE DATASET SAMPLE 01 (full title)",
-		"sub_title": "TABLE DATASET SAMPLE 01 (sub_title)",
-		"alternate_title": "TABLE DATASET SAMPLE 01 (alternate_title)",
-		"abbreviated_title": "TABLE DATASET SAMPLE 01 (abbreviated_title)"
+		"table_number": "table_no_01",
+		"title": "[Template] Table Dataset Sample 01",
+		"sub_title": "Table Dataset Sample 01 (sub_title)",
+		"alternate_title": "Table Dataset Sample 01 (alternate_title)",
+		"abbreviated_title": "Table Dataset Sample 01 (abbreviated_title)"
 	},
 	"id_numbers": {
-		"type": "table ID number type such as ISSN, ISBN, DOI",
-		"value": "table ID number"
+		"type": "ISSN",  # table ID number type such as ISSN, ISBN, DOI
+		"value": "123456789"  # table ID number
 	},
 	"authoring_entity": [
 		{
-			"name": "table authoring_entity name",
-			"affiliation": "table authoring_entity affiliation",
-			"abbreviation": "table authoring_entity abbreviation",
-			"uri": "table authoring_entity uri"
+			"name": "authoring_entity name",
+			"affiliation": "authoring_entity affiliation",
+			"abbreviation": "authoring_entity abbreviation",
+			"uri": "authoring_entity@example.org"
 		}
 	],
 	"contributors": [
 		{
-			"name": "table contributor name",
-			"affiliation": "table contributor affiliation",
-			"abbreviation": "table contributor abbreviation",
-			"role": "table contributor role",
-			"uri": "table contributor uri"
+			"name": "contributor name",
+			"affiliation": "contributor affiliation",
+			"abbreviation": "contributor abbreviation",
+			"role": "contributor role",
+			"uri": "contributor@example.org"
 		}
 	],
 	"publisher": [
 		{
-			"name": "table publisher name",
-			"affiliation": "table publisher affiliation",
-			"abbreviation": "table publisher abbreviation",
-			"role": "table publisher role",
-			"uri": "table publisher uri"
+			"name": "publisher name",
+			"affiliation": "publisher affiliation",
+			"abbreviation": "publisher abbreviation",
+			"role": "publisher role",
+			"uri": "publisher@example.org"
 		}
 	],
-	"date_created": "table date_created",
-	"date_published": "table date_published",
-	"date_modified": "table date_modified",
-	"version": "table version",
-	"description": "table description",
+	"date_created": "2020-01-01",
+	"date_published": "2020-10-01",
+	"date_modified": "2020-11-01",
+	"version": "v_0.0.1",
+	"description": inspect.cleandoc("""\
+		
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vel ante venenatis, dictum leo in, eleifend lectus. Fusce blandit at nisl eu pellentesque. Curabitur massa ante, rutrum vitae nibh nec, volutpat dignissim urna. 
+		Aliquam luctus dolor sem, ac accumsan sapien elementum a. Aenean porttitor vel turpis ac consectetur. 
+		Nulla eget lacinia leo, at rutrum nibh. Phasellus vestibulum, lorem in ullamcorper lacinia, neque tellus convallis est, non elementum lorem nisl quis augue. Aenean lobortis augue et massa interdum faucibus. Vivamus mattis imperdiet urna, 
+		sit amet tempus eros tristique eu. Morbi ultrices mauris dignissim lacus dapibus efficitur. 
+		
+	"""),
 	"table_columns": [
 		{
-			"var_name": "table_column var_name",
-			"label": "table_column label"
+			"var_name": "table_column_var_name",
+			"label": "table_column_label"
 		}
 	],
 	"table_rows": [
 		{
-			"var_name": "table_row var_name",
-			"label": "table_row label"
+			"var_name": "table_row_var_name",
+			"label": "table_row_label"
 		}
 	],
 	"table_footnotes": [
 		{
-			"number": "table_footnote number",
-			"text": "table_footnote text"
+			"number": "footnote_01",
+			"text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
 		}
 	],
 	"table_series": [
 		{
 			"name": "table_series name",
 			"maintainer": "table_series maintainer",
-			"uri": "table_series uri",
-			"description": "table_series description"
+			"uri": "http://example.org/table_description/table_series/uri",
+			"description": inspect.cleandoc("""\
+				
+				Nulla eget lacinia leo, at rutrum nibh. Phasellus vestibulum, lorem in ullamcorper lacinia, neque tellus convallis est, non elementum lorem nisl quis augue. Aenean lobortis augue et massa interdum faucibus. Vivamus mattis imperdiet urna, 
+				sit amet tempus eros tristique eu. Morbi ultrices mauris dignissim lacus dapibus efficitur. 
+				
+			"""),
 		}
 	],
 	"statistics": [
@@ -124,8 +137,8 @@ table_description = {
 	],
 	"ref_country": [
 		{
-			"name": "table ref_country name",
-			"code": "table ref_country code"
+			"name": "templand",
+			"code": "TMP"
 		}
 	],
 	"geographic_units": [
@@ -144,28 +157,28 @@ table_description = {
 	],
 	"links": [
 		{
-			"uri": "table link uri",
+			"uri": "http://example.org/table_description/link/uri",
 			"description": "table link description"
 		}
 	],
 	"publications": [
 		{
 			"title": "publication title",
-			"uri": "publication uri"
+			"uri": "http://example.org/table_description/publication/uri"
 		}
 	],
 	"keywords": [
 		{
 			"name": "keyword name",
 			"vocabulary": "keyword vocabulary",
-			"uri": "keyword uri"
+			"uri": "http://example.org/table_description/keyword/uri"
 		}
 	],
 	"themes": [
 		{
-			"name": "table theme name",
-			"vocabulary": "table theme vocabulary",
-			"uri": "table theme uri"
+			"name": "theme name",
+			"vocabulary": "theme vocabulary",
+			"uri": "http://example.org/table_description/theme/uri"
 		}
 	],
 	"topics": [
@@ -174,21 +187,21 @@ table_description = {
 			"name": "table topic name",
 			"parent_id": "table topic parent_id",
 			"vocabulary": "table topic vocabulary",
-			"uri": "table topic uri"
+			"uri": "http://example.org/table_description/topic/uri"
 		}
 	],
 	"disciplines": [
 		{
 			"name": "discipline name",
 			"vocabulary": "discipline vocabulary",
-			"uri": "discipline uri"
+			"uri": "http://example.org/table_description/discipline/uri"
 		}
 	],
 	"definitions": [
 		{
 			"name": "definition name",
 			"definition": "definition text",
-			"uri": "definition uri"
+			"uri": "http://example.org/table_description/definition/uri"
 		}
 	],
 	"classifications": [
@@ -196,14 +209,14 @@ table_description = {
 			"name": "classification name",
 			"version": "classification version",
 			"organization": "classification organization",
-			"uri": "classification uri"
+			"uri": "http://example.org/table_description/classification/uri"
 		}
 	],
 	"rights": "table rights",
 	"license": [
 		{
 			"name": "license name",
-			"uri": "license uri"
+			"uri": "http://example.org/table_description/license/uri"
 		}
 	],
 	"citation": "reference for the resource",
@@ -215,12 +228,18 @@ table_description = {
 			"affiliation": "contact affiliation",
 			"email": "contact email",
 			"telephone": "contact telephone",
-			"uri": "contact uri"
+			"uri": "contact@example.org"
 		}
 	],
 	"notes": [
 		{
-			"note": "note text"
+			"note": inspect.cleandoc("""\
+				
+				Nulla eget lacinia leo, at rutrum nibh. Phasellus vestibulum, lorem in ullamcorper lacinia, neque tellus convallis est, non elementum lorem nisl quis augue. Aenean lobortis augue et massa interdum faucibus. Vivamus mattis imperdiet urna, 
+				sit amet tempus eros tristique eu. Morbi ultrices mauris dignissim lacus dapibus efficitur. 
+				Maecenas sed odio sem. In ut sapien luctus, lacinia est ut, rutrum nunc. Nam dignissim lacus a elit auctor, sed ultricies dui vestibulum. Interdum et malesuada fames ac ante ipsum primis in faucibus. 
+				In nunc orci, congue eget justo id, rutrum hendrerit dui.
+			"""),
 		}
 	],
 	"relations": [
@@ -261,5 +280,5 @@ response = create_and_import.add_table_dataset(
 
 print(response)
 
-utils.text_to_thumbnail("Table\nDataset")
-create_and_import.add_thumbnail(dataset_id, "temp_thumbnail.jpg")
+thumbnail_path = utils.text_to_thumbnail("Table\nDataset")
+create_and_import.add_thumbnail(dataset_id, thumbnail_path)

@@ -1,15 +1,16 @@
 from pynada import create_and_import
 from pynada import utils
+import inspect
 
 create_and_import.set_api_url('http://training.ihsn.org/index.php/api/')
 api_key = 'cf16a23a3cfc6a928f63dd3c8daf8796'
 create_and_import.set_api_key(api_key)
 
-#################################d
-# add_geospatial_dataset test
-#################################
-dataset_id = "GEOSPATIAL_DATASET_SAMPLE_01"
+##################################
+# add_geospatial_dataset template
+##################################
 
+dataset_id = "GEOSPATIAL_DATASET_SAMPLE_01"
 repository_id = "central"
 published = 0
 overwrite = "yes"
@@ -40,7 +41,7 @@ metadata_maintenance = {
 dataset_description = {
 	"file_identifier": "GEOSPATIAL_DATASET_SAMPLE_01",
 	"language": "language code",
-	"charset_code": "character encoding used",
+	"charset_code": "UTF-8",  # character encoding used
 	"hierarchy_level": "geospatial dataset hierarchy_level",
 	"date_stamp": "2009-11-17T10:00:00",
 	"contact": [
@@ -62,8 +63,8 @@ dataset_description = {
 		}
 	],
 	"identification_info": {
-		"title": "GEOSPATIAL DATASET SAMPLE 01 (full title)",
-		"alternate_title": "GEOSPATIAL DATASET SAMPLE 01 (alternate_title)",
+		"title": "[Template] Geospatial Dataset Sample 01",
+		"alternate_title": "Geospatial Dataset Sample 01 (alternate_title)",
 		"date": [
 			{
 				"date": "2020-12-31",
@@ -77,9 +78,26 @@ dataset_description = {
 			}
 		],
 		"presentation_form": "e.g. documentDigital",
-		"abstract": "geospatial dataset abstract",
-		"purpose": "geospatial dataset purpose",
-		"credit": "geospatial dataset credit",
+		"abstract": inspect.cleandoc("""\
+		
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vel ante venenatis, dictum leo in, eleifend lectus. Fusce blandit at nisl eu pellentesque. Curabitur massa ante, rutrum vitae nibh nec, volutpat dignissim urna. 
+			Aliquam luctus dolor sem, ac accumsan sapien elementum a. Aenean porttitor vel turpis ac consectetur. 
+			Nulla eget lacinia leo, at rutrum nibh. Phasellus vestibulum, lorem in ullamcorper lacinia, neque tellus convallis est, 
+			non elementum lorem nisl quis augue. Aenean lobortis augue et massa interdum faucibus. Vivamus mattis imperdiet urna, 
+			sit amet tempus eros tristique eu. Morbi ultrices mauris dignissim lacus dapibus efficitur. 
+			
+		"""),
+		"purpose": inspect.cleandoc("""\
+		
+			Pellentesque elementum massa mauris, ac tincidunt orci scelerisque nec. Sed mattis mauris sed dolor elementum, eget facilisis purus aliquet. Praesent eget iaculis augue, vel elementum purus. 
+			Proin aliquam eleifend urna, ut rhoncus neque semper in. Integer a viverra tellus, quis tincidunt sem. Fusce nulla dui, commodo sit amet sem id, mattis eleifend lectus. Suspendisse eget tempus tortor. In quis cursus nulla.
+			
+		"""),
+		"credit": inspect.cleandoc("""\
+		
+			In posuere tempus mi, in vehicula mi tristique nec. Phasellus neque ipsum, ultrices in interdum eget, vehicula id quam. Aliquam cursus euismod maximus.
+						
+		"""),
 		"status": "status code e.g. historicalArchive",
 		"point_of_contact": [
 			{
@@ -90,8 +108,8 @@ dataset_description = {
 				"instructions": "point_of_contact instruction",
 				"phone": "point_of_contact phone",
 				"fax": "point_of_contact fax",
-				"email": "point_of_contact email",
-				"website": "point_of_contact website",
+				"email": "point_of_contact@example.org",
+				"website": "http://example.org/dataset_description/point_of_contact/website",
 				"address": "point_of_contact address",
 				"city": "point_of_contact city",
 				"administrative_area": "point_of_contact administrative_area",
@@ -113,7 +131,7 @@ dataset_description = {
 			{
 				"keyword": "keyword",
 				"code": "discipline",  # allowed {discipline, place, stratum, temporal, theme}
-				"code_uri": "keyword code_list used"
+				"code_uri": "http://example.org/dataset_description/keyword/lcode_uri"
 			}
 		],
 		"resource_constraints": {
@@ -141,10 +159,10 @@ dataset_description = {
 		"extent": {
 			"geographic_bounding_box": [
 				{
-					"south": -180,
-					"west": -180,
-					"north": -180,
-					"east": -180
+					"south": 0,
+					"west": 30,
+					"north": 20,
+					"east": 0
 				}
 			]
 		},
@@ -207,5 +225,5 @@ response = create_and_import.add_geospatial_dataset(
 
 print(response)
 
-utils.text_to_thumbnail("Geospatial\nDataset")
-create_and_import.add_thumbnail(dataset_id, "temp_thumbnail.jpg")
+thumbnail_path = utils.text_to_thumbnail("Geospatial\nDataset")
+create_and_import.add_thumbnail(dataset_id, thumbnail_path)

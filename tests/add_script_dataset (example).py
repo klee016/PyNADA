@@ -5,11 +5,11 @@ create_and_import.set_api_url('http://training.ihsn.org/index.php/api/')
 api_key = 'cf16a23a3cfc6a928f63dd3c8daf8796'
 create_and_import.set_api_key(api_key)
 
-##########################
-# add_script_dataset test
-##########################
-dataset_id = "RR_WLD_2020_PFC_v01"
+#############################
+# add_script_dataset example
+#############################
 
+dataset_id = "RR_WLD_2020_PFC_v01"
 repository_id = "central"
 published = 1
 overwrite = "yes"
@@ -311,7 +311,6 @@ response = create_and_import.add_script_dataset(
 	repository_id=repository_id,
 	published=published,
 	overwrite=overwrite,
-	#doc_desc=doc_desc,
 	project_desc=project_desc
 )
 

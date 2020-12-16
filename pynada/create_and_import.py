@@ -100,8 +100,7 @@ def add_document_dataset(
         metadata_information=None,
         document_description=None,
         tags=None,
-        files=None,
-        thumbnail=None,
+        files=None
 ):
     """Add a new document dataset to the catalog
 
@@ -123,8 +122,6 @@ def add_document_dataset(
         Tags
     files : list of dict
         Files
-    thumbnail : str
-        Thumbnail file path
 
     Returns
     -------
@@ -148,13 +145,7 @@ def add_document_dataset(
     response = make_post_request('datasets/create/document/'+dataset_id, data)
 
     if response['status'] == 'success':
-        print("Document successfully added.")
-
-    if thumbnail is not None:
-        add_thumbnail(idno, thumbnail)
-
-    if response['status'] == 'success':
-        print("Document dataset successfully added!")
+        print("Document dataset successfully added.")
 
     return pd.DataFrame.from_dict(response['dataset'], orient='index')
 

@@ -1,13 +1,14 @@
 from pynada import create_and_import
 from pynada import utils
+import inspect
 
 create_and_import.set_api_url('http://training.ihsn.org/index.php/api/')
 api_key = 'cf16a23a3cfc6a928f63dd3c8daf8796'
 create_and_import.set_api_key(api_key)
 
-#########################
-# add_image_dataset test
-#########################
+#############################
+# add_image_dataset template
+#############################
 dataset_id = "IMAGE-DATASET-SAMPLE-01"
 
 repository_id = "central"
@@ -33,7 +34,7 @@ image_description = {
 		"mediafragment": {
 			"uri": "http://example.org/iptc/mediafragment/url",
 			"delimitertype": "spatial",
-			"description": "iptc mediafragment description"
+			"description": "IPTC mediafragment description"
 		},
 		"photoVideoMetadataIPTC": {
 			"aboutCvTerms": [
@@ -103,7 +104,15 @@ image_description = {
 			],
 			"creditLine": "IPTC creditLine",
 			"dateCreated": "2020-12-06T18:29:44Z",
-			"description": "IPTC description",
+			"description": inspect.cleandoc("""\
+			
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vel ante venenatis, dictum leo in, eleifend lectus. Fusce blandit at nisl eu pellentesque. Curabitur massa ante, rutrum vitae nibh nec, volutpat dignissim urna. 
+				Aliquam luctus dolor sem, ac accumsan sapien elementum a. Aenean porttitor vel turpis ac consectetur. 
+				Nulla eget lacinia leo, at rutrum nibh. Phasellus vestibulum, lorem in ullamcorper lacinia, neque tellus convallis est, 
+				non elementum lorem nisl quis augue. Aenean lobortis augue et massa interdum faucibus. Vivamus mattis imperdiet urna, 
+				sit amet tempus eros tristique eu. Morbi ultrices mauris dignissim lacus dapibus efficitur. 
+				
+			"""),
 			"digitalImageGuid": "IMAGE-DATASET-SAMPLE-01",
 			"digitalSourceType": "http://example.org/iptc/photoVideoMetadataIPTC/digitalSourceType",
 			"embdEncRightsExpr": [
@@ -122,10 +131,18 @@ image_description = {
 					"cvTermRefinedAbout": "http://example.org/iptc/photoVideoMetadataIPTC/genres/cvTermRefinedAbout"
 				}
 			],
-			"headline": "IMAGE DATASET SAMPLE 01",
+			"headline": "[Template] Image Dataset Sample 01",
 			"imageRating": 0,
 			"imageSupplierImageId": "IPTC imageSupplierImageId",
-			"instructions": "IPTC instructions",
+			"instructions": inspect.cleandoc("""\
+			
+				Vestibulum interdum mi at turpis tristique viverra. Phasellus molestie ante id efficitur interdum. Vivamus metus dolor, volutpat non justo non, lobortis varius sem. Suspendisse scelerisque molestie urna, vel dapibus massa rutrum quis. 
+				Nam porta posuere enim, ac interdum ex pellentesque ac. Praesent auctor neque vel neque tristique facilisis vel non purus. Mauris semper nibh eu erat elementum congue nec quis ligula. In in imperdiet lorem, et consectetur erat. 
+				Nam elit odio, ultrices eu tempus at, fringilla at tortor. Integer id rutrum est, sed ornare metus. 
+				Praesent sollicitudin vitae est vel tristique. Vestibulum nec magna vitae nunc feugiat pulvinar. 
+				Etiam consectetur eget quam sed rhoncus. Phasellus eu lacus ac magna interdum consequat nec id ipsum.
+				
+			"""),
 			"intellectualGenre": "IPTC intellectualGenre",
 			"jobid": "IPTC jobid",
 			"jobtitle": "IPTC jobtitle",

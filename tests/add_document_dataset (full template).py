@@ -1,13 +1,15 @@
 from pynada import create_and_import
 from pynada import utils
+import inspect
 
 create_and_import.set_api_url('http://training.ihsn.org/index.php/api/')
 api_key = 'cf16a23a3cfc6a928f63dd3c8daf8796'
 create_and_import.set_api_key(api_key)
 
-############################
-# add_document_dataset test
-############################
+################################
+# add_document_dataset template
+################################
+
 dataset_id = "DOCUMENT-DATASET-SAMPLE-01"
 repository_id = "string"
 published = 0
@@ -29,7 +31,7 @@ metadata_information = {
 document_description = {
 	"title_statement": {
 		"idno": "DOCUMENT-DATASET-SAMPLE-01",
-		"title": "Document Dataset Sample 01 (full title)",
+		"title": "[Template] Document Dataset Sample 01",
 		"sub_title": "Document Dataset Sample 01 (sub_title)",
 		"alternate_title": "Document Dataset Sample 01 (alternate_title)",
 		"abbreviated_title": "Document Dataset Sample 01 (abbreviated_title)"
@@ -44,10 +46,23 @@ document_description = {
 			"name": "TOC name"
 		}
 	],
-	"abstract": "abstract text",
+	"abstract": inspect.cleandoc("""\
+	
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vel ante venenatis, dictum leo in, eleifend lectus. Fusce blandit at nisl eu pellentesque. Curabitur massa ante, rutrum vitae nibh nec, volutpat dignissim urna. 
+		Aliquam luctus dolor sem, ac accumsan sapien elementum a. Aenean porttitor vel turpis ac consectetur. 
+		Nulla eget lacinia leo, at rutrum nibh. Phasellus vestibulum, lorem in ullamcorper lacinia, neque tellus convallis est, 
+		non elementum lorem nisl quis augue. Aenean lobortis augue et massa interdum faucibus. Vivamus mattis imperdiet urna, 
+		sit amet tempus eros tristique eu. Morbi ultrices mauris dignissim lacus dapibus efficitur. 
+		
+	"""),
 	"notes": [
 		{
-			"note": "note text"
+			"note": inspect.cleandoc("""\
+	
+				Maecenas sed odio sem. In ut sapien luctus, lacinia est ut, rutrum nunc. Nam dignissim lacus a elit auctor, sed ultricies dui vestibulum. Interdum et malesuada fames ac ante ipsum primis in faucibus.
+				In nunc orci, congue eget justo id, rutrum hendrerit dui.
+		
+			""")
 		}
 	],
 	"scope": "The extent or scope of the content of the resource.",  # This fields maps to Dublin Core's coverage field.
@@ -57,8 +72,18 @@ document_description = {
 			"code": "ISO"
 		}
 	],
-	"spatial_coverage": "The spatial extent or scope",
-	"temporal_coverage": "The temporal extent or scope",
+	"spatial_coverage": inspect.cleandoc("""\
+	
+		Pellentesque vehicula nisl sed leo consequat, interdum congue diam maximus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec nec ex egestas, congue libero sit amet, tincidunt risus.
+		Cras sed ligula pellentesque, efficitur ex nec, gravida sapien. Nulla mollis, tortor vitae ullamcorper iaculis, felis metus molestie massa, nec fringilla eros arcu quis tortor.
+
+	"""),
+	"temporal_coverage": inspect.cleandoc("""\
+	
+		Pellentesque vehicula nisl sed leo consequat, interdum congue diam maximus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec nec ex egestas, congue libero sit amet, tincidunt risus.
+		Cras sed ligula pellentesque, efficitur ex nec, gravida sapien. Nulla mollis, tortor vitae ullamcorper iaculis, felis metus molestie massa, nec fringilla eros arcu quis tortor.
+
+	"""),
 	"date_created": "2020-12-31",  # Date of creation
 	"date_available": "From 2020-01-01 To 2020-12-31",  # Date (often a range) that the resource will become or did become available.
 	"date_modified": "2020-08-01",  # Date on which the resource was changed.
@@ -239,6 +264,5 @@ response = create_and_import.add_document_dataset(
 
 print(response)
 
-
-utils.text_to_thumbnail("Document\nDataset")
-create_and_import.add_thumbnail(dataset_id, "temp_thumbnail.jpg")
+thumbnail_path = utils.text_to_thumbnail("Document\nDataset")
+create_and_import.add_thumbnail(dataset_id, thumbnail_path)
