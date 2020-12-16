@@ -18,12 +18,12 @@ def list_collections():
     return pd.DataFrame.from_dict(response, orient='index')
 
 
-def get_collection_info(repositoryId):
+def get_collection_info(repository_id):
     """Returns information on a collection
 
     Parameters
     ----------
-    repositoryId : str
+    repository_id : str
         Collection's unique IDNo
 
     Returns
@@ -33,7 +33,7 @@ def get_collection_info(repositoryId):
     """
 
     params = {}
-    response = make_get_request('collections/'+repositoryId, params)
+    response = make_get_request('collections/'+repository_id, params)
 
     #return response
     return pd.DataFrame.from_dict(response, orient='index')
@@ -90,12 +90,12 @@ def search_dataset_by_title(partial_title):
     return datasets[datasets['title'].str.contains(partial_title)]
 
 
-def get_dataset_info(idno):
+def get_dataset_info(dataset_id):
     """Returns information on a dataset
 
     Parameters
     ----------
-    idno : str
+    dataset_id : str
         Dataset IDNo
 
     Returns
@@ -105,7 +105,7 @@ def get_dataset_info(idno):
     """
 
     params = {}
-    response = make_get_request('datasets/'+idno, params)
+    response = make_get_request('datasets/'+dataset_id, params)
 
     #return response
     return pd.DataFrame.from_dict(response['dataset'], orient='index')
@@ -131,12 +131,12 @@ def get_dataset_info_by_numid(numeric_id):
     return pd.DataFrame.from_dict(response['dataset'], orient='index')
 
 
-def list_tags(idno):
+def list_tags(dataset_id):
     """Get a list of all tags for a dataset
 
     Parameters
     ----------
-    idno : str
+    dataset_id : str
         Dataset IDNo
 
     Returns
@@ -146,17 +146,17 @@ def list_tags(idno):
     """
 
     params = {}
-    response = make_get_request('datasets/tags/'+idno, params)
+    response = make_get_request('datasets/tags/'+dataset_id, params)
 
     return pd.DataFrame(response['records'])
 
 
-def list_aliases(idno):
+def list_aliases(dataset_id):
     """Get a list of all aliases for a dataset
 
     Parameters
     ----------
-    idno : str
+    dataset_id : str
         Dataset IDNo
 
     Returns
@@ -166,17 +166,17 @@ def list_aliases(idno):
     """
 
     params = {}
-    response = make_get_request('datasets/aliases/'+idno, params)
+    response = make_get_request('datasets/aliases/'+dataset_id, params)
 
     return pd.DataFrame(response['records'])
 
 
-def list_resources(idno):
+def list_resources(dataset_id):
     """Get a list of all external resources for a dataset
 
     Parameters
     ----------
-    idno : str
+    dataset_id : str
         Dataset IDNo
 
     Returns
@@ -186,20 +186,20 @@ def list_resources(idno):
     """
 
     params = {}
-    response = make_get_request('datasets/'+idno+'/resources', params)
+    response = make_get_request('datasets/'+dataset_id+'/resources', params)
 
     return response
     #return pd.DataFrame.from_dict(response['resources']).set_index('resource_id')
 
 
-def get_resource_info(datasetIDNo, resourceId):
+def get_resource_info(dataset_id, resource_id):
     """Returns information on a resource
 
     Parameters
     ----------
-    datasetIDNo : str
+    dataset_id : str
         Dataset IDNo
-    resourceId : int
+    resource_id : int
         Resource ID
 
     Returns
@@ -209,18 +209,18 @@ def get_resource_info(datasetIDNo, resourceId):
     """
 
     params = {}
-    response = make_get_request('datasets/'+datasetIDNo+'/resources/'+resourceId, params)
+    response = make_get_request('datasets/'+dataset_id+'/resources/'+resource_id, params)
 
     #return response
     return pd.DataFrame.from_dict(response['resource'], orient='index')
 
 
-def list_datafiles(idno):
+def list_datafiles(dataset_id):
     """Get a list of all data files for a survey
 
     Parameters
     ----------
-    idno : str
+    dataset_id : str
         Dataset IDNo
 
     Returns
@@ -230,18 +230,18 @@ def list_datafiles(idno):
     """
 
     params = {}
-    response = make_get_request('datasets/datafiles/'+idno, params)
+    response = make_get_request('datasets/datafiles/'+dataset_id, params)
 
     return response
     #return pd.DataFrame.from_dict(response['resources']).set_index('resource_id')
 
 
-def list_files(idno):
+def list_files(dataset_id):
     """Get a list of all files for a dataset
 
     Parameters
     ----------
-    idno : str
+    dataset_id : str
         Dataset IDNo
 
     Returns
@@ -251,18 +251,18 @@ def list_files(idno):
     """
 
     params = {}
-    response = make_get_request('datasets/'+idno+'/files/', params)
+    response = make_get_request('datasets/'+dataset_id+'/files/', params)
 
     #return response
     return pd.DataFrame.from_dict(response['files'])
 
 
-def list_variables(idno):
+def list_variables(dataset_id):
     """Get a list of variables for a dataset
 
     Parameters
     ----------
-    idno : str
+    dataset_id : str
         Dataset IDNo
 
     Returns
@@ -272,18 +272,18 @@ def list_variables(idno):
     """
 
     params = {}
-    response = make_get_request('datasets/variables/'+idno, params)
+    response = make_get_request('datasets/variables/'+dataset_id, params)
 
     #return response
     return pd.DataFrame(response['variables'])
 
 
-def list_variables_by_file(idno, file_id):
+def list_variables_by_file(dataset_id, file_id):
     """Get a list of variables for a dataset
 
     Parameters
     ----------
-    idno : str
+    dataset_id : str
         Dataset IDNo
     file_id : str
         File ID
@@ -295,18 +295,18 @@ def list_variables_by_file(idno, file_id):
     """
 
     params = {}
-    response = make_get_request('datasets/variables/'+idno+'/'+file_id, params)
+    response = make_get_request('datasets/variables/'+dataset_id+'/'+file_id, params)
 
     #return response
     return pd.DataFrame(response['variables'])
 
 
-def get_variable_info(idno, var_id):
+def get_variable_info(dataset_id, var_id):
     """Returns information on a variable
 
     Parameters
     ----------
-    idno : str
+    dataset_id : str
         Dataset IDNo
     var_id : str
         Variable ID IDNo
@@ -318,7 +318,7 @@ def get_variable_info(idno, var_id):
     """
 
     params = {}
-    response = make_get_request('datasets/variable/'+idno+'/'+var_id, params)
+    response = make_get_request('datasets/variable/'+dataset_id+'/'+var_id, params)
 
     #return response
     return pd.DataFrame.from_dict(response['variable'], orient='index')
@@ -338,12 +338,12 @@ def list_citations():
     return pd.DataFrame.from_dict(response['citations']).set_index('id')
 
 
-def get_citation_info(uuid):
+def get_citation_info(citation_id):
     """Returns information on a citation
 
     Parameters
     ----------
-    uuid : str
+    citation_id : str
         citation ID
 
     Returns
@@ -353,18 +353,18 @@ def get_citation_info(uuid):
     """
 
     params = {}
-    response = make_get_request('citation/'+uuid, params)
+    response = make_get_request('citation/'+citation_id, params)
 
     return response
     # return pd.DataFrame.from_dict(response['dataset']).set_index('id')
 
 
-def search_citation_by_study(idno):
+def search_citation_by_study(dataset_id):
     """Returns a list of publications that cite the dataset
 
     Parameters
     ----------
-    idno : str
+    dataset_id : str
         Dataset IDNo
 
     Returns
@@ -374,7 +374,7 @@ def search_citation_by_study(idno):
     """
 
     params = {}
-    response = make_get_request('citations/by_dataset/' + idno, params)
+    response = make_get_request('citations/by_dataset/' + dataset_id, params)
 
     return response
     # return pd.DataFrame.from_dict(response['dataset']).set_index('id')

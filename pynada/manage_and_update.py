@@ -3,27 +3,27 @@ import os.path
 import validators
 
 
-def delete_dataset(idno):
+def delete_dataset(dataset_id):
     """Delete dataset
 
     Parameters
     ----------
-    idno : str
+    dataset_id : str
         Dataset IDNo
     """
 
-    response = make_delete_request('datasets/' + idno)
+    response = make_delete_request('datasets/' + dataset_id)
 
     if response['status'] == 'success':
         print('Successfully deleted.')
 
 
-def upload_file(idno, file_path):
+def upload_file(dataset_id, file_path):
     """upload a single file and attach it to a dataset.
 
     Parameters
     ----------
-    idno : str
+    dataset_id : str
         Dataset IDNo
     file_path : str
         path and file name to be uploaded
@@ -36,41 +36,41 @@ def upload_file(idno, file_path):
     else:
         raise Exception("The file you provided doesn't seem to be a valid file. Please check the path.")
 
-    response = make_post_request('datasets/' + idno + '/files', data, file)
+    response = make_post_request('datasets/' + dataset_id + '/files', data, file)
 
     #print(response)
     if response['status'] == 'success':
         print('Successfully uploaded.')
 
 
-def delete_file(idno, file_name):
+def delete_file(dataset_id, file_name):
     """delete a single file from a dataset.
 
     Parameters
     ----------
-    idno : str
+    dataset_id : str
         Dataset IDNo
     file_name : str
         file name
     """
 
-    df_files = list_files(idno)
+    df_files = list_files(dataset_id)
     base64 = df_files[df_files['name'] == file_name]['base64'].values[0]
 
     #print('datasets/' + idno + '/files/' + base64)
-    response = make_delete_request('datasets/' + idno + '/files/' + base64)
+    response = make_delete_request('datasets/' + dataset_id + '/files/' + base64)
 
     #print(response)
     if response['status'] == 'success':
         print('Successfully deleted.')
 
 
-def add_thumbnail(idno, file_path):
+def add_thumbnail(dataset_id, file_path):
     """Add or update thumbnail for a dataset
 
     Parameters
     ----------
-    idno : str
+    dataset_id : str
         Dataset IDNo
     file_path : str
         path and file name to be uploaded, Supported formats are jpg, jpeg and png
@@ -83,7 +83,7 @@ def add_thumbnail(idno, file_path):
     else:
         raise Exception("The thumbnail file you provided doesn't seem to be a valid file. Please check the path.")
 
-    response = make_post_request('datasets/thumbnail/' + idno, data, file)
+    response = make_post_request('datasets/thumbnail/' + dataset_id, data, file)
 
     #print(response)
     if response['status'] == 'success':
@@ -91,7 +91,7 @@ def add_thumbnail(idno, file_path):
 
 
 def add_resource(
-        idno=None,
+        dataset_id=None,
         dctype=None,
         dcformat=None,
         title=None,
@@ -113,7 +113,7 @@ def add_resource(
 
     Parameters
     ----------
-    idno : str
+    dataset_id : str
         Dataset IDNo
     dctype : str
         Document types for external resource
@@ -169,7 +169,7 @@ def add_resource(
     }
 
     data = {key: value for key, value in data.items() if value is not None}
-    response = make_post_request('datasets/'+idno+'/resources', data)
+    response = make_post_request('datasets/'+dataset_id+'/resources', data)
 
     return response
     #return pd.DataFrame.from_dict(response['datasets']).set_index('id')
@@ -182,13 +182,13 @@ def add_resource(
 
 
 
-def update_survey(idno=None):
+def update_survey(dataset_id=None):
 
     data = {
         "published": 1
     }
 
     data = {key: value for key, value in data.items() if value is not None}
-    response = make_post_request('datasets/update/survey/' + idno, data)
+    response = make_post_request('datasets/update/survey/' + dataset_id, data)
 
     return response

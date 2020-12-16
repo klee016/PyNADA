@@ -8,8 +8,8 @@ create_and_import.set_api_key(api_key)
 ############################
 # add_document_dataset test
 ############################
-idno = "WPS8038"
-repositoryid = "central"
+dataset_id = "WPS8038"
+repository_id = "central"
 published = 1
 overwrite = "yes"
 document_description = {
@@ -42,8 +42,8 @@ files = [
 
 
 response = create_and_import.add_document_dataset(
-    idno=idno,
-    repositoryid=repositoryid,
+    dataset_id=dataset_id,
+    repository_id=repository_id,
     published=published,
     overwrite=overwrite,
     document_description=document_description,

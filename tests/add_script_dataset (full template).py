@@ -8,9 +8,9 @@ create_and_import.set_api_key(api_key)
 ##########################
 # add_script_dataset test
 ##########################
-idno = "SCRIPT_DATASET_SAMPLE_01"
+dataset_id = "SCRIPT_DATASET_SAMPLE_01"
 
-repositoryid = "central"
+repository_id = "central"
 published = 0
 overwrite = "yes"
 doc_desc = {
@@ -282,8 +282,8 @@ project_desc = {
 }
 
 response = create_and_import.add_script_dataset(
-	idno=idno,
-	repositoryid=repositoryid,
+	dataset_id=dataset_id,
+	repository_id=repository_id,
 	published=published,
 	overwrite=overwrite,
 	doc_desc=doc_desc,

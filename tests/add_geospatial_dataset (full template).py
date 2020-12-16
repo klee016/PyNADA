@@ -8,9 +8,9 @@ create_and_import.set_api_key(api_key)
 #################################d
 # add_geospatial_dataset test
 #################################
-idno = "GEOSPATIAL_DATASET_SAMPLE_01"
+dataset_id = "GEOSPATIAL_DATASET_SAMPLE_01"
 
-repositoryid = "central"
+repository_id = "central"
 published = 0
 overwrite = "yes"
 metadata_maintenance = {
@@ -196,8 +196,8 @@ additional = {
 }
 
 response = create_and_import.add_geospatial_dataset(
-	idno=idno,
-	repositoryid=repositoryid,
+	dataset_id=dataset_id,
+	repository_id=repository_id,
 	published=published,
 	overwrite=overwrite,
 	metadata_maintenance=metadata_maintenance,

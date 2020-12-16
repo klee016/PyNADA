@@ -8,9 +8,9 @@ create_and_import.set_api_key(api_key)
 #########################
 # add_image_dataset test
 #########################
-idno = "IMAGE-DATASET-SAMPLE-01"
+dataset_id = "IMAGE-DATASET-SAMPLE-01"
 
-repositoryid = "central"
+repository_id = "central"
 published = 0
 overwrite = "yes"
 metadata_information = {
@@ -272,8 +272,8 @@ image_description = {
 }
 
 response = create_and_import.add_image_dataset(
-	idno=idno,
-	repositoryid=repositoryid,
+	dataset_id=dataset_id,
+	repository_id=repository_id,
 	published=published,
 	overwrite=overwrite,
 	metadata_information=metadata_information,

@@ -8,9 +8,9 @@ create_and_import.set_api_key(api_key)
 ##############################
 # add_timeseries_dataset test
 ##############################
-idno = "TIMESERIES_DATASET_SAMPLE_01"
+dataset_id = "TIMESERIES_DATASET_SAMPLE_01"
 
-repositoryid = "central"  # Collection that owns the series
+repository_id = "central"  # Collection that owns the series
 access_policy = "na"  # Valid values - "direct" "open" "public" "licensed" "remote" "na"
 data_remote_url = "http://example.org/data_remote_url"  # Link to the website where the data is available, this is only needed if access_policy is set to "remote".
 published = 0  # 0=draft, 1=published
@@ -201,8 +201,8 @@ series_description = {
 additional = {}
 
 response = create_and_import.add_timeseries_dataset(
-	idno=idno,
-	repositoryid=repositoryid,
+	dataset_id=dataset_id,
+	repository_id=repository_id,
 	access_policy=access_policy,
 	published=published,
 	overwrite=overwrite,

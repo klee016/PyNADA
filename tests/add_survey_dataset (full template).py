@@ -8,9 +8,9 @@ create_and_import.set_api_key(api_key)
 ##########################
 # add_survey_dataset test
 ##########################
-idno = "SURVEY_DATASET_SAMPLE_01"
+dataset_id = "SURVEY_DATASET_SAMPLE_01"
 
-repositoryid = "central"
+repository_id = "central"
 access_policy = "data_na"
 published = 0
 overwrite = "yes"
@@ -454,8 +454,8 @@ additional = {
 }
 
 response = create_and_import.add_survey_dataset(
-	idno=idno,
-	repositoryid=repositoryid,
+	dataset_id=dataset_id,
+	repository_id=repository_id,
 	access_policy=access_policy,
 	published=published,
 	overwrite=overwrite,

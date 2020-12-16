@@ -8,9 +8,9 @@ create_and_import.set_api_key(api_key)
 ##########################
 # add_table_dataset test
 ##########################
-idno = "TABLE_DATASET_SAMPLE_01"
+dataset_id = "TABLE_DATASET_SAMPLE_01"
 
-repositoryid = "central"
+repository_id = "central"
 published = 0
 overwrite = "yes"
 metadata_information = {
@@ -248,8 +248,8 @@ additional = {
 }
 
 response = create_and_import.add_table_dataset(
-	idno=idno,
-	repositoryid=repositoryid,
+	dataset_id=dataset_id,
+	repository_id=repository_id,
 	published=published,
 	overwrite=overwrite,
 	metadata_information=metadata_information,
