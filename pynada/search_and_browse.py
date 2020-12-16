@@ -338,7 +338,7 @@ def list_citations():
     return pd.DataFrame.from_dict(response['citations']).set_index('id')
 
 
-def citation_info(uuid):
+def get_citation_info(uuid):
     """Returns information on a citation
 
     Parameters
