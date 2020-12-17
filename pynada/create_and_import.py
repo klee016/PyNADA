@@ -545,7 +545,7 @@ def add_timeseries_database(
     return pd.DataFrame.from_dict(response['dataset'], orient='index')
 
 
-def add_survey_dataset_by_importing_DDI(
+def add_survey_dataset_from_DDI(
         file=None,
         overwrite=None,
         repository_id=None,
@@ -576,9 +576,9 @@ def add_survey_dataset_by_importing_DDI(
 
     if validators.url(file):
         print("You provided a URL for the DDI XML. Processing...")
-    elif os.path.exists(file):
+    elif Path(file).exists():
         print("You provided a file for the DDI XML. Processing...")
-        file = {'file': open(file, 'rb')}
+        file = {'file': open(Path(file), 'rb')}
     else:
         raise Exception("The DDI XML file you provided doesn't seem to be a valid file path or URL." 
                         "If it is a file, please check the path."
@@ -587,16 +587,16 @@ def add_survey_dataset_by_importing_DDI(
     if rdf is not None:
         if validator.url(rdf):
             print("You provided a URL for the RDF. Processing...")
-        elif os.path.exists(rdf):
+        elif Path(rdf).exists():
             print("You provided a file for the RDF. Processing...")
-            rdf = {'file': open(rdf, 'rb')}
+            rdf = {'file': open(Path(rdf), 'rb')}
         else:
             raise Exception("The RDF file you provided doesn't seem to be a valid file path or URL."
                             "If it is a file, please check the path."
                             "If it is a URL, make sure to add a proper prefix such as http://")
 
     data = {
-        "file": file,
+        # "file": file,
         "overwrite": overwrite,
         "repositoryid": repository_id,
         "access_policy": access_policy,
@@ -606,17 +606,17 @@ def add_survey_dataset_by_importing_DDI(
     }
 
     data = {key: value for key, value in data.items() if value is not None}
-    response = make_post_request('datasets/import_ddi', data)
+    response = make_post_request('datasets/import_ddi', data, file)
 
     return response
     #return pd.DataFrame.from_dict(response['datasets']).set_index('id')
 
 
-def add_resource_by_importing_RDF(
+def add_resource_from_RDF(
         dataset_id=None,
         file=None
 ):
-    """Import an RDF file to batch import external resoruces
+    """Import an RDF file to batch import external resources
 
     Parameters
     ----------
@@ -626,9 +626,9 @@ def add_resource_by_importing_RDF(
         Dublin core RDF file (rdf, xml)
     """
 
-    if os.path.exists(file):
+    if Path(file).exists():
         print("You provided a file for Dublin core RDF. Processing...")
-        file = {'file': open(file, 'rb')}
+        file = {'file': open(Path(file), 'rb')}
     else:
         raise Exception("The RDF file you provided doesn't seem to be a valid file path. Please check the path.")
 
@@ -636,7 +636,6 @@ def add_resource_by_importing_RDF(
     }
 
     data = {key: value for key, value in data.items() if value is not None}
-    response = make_post_request('datasets/resources/import_rdf/'+dataset_id, data, file)
+    response = make_post_request('datasets/'+dataset_id+'/resources/import_rdf', data, file)
 
-    return response
-    #return pd.DataFrame.from_dict(response['datasets']).set_index('id')
+    return pd.DataFrame(response, orient='index')

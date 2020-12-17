@@ -1,5 +1,5 @@
 from .search_and_browse import *
-import os.path
+from pathlib import Path
 import validators
 
 
@@ -30,9 +30,9 @@ def upload_file(dataset_id, file_path):
     """
 
     data = {}
-    if os.path.exists(file_path):
+    if Path(file_path).exists():
         print("Uploading the file...")
-        file = {'file': open(file_path, 'rb')}
+        file = {'file': open(Path(file_path), 'rb')}
     else:
         raise Exception("The file you provided doesn't seem to be a valid file. Please check the path.")
 
@@ -77,9 +77,9 @@ def add_thumbnail(dataset_id, file_path):
     """
 
     data = {}
-    if os.path.exists(file_path):
+    if Path(file_path).exists():
         print("Uploading thumbnail...")
-        file = {'file': open(file_path, 'rb')}
+        file = {'file': open(Path(file_path), 'rb')}
     else:
         raise Exception("The thumbnail file you provided doesn't seem to be a valid file. Please check the path.")
 

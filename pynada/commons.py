@@ -97,7 +97,7 @@ def make_post_request(endpoint, data, files=None):
         API endpoint
     data : dict
         POST data
-    file : file object
+    files : file object
         File
 
     Returns
@@ -110,16 +110,17 @@ def make_post_request(endpoint, data, files=None):
         'X-API-KEY': api_key
     }
 
-    if len(data) == 0:
-        data = ""
-    else:
-        data = json.dumps(data)
+    # if len(data) == 0:
+    #     data = ""
+    # else:
+    #     data = json.dumps(data)
 
-    response = requests.post(api_base_url + endpoint, headers=headers, data=data, files=files)
+    # response = requests.post(api_base_url + endpoint, headers=headers, data=data, files=files)
+    response = requests.post(api_base_url + endpoint, headers=headers, json=data, files=files)
 
     print(response.status_code)
     if response.status_code != 200:
-        print(response.request.body)
+        #print(response.request.body)
         raise Exception('POST /'+endpoint+'/ {}'.format(response.status_code) + ' ' + f'{response.text}')
 
     print(response.text)

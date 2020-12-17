@@ -1,0 +1,4 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/">
+<rdf:Description rdf:about="https://data.humdata.org/dataset/d1cd6842-dfe1-44c7-a1f5-3769000073af/resource/6a256193-7856-4c19-ad97-44de851c0cf9/download/190108_location_fcn_npm_anonymizedr_npm14sa_public.xlsx"><rdf:label><![CDATA[190108_location_fcn_npm_anonymizedr_npm14sa_public.xlsx]]></rdf:label><dc:title><![CDATA[190108_location_fcn_npm_anonymizedr_npm14sa_public.xlsx]]></dc:title><dc:type><![CDATA[Document [doc/oth]]]></dc:type></rdf:Description>
+</rdf:RDF>
