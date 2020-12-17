@@ -602,7 +602,7 @@ def add_survey_dataset_from_DDI(
         "access_policy": access_policy,
         "data_remote_url": data_remote_url,
         "rdf": rdf,
-        "published": published
+        "published": published,
     }
 
     data = {key: value for key, value in data.items() if value is not None}
