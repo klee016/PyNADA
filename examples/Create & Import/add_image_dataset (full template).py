@@ -1,10 +1,9 @@
-from pynada import create_and_import
-from pynada import utils
+import pynada as nada
 import inspect
 
-create_and_import.set_api_url('http://training.ihsn.org/index.php/api/')
+nada.set_api_url('http://training.ihsn.org/index.php/api/')
 api_key = 'cf16a23a3cfc6a928f63dd3c8daf8796'
-create_and_import.set_api_key(api_key)
+nada.set_api_key(api_key)
 
 #############################
 # add_image_dataset template
@@ -288,7 +287,7 @@ image_description = {
 	]
 }
 
-response = create_and_import.add_image_dataset(
+response = nada.add_image_dataset(
 	dataset_id=dataset_id,
 	repository_id=repository_id,
 	published=published,
@@ -300,5 +299,5 @@ response = create_and_import.add_image_dataset(
 print(response)
 
 
-thumbnail_path = utils.text_to_thumbnail("Image\nDataset")
-create_and_import.add_thumbnail(dataset_id, thumbnail_path)
+thumbnail_path = nada.text_to_thumbnail("Image\nDataset")
+nada.add_thumbnail(dataset_id, thumbnail_path)
