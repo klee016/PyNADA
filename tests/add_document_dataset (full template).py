@@ -246,7 +246,7 @@ tags = [
 ]
 files = [
 	{
-		"file_uri": "file_uri",  # File name or URL
+		"file_uri": "http://example.org/files/file.uri",  # File name or URL
 		"format": "application/excel",  # The file format, physical medium, or dimensions of the resource.
 		"location": "100",  # Page number or sheet name for the table
 		"note": "file note text"  # file note
@@ -259,10 +259,13 @@ response = create_and_import.add_document_dataset(
 	published=published,
 	overwrite=overwrite,
 	metadata_information=metadata_information,
-	document_description=document_description
+	document_description=document_description,
+	tags=tags,
+	files=files
 )
 
 print(response)
 
+# upload temporary thumbnail
 thumbnail_path = utils.text_to_thumbnail("Document\nDataset")
 create_and_import.add_thumbnail(dataset_id, thumbnail_path)

@@ -1,6 +1,4 @@
 from .commons import *
-import sys
-import pandas as pd
 
 
 def list_collections():

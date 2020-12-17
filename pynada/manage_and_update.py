@@ -15,7 +15,7 @@ def delete_dataset(dataset_id):
     response = make_delete_request('datasets/' + dataset_id)
 
     if response['status'] == 'success':
-        print('Successfully deleted.')
+        print('Dataset successfully deleted from the catalog.')
 
 
 def upload_file(dataset_id, file_path):
@@ -40,7 +40,7 @@ def upload_file(dataset_id, file_path):
 
     #print(response)
     if response['status'] == 'success':
-        print('Successfully uploaded.')
+        print('File successfully uploaded.')
 
 
 def delete_file(dataset_id, file_name):
@@ -62,7 +62,7 @@ def delete_file(dataset_id, file_name):
 
     #print(response)
     if response['status'] == 'success':
-        print('Successfully deleted.')
+        print('File successfully deleted.')
 
 
 def add_thumbnail(dataset_id, file_path):
@@ -107,7 +107,8 @@ def add_resource(
         toc=None,
         filename=None,
         created=None,
-        changed=None
+        changed=None,
+        overwrite=None
 ):
     """Add an external resource to a dataset
 
@@ -149,6 +150,16 @@ def add_resource(
         Modification date-time of the resource
     """
 
+    if validators.url(filename):
+        print("You provided a resource URL. Processing...")
+    elif Path(filename).exists():
+        print("You provided a resource file. Processing...")
+        upload_file(dataset_id, filename)
+    else:
+        raise Exception("The filename you provided doesn't seem to be a valid file path or URL." 
+                        "If it is a file, please check the path."
+                        "If it is a URL, make sure to add a proper prefix such as http://")
+
     data = {
         "dctype": dctype,
         "dcformat": dcformat,
@@ -165,14 +176,15 @@ def add_resource(
         "toc": toc,
         "filename": filename,
         "created": created,
-        "changed": changed
+        "changed": changed,
+        "overwrite": overwrite
     }
 
     data = {key: value for key, value in data.items() if value is not None}
     response = make_post_request('datasets/'+dataset_id+'/resources', data)
 
-    return response
-    #return pd.DataFrame.from_dict(response['datasets']).set_index('id')
+    if response['status'] == 'success':
+        print('Resource successfully added to the dataset.')
 
 
 

@@ -512,5 +512,6 @@ response = create_and_import.add_survey_dataset(
 
 print(response)
 
+# upload temporary thumbnail
 thumbnail_path = utils.text_to_thumbnail("Survey\nDataset")
 create_and_import.add_thumbnail(dataset_id, thumbnail_path)

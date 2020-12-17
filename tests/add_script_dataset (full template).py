@@ -305,7 +305,7 @@ project_desc = {
 	],
 	"scripts": [
 		{
-			"file_name": "script file_name",
+			"file_name": "predicting_food_crises.R",
 			"zip_package": "script zip_package",
 			"title": "script title",
 			"authors": [
@@ -404,5 +404,6 @@ response = create_and_import.add_script_dataset(
 
 print(response)
 
+# upload temporary thumbnail
 thumbnail_path = utils.text_to_thumbnail("Script\nDataset")
 create_and_import.add_thumbnail(dataset_id, thumbnail_path)

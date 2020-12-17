@@ -28,6 +28,7 @@ response = create_and_import.add_survey_dataset_from_DDI(
 
 print(response)
 
+# upload temporary thumbnail
 dataset_id = response['survey']['idno']
 thumbnail_path = utils.text_to_thumbnail("Survey\nDataset")
 create_and_import.add_thumbnail(dataset_id, thumbnail_path)

@@ -17,7 +17,7 @@ def create_collection(
     response = make_post_request('collections/' + repository_id, data)
 
     if response['status'] == 'success':
-        print("Collection successfully created!")
+        print("Collection successfully created.")
 
     return pd.DataFrame.from_dict(response, orient='index')
 
@@ -87,7 +87,7 @@ def add_survey_dataset(
     response = make_post_request('datasets/create/survey/'+dataset_id, data)
 
     if response['status'] == 'success':
-        print("Survey dataset successfully added!")
+        print("Survey dataset successfully added to the catalog.")
 
     return pd.DataFrame.from_dict(response['dataset'], orient='index')
 
@@ -145,7 +145,16 @@ def add_document_dataset(
     response = make_post_request('datasets/create/document/'+dataset_id, data)
 
     if response['status'] == 'success':
-        print("Document dataset successfully added.")
+        if files is not None and len(files) > 0:
+            for file in files:
+                add_resource(
+                    dataset_id = dataset_id,
+                    dctype = "Document [doc/oth]",
+                    title = PurePath(file['file_uri']).stem,
+                    filename = file['file_uri'],
+                    overwrite = overwrite
+                )
+        print("Document dataset successfully added to the catalog.")
 
     return pd.DataFrame.from_dict(response['dataset'], orient='index')
 
@@ -195,7 +204,16 @@ def add_image_dataset(
     response = make_post_request('datasets/create/image/'+dataset_id, data)
 
     if response['status'] == 'success':
-        print("Image dataset successfully added!")
+        if "files" in image_description and len(image_description["files"]) > 0:
+            for file in image_description["files"]:
+                add_resource(
+                    dataset_id = dataset_id,
+                    dctype = "Document [doc/oth]",
+                    title = PurePath(file['file_uri']).stem,
+                    filename = file['file_uri'],
+                    overwrite = overwrite
+                )
+        print("Image dataset successfully added to the catalog.")
 
     return pd.DataFrame.from_dict(response['dataset'], orient='index')
 
@@ -245,7 +263,17 @@ def add_script_dataset(
     response = make_post_request('datasets/create/script/'+dataset_id, data)
 
     if response['status'] == 'success':
-        print("Script dataset successfully added!")
+        if "scripts" in project_desc and len(project_desc["scripts"] > 0):
+            for script in project_desc["scripts"]:
+                add_resource(
+                    dataset_id = dataset_id,
+                    dctype = "Document [doc/oth]",
+                    title = script['title'],
+                    filename = script['file_name'],
+                    overwrite = overwrite
+                )
+        print("Script dataset successfully added to the catalog.")
+
 
     return pd.DataFrame.from_dict(response['dataset'], orient='index')
 
@@ -307,7 +335,16 @@ def add_table_dataset(
     response = make_post_request('datasets/create/table/'+dataset_id, data)
 
     if response['status'] == 'success':
-        print("Table dataset successfully added!")
+        if files is not None and len(files) > 0:
+            for file in files:
+                add_resource(
+                    dataset_id = dataset_id,
+                    dctype = "Document [doc/oth]",
+                    title = PurePath(file['file_uri']).stem,
+                    filename = file['file_uri'],
+                    overwrite = overwrite
+                )
+        print("Table dataset successfully added to the catalog.")
 
     return pd.DataFrame.from_dict(response['dataset'], orient='index')
 
@@ -365,7 +402,16 @@ def add_visualization_dataset(
     response = make_post_request('datasets/create/visualization/'+dataset_id, data)
 
     if response['status'] == 'success':
-        print("Visualization dataset successfully added!")
+        if files is not None and len(files) > 0:
+            for file in files:
+                add_resource(
+                    dataset_id = dataset_id,
+                    dctype = "Document [doc/oth]",
+                    title = PurePath(file['file_uri']).stem,
+                    filename = file['file_uri'],
+                    overwrite = overwrite
+                )
+        print("Visualization dataset successfully added to the catalog.")
 
     return pd.DataFrame.from_dict(response['dataset'], orient='index')
 
@@ -419,7 +465,7 @@ def add_geospatial_dataset(
     response = make_post_request('datasets/create/geospatial/'+dataset_id, data)
 
     if response['status'] == 'success':
-        print("Geospatial dataset successfully added!")
+        print("Geospatial dataset successfully added to the catalog.")
 
     return pd.DataFrame.from_dict(response['dataset'], orient='index')
 
@@ -481,7 +527,7 @@ def add_timeseries_dataset(
     response = make_post_request('datasets/create/timeseries/'+dataset_id, data)
 
     if response['status'] == 'success':
-        print("Timeseries dataset successfully added!")
+        print("Timeseries dataset successfully added to the catalog.")
 
     return pd.DataFrame.from_dict(response['dataset'], orient='index')
 
@@ -540,7 +586,7 @@ def add_timeseries_database(
     response = make_post_request('datasets/create/timeseries/'+dataset_id, data)
 
     if response['status'] == 'success':
-        print("Timeseries database successfully added!")
+        print("Timeseries database successfully added to the catalog.")
 
     return pd.DataFrame.from_dict(response['dataset'], orient='index')
 
@@ -608,8 +654,10 @@ def add_survey_dataset_from_DDI(
     data = {key: value for key, value in data.items() if value is not None}
     response = make_post_request('datasets/import_ddi', data, file)
 
-    return response
-    #return pd.DataFrame.from_dict(response['datasets']).set_index('id')
+    if response['status'] == 'success':
+        print("Survey dataset successfully added to the catalog.")
+
+    return pd.DataFrame.from_dict(response['dataset'], orient='index')
 
 
 def add_resource_from_RDF(
@@ -637,5 +685,8 @@ def add_resource_from_RDF(
 
     data = {key: value for key, value in data.items() if value is not None}
     response = make_post_request('datasets/'+dataset_id+'/resources/import_rdf', data, file)
+
+    if response['status'] == 'success':
+        print("Resource(s) successfully added to the dataset.")
 
     return pd.DataFrame(response, orient='index')

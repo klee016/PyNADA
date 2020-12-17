@@ -225,5 +225,6 @@ response = create_and_import.add_geospatial_dataset(
 
 print(response)
 
+# upload temporary thumbnail
 thumbnail_path = utils.text_to_thumbnail("Geospatial\nDataset")
 create_and_import.add_thumbnail(dataset_id, thumbnail_path)

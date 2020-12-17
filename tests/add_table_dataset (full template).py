@@ -251,7 +251,7 @@ table_description = {
 }
 files = [
 	{
-		"file_uri": "file_uri",
+		"file_uri": "http://example.org/files/file.uri",
 		"format": "file format",
 		"location": "file location",
 		"note": "file note"
@@ -280,5 +280,6 @@ response = create_and_import.add_table_dataset(
 
 print(response)
 
+# upload temporary thumbnail
 thumbnail_path = utils.text_to_thumbnail("Table\nDataset")
 create_and_import.add_thumbnail(dataset_id, thumbnail_path)

@@ -280,7 +280,7 @@ image_description = {
 	],
 	"files": [
 		{
-			"file_uri": "file uri",
+			"file_uri": "http://example.org/image_description/files/file.uri",
 			"format": "file format",
 			"note": "file note",
 			"show": True
@@ -299,6 +299,6 @@ response = create_and_import.add_image_dataset(
 
 print(response)
 
-
+# upload temporary thumbnail
 thumbnail_path = utils.text_to_thumbnail("Image\nDataset")
 create_and_import.add_thumbnail(dataset_id, thumbnail_path)
