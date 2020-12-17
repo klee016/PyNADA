@@ -22,9 +22,4 @@ Jupyter Notebooks under examples folder show some use cases utilizing PyNADA. Th
     - ...
   
 
-## Bug Report
-Some identified bugs in NADA API (5.0.5) are:
-* (12/09/2020) Delete file API (/api/datasets/{datasetIDNo}/files/{filename}) deletes the whole dataset that the file belongs to.
-* (12/09/2020) Input form error (training.ihsn.org -> site administration -> Studies -> Manage Studies -> Add study)
-  IDNO form expects email address instead of Dataset IDNo.
-* (12/10/2020) Unable to create a new dataset (PHP error)
+
