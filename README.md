@@ -14,7 +14,7 @@ Jupyter Notebooks under examples folder show some use cases utilizing PyNADA. Th
     - list all datasets
     
 * Create & Import: codes for adding datasets to the catalog
-    - add survey, document, ... 
+    - create survey dataset, document dataset, ... 
     
 * Manage & Update: codes for managing existing datasets and resources
     - delete dataset
