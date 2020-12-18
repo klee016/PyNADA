@@ -6,7 +6,7 @@ api_key = 'cf16a23a3cfc6a928f63dd3c8daf8796'
 create_and_import.set_api_key(api_key)
 
 #############################
-# add_script_dataset example
+# create_script_dataset example
 #############################
 
 dataset_id = "RR_WLD_2020_PFC_v01"
@@ -306,7 +306,7 @@ project_desc = {
 	"citation_requirement": "The citation of this work is Andree, Bo Pieter Johannes; Chamorro, Andres; Kraay, Aart; Spencer, Phoebe; Wang, Dieter. 2020. Predicting Food Crises. Policy Research Working Paper; No. 9412. World Bank, Washington, DC."
 }
 
-response = create_and_import.add_script_dataset(
+response = create_and_import.create_script_dataset(
 	dataset_id=dataset_id,
 	repository_id=repository_id,
 	published=published,

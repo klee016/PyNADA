@@ -6,7 +6,7 @@ api_key = 'cf16a23a3cfc6a928f63dd3c8daf8796'
 nada.set_api_key(api_key)
 
 ##################################
-# add_geospatial_dataset template
+# create_geospatial_dataset template
 ##################################
 
 dataset_id = "GEOSPATIAL_DATASET_SAMPLE_01"
@@ -212,7 +212,7 @@ additional = {
 	"additional": "additional info"
 }
 
-response = nada.add_geospatial_dataset(
+response = nada.create_geospatial_dataset(
 	dataset_id=dataset_id,
 	repository_id=repository_id,
 	published=published,
@@ -225,4 +225,4 @@ response = nada.add_geospatial_dataset(
 print(response)
 
 thumbnail_path = nada.text_to_thumbnail("Geospatial\nDataset")
-nada.add_thumbnail(dataset_id, thumbnail_path)
+nada.upload_thumbnail(dataset_id, thumbnail_path)

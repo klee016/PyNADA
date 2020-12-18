@@ -49,7 +49,7 @@ study_desc = {
     }
 }
 
-response = create_and_import.add_survey_dataset(
+response = create_and_import.create_survey_dataset(
     dataset_id=dataset_id,
     repository_id=repository_id,
     access_policy=access_policy,

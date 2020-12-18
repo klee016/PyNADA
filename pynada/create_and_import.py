@@ -22,7 +22,7 @@ def create_collection(
     return pd.DataFrame.from_dict(response, orient='index')
 
 
-def add_survey_dataset(
+def create_survey_dataset(
         dataset_id=None,
         repository_id=None,
         access_policy=None,
@@ -92,7 +92,7 @@ def add_survey_dataset(
     return pd.DataFrame.from_dict(response['dataset'], orient='index')
 
 
-def add_document_dataset(
+def create_document_dataset(
         dataset_id=None,
         repository_id=None,
         published=None,
@@ -159,7 +159,7 @@ def add_document_dataset(
     return pd.DataFrame.from_dict(response['dataset'], orient='index')
 
 
-def add_image_dataset(
+def create_image_dataset(
         dataset_id=None,
         repository_id=None,
         published=None,
@@ -218,7 +218,7 @@ def add_image_dataset(
     return pd.DataFrame.from_dict(response['dataset'], orient='index')
 
 
-def add_script_dataset(
+def create_script_dataset(
         dataset_id=None,
         repository_id=None,
         published=None,
@@ -278,7 +278,7 @@ def add_script_dataset(
     return pd.DataFrame.from_dict(response['dataset'], orient='index')
 
 
-def add_table_dataset(
+def create_table_dataset(
         dataset_id=None,
         repository_id=None,
         published=None,
@@ -349,7 +349,7 @@ def add_table_dataset(
     return pd.DataFrame.from_dict(response['dataset'], orient='index')
 
 
-def add_visualization_dataset(
+def create_visualization_dataset(
         dataset_id=None,
         repository_id=None,
         published=None,
@@ -416,7 +416,7 @@ def add_visualization_dataset(
     return pd.DataFrame.from_dict(response['dataset'], orient='index')
 
 
-def add_geospatial_dataset(
+def create_geospatial_dataset(
         dataset_id=None,
         repository_id=None,
         published=None,
@@ -470,7 +470,7 @@ def add_geospatial_dataset(
     return pd.DataFrame.from_dict(response['dataset'], orient='index')
 
 
-def add_timeseries_dataset(
+def create_timeseries_dataset(
         dataset_id=None,
         repository_id=None,
         access_policy=None,
@@ -532,7 +532,7 @@ def add_timeseries_dataset(
     return pd.DataFrame.from_dict(response['dataset'], orient='index')
 
 
-def add_timeseries_database(
+def create_timeseries_database(
         dataset_id=None,
         repository_id=None,
         published=None,
@@ -591,7 +591,7 @@ def add_timeseries_database(
     return pd.DataFrame.from_dict(response['dataset'], orient='index')
 
 
-def add_survey_dataset_from_DDI(
+def create_survey_dataset_from_DDI(
         file=None,
         overwrite=None,
         repository_id=None,

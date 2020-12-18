@@ -6,7 +6,7 @@ api_key = 'cf16a23a3cfc6a928f63dd3c8daf8796'
 nada.set_api_key(api_key)
 
 ################################
-# add_document_dataset template
+# create_document_dataset template
 ################################
 
 dataset_id = "DOCUMENT-DATASET-SAMPLE-01"
@@ -252,7 +252,7 @@ files = [
 	}
 ]
 
-response = nada.add_document_dataset(
+response = nada.create_document_dataset(
 	dataset_id=dataset_id,
 	repository_id=repository_id,
 	published=published,
@@ -264,4 +264,4 @@ response = nada.add_document_dataset(
 print(response)
 
 thumbnail_path = nada.text_to_thumbnail("Document\nDataset")
-nada.add_thumbnail(dataset_id, thumbnail_path)
+nada.upload_thumbnail(dataset_id, thumbnail_path)

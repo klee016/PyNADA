@@ -6,7 +6,7 @@ api_key = 'cf16a23a3cfc6a928f63dd3c8daf8796'
 nada.set_api_key(api_key)
 
 ##################################
-# add_timeseries_dataset template
+# create_timeseries_dataset template
 ##################################
 
 dataset_id = "TIMESERIES_DATASET_SAMPLE_01"
@@ -232,7 +232,7 @@ series_description = {
 }
 additional = {}
 
-response = nada.add_timeseries_dataset(
+response = nada.create_timeseries_dataset(
 	dataset_id=dataset_id,
 	repository_id=repository_id,
 	access_policy=access_policy,
@@ -246,4 +246,4 @@ response = nada.add_timeseries_dataset(
 print(response)
 
 thumbnail_path = nada.text_to_thumbnail("Timeseries\nDataset")
-nada.add_thumbnail(dataset_id, thumbnail_path)
+nada.upload_thumbnail(dataset_id, thumbnail_path)

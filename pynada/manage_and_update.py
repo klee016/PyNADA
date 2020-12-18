@@ -65,7 +65,7 @@ def delete_file(dataset_id, file_name):
         print('File successfully deleted.')
 
 
-def add_thumbnail(dataset_id, file_path):
+def upload_thumbnail(dataset_id, file_path):
     """Add or update thumbnail for a dataset
 
     Parameters

@@ -7,7 +7,7 @@ api_key = 'cf16a23a3cfc6a928f63dd3c8daf8796'
 create_and_import.set_api_key(api_key)
 
 #############################
-# add_table_dataset template
+# create_table_dataset template
 #############################
 
 dataset_id = "TABLE_DATASET_SAMPLE_01"
@@ -266,7 +266,7 @@ additional = {
 	"additional": "additional info"
 }
 
-response = create_and_import.add_table_dataset(
+response = create_and_import.create_table_dataset(
 	dataset_id=dataset_id,
 	repository_id=repository_id,
 	published=published,
@@ -282,4 +282,4 @@ print(response)
 
 # upload temporary thumbnail
 thumbnail_path = utils.text_to_thumbnail("Table\nDataset")
-create_and_import.add_thumbnail(dataset_id, thumbnail_path)
+create_and_import.upload_thumbnail(dataset_id, thumbnail_path)

@@ -6,7 +6,7 @@ api_key = 'cf16a23a3cfc6a928f63dd3c8daf8796'
 nada.set_api_key(api_key)
 
 ######################################
-# add_survey_dataset_from_DDI example
+# create_survey_dataset_from_DDI example
 ######################################
 
 file = "SURVEY_DATASET_SAMPLE_02.xml"
@@ -15,7 +15,7 @@ repository_id = "central"
 access_policy = "open"
 published = 1
 
-response = nada.add_survey_dataset_from_DDI(
+response = nada.create_survey_dataset_from_DDI(
     file=file,
     overwrite=overwrite,
     repository_id=repository_id,
@@ -29,4 +29,4 @@ print(response)
 
 dataset_id = response['survey']['idno']
 thumbnail_path = nada.text_to_thumbnail("Survey\nDataset")
-nada.add_thumbnail(dataset_id, thumbnail_path)
+nada.upload_thumbnail(dataset_id, thumbnail_path)

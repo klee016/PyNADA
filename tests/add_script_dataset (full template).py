@@ -7,7 +7,7 @@ api_key = 'cf16a23a3cfc6a928f63dd3c8daf8796'
 create_and_import.set_api_key(api_key)
 
 ##############################
-# add_script_dataset template
+# create_script_dataset template
 ##############################
 dataset_id = "SCRIPT_DATASET_SAMPLE_01"
 
@@ -393,7 +393,7 @@ project_desc = {
 	"""),
 }
 
-response = create_and_import.add_script_dataset(
+response = create_and_import.create_script_dataset(
 	dataset_id=dataset_id,
 	repository_id=repository_id,
 	published=published,
@@ -406,4 +406,4 @@ print(response)
 
 # upload temporary thumbnail
 thumbnail_path = utils.text_to_thumbnail("Script\nDataset")
-create_and_import.add_thumbnail(dataset_id, thumbnail_path)
+create_and_import.upload_thumbnail(dataset_id, thumbnail_path)

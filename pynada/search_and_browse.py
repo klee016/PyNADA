@@ -52,7 +52,7 @@ def list_datasets():
     return pd.DataFrame.from_dict(response['datasets']).set_index('id')
 
 
-def search_dataset_by_idno(partial_idno):
+def find_datasets_by_idno(partial_idno):
     """Returns a list of datasets whose idno contains a partial match
 
     Parameters
@@ -70,7 +70,7 @@ def search_dataset_by_idno(partial_idno):
     return datasets[datasets['idno'].str.contains(partial_idno)]
 
 
-def search_dataset_by_title(partial_title):
+def find_datasets_by_title(partial_title):
     """Returns a list of datasets whose title contains a partial match
 
     Parameters
@@ -357,7 +357,7 @@ def get_citation_info(citation_id):
     # return pd.DataFrame.from_dict(response['dataset']).set_index('id')
 
 
-def search_citation_by_study(dataset_id):
+def find_citation_by_dataset(dataset_id):
     """Returns a list of publications that cite the dataset
 
     Parameters

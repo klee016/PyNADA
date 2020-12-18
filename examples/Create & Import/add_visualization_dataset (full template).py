@@ -6,7 +6,7 @@ api_key = 'cf16a23a3cfc6a928f63dd3c8daf8796'
 nada.set_api_key(api_key)
 
 #####################################
-# add_visualization_dataset template
+# create_visualization_dataset template
 #####################################
 
 dataset_id = "VISUALIZATION_DATASET_SAMPLE_01"
@@ -283,7 +283,7 @@ additional = {
 	"additional": "additional info"
 }
 
-response = nada.add_visualization_dataset(
+response = nada.create_visualization_dataset(
 	dataset_id=dataset_id,
 	repository_id=repository_id,
 	published=published,
@@ -297,4 +297,4 @@ response = nada.add_visualization_dataset(
 print(response)
 
 thumbnail_path = nada.text_to_thumbnail("Visualization\nDataset")
-nada.add_thumbnail(dataset_id, thumbnail_path)
+nada.upload_thumbnail(dataset_id, thumbnail_path)

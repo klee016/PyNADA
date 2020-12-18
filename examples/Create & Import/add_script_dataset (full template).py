@@ -6,7 +6,7 @@ api_key = 'cf16a23a3cfc6a928f63dd3c8daf8796'
 nada.set_api_key(api_key)
 
 ##############################
-# add_script_dataset template
+# create_script_dataset template
 ##############################
 dataset_id = "SCRIPT_DATASET_SAMPLE_01"
 
@@ -392,7 +392,7 @@ project_desc = {
 	"""),
 }
 
-response = nada.add_script_dataset(
+response = nada.create_script_dataset(
 	dataset_id=dataset_id,
 	repository_id=repository_id,
 	published=published,
@@ -404,4 +404,4 @@ response = nada.add_script_dataset(
 print(response)
 
 thumbnail_path = nada.text_to_thumbnail("Script\nDataset")
-nada.add_thumbnail(dataset_id, thumbnail_path)
+nada.upload_thumbnail(dataset_id, thumbnail_path)

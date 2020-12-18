@@ -7,7 +7,7 @@ create_and_import.set_api_key(api_key)
 
 
 ###############################
-# add_document_dataset example
+# create_document_dataset example
 ###############################
 
 dataset_id = "WPS8038"
@@ -43,7 +43,7 @@ files = [
 ]
 
 
-response = create_and_import.add_document_dataset(
+response = create_and_import.create_document_dataset(
     dataset_id=dataset_id,
     repository_id=repository_id,
     published=published,
@@ -58,4 +58,4 @@ print(response)
 # If you have pdf file, generate thumbnail from it.
 pdf_file_path = Path('../../../Documents/WPS8038.pdf')
 thumbnail_path = utils.pdf_to_thumbnail(pdf_file_path, page_no = 1)
-create_and_import.add_thumbnail(dataset_id, thumbnail_path)
+create_and_import.upload_thumbnail(dataset_id, thumbnail_path)

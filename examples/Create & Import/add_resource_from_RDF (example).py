@@ -15,7 +15,7 @@ repository_id = 'central'
 access_policy = 'open'
 published = 1
 
-response = nada.add_survey_dataset_from_DDI(
+response = nada.create_survey_dataset_from_DDI(
 	file=file,
 	overwrite=overwrite,
 	repository_id=repository_id,
@@ -28,4 +28,4 @@ response = nada.add_survey_dataset_from_DDI(
 print(response)
 
 thumbnail_path = nada.text_to_thumbnail("Survey\nDataset")
-nada.add_thumbnail(dataset_id, thumbnail_path)
+nada.upload_thumbnail(dataset_id, thumbnail_path)

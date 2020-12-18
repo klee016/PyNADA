@@ -6,7 +6,7 @@ api_key = 'cf16a23a3cfc6a928f63dd3c8daf8796'
 nada.set_api_key(api_key)
 
 #############################
-# add_image_dataset template
+# create_image_dataset template
 #############################
 dataset_id = "IMAGE-DATASET-SAMPLE-01"
 
@@ -287,7 +287,7 @@ image_description = {
 	]
 }
 
-response = nada.add_image_dataset(
+response = nada.create_image_dataset(
 	dataset_id=dataset_id,
 	repository_id=repository_id,
 	published=published,
@@ -300,4 +300,4 @@ print(response)
 
 
 thumbnail_path = nada.text_to_thumbnail("Image\nDataset")
-nada.add_thumbnail(dataset_id, thumbnail_path)
+nada.upload_thumbnail(dataset_id, thumbnail_path)
