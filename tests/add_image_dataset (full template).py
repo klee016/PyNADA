@@ -6,9 +6,10 @@ create_and_import.set_api_url('http://training.ihsn.org/index.php/api/')
 api_key = 'cf16a23a3cfc6a928f63dd3c8daf8796'
 create_and_import.set_api_key(api_key)
 
-#############################
+################################
 # create_image_dataset template
-#############################
+################################
+
 dataset_id = "IMAGE-DATASET-SAMPLE-01"
 
 repository_id = "central"
