@@ -5,9 +5,9 @@ nada.set_api_url('http://training.ihsn.org/index.php/api/')
 api_key = 'cf16a23a3cfc6a928f63dd3c8daf8796'
 nada.set_api_key(api_key)
 
-################################
+###################################
 # create_document_dataset template
-################################
+###################################
 
 dataset_id = "DOCUMENT-DATASET-SAMPLE-01"
 repository_id = "string"
@@ -245,7 +245,7 @@ tags = [
 ]
 files = [
 	{
-		"file_uri": "file_uri",  # File name or URL
+		"file_uri": "http://example.org/files/file.uri",  # File name or URL
 		"format": "application/excel",  # The file format, physical medium, or dimensions of the resource.
 		"location": "100",  # Page number or sheet name for the table
 		"note": "file note text"  # file note
@@ -258,10 +258,13 @@ response = nada.create_document_dataset(
 	published=published,
 	overwrite=overwrite,
 	metadata_information=metadata_information,
-	document_description=document_description
+	document_description=document_description,
+	tags=tags,
+	files=files
 )
 
 print(response)
 
+# upload temporary thumbnail
 thumbnail_path = nada.text_to_thumbnail("Document\nDataset")
 nada.upload_thumbnail(dataset_id, thumbnail_path)

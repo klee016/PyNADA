@@ -5,9 +5,10 @@ nada.set_api_url('http://training.ihsn.org/index.php/api/')
 api_key = 'cf16a23a3cfc6a928f63dd3c8daf8796'
 nada.set_api_key(api_key)
 
-#############################
+################################
 # create_image_dataset template
-#############################
+################################
+
 dataset_id = "IMAGE-DATASET-SAMPLE-01"
 
 repository_id = "central"
@@ -279,7 +280,7 @@ image_description = {
 	],
 	"files": [
 		{
-			"file_uri": "file uri",
+			"file_uri": "http://example.org/image_description/files/file.uri",
 			"format": "file format",
 			"note": "file note",
 			"show": True
@@ -298,6 +299,6 @@ response = nada.create_image_dataset(
 
 print(response)
 
-
+# upload temporary thumbnail
 thumbnail_path = nada.text_to_thumbnail("Image\nDataset")
 nada.upload_thumbnail(dataset_id, thumbnail_path)

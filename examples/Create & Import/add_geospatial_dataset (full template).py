@@ -5,9 +5,9 @@ nada.set_api_url('http://training.ihsn.org/index.php/api/')
 api_key = 'cf16a23a3cfc6a928f63dd3c8daf8796'
 nada.set_api_key(api_key)
 
-##################################
+#####################################
 # create_geospatial_dataset template
-##################################
+#####################################
 
 dataset_id = "GEOSPATIAL_DATASET_SAMPLE_01"
 repository_id = "central"
@@ -224,5 +224,6 @@ response = nada.create_geospatial_dataset(
 
 print(response)
 
+# upload temporary thumbnail
 thumbnail_path = nada.text_to_thumbnail("Geospatial\nDataset")
 nada.upload_thumbnail(dataset_id, thumbnail_path)

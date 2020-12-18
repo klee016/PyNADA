@@ -5,9 +5,9 @@ nada.set_api_url('http://training.ihsn.org/index.php/api/')
 api_key = 'cf16a23a3cfc6a928f63dd3c8daf8796'
 nada.set_api_key(api_key)
 
-##############################
+#################################
 # create_survey_dataset template
-##############################
+#################################
 
 dataset_id = "SURVEY_DATASET_SAMPLE_01"
 repository_id = "central"
@@ -511,5 +511,6 @@ response = nada.create_survey_dataset(
 
 print(response)
 
+# upload temporary thumbnail
 thumbnail_path = nada.text_to_thumbnail("Survey\nDataset")
 nada.upload_thumbnail(dataset_id, thumbnail_path)

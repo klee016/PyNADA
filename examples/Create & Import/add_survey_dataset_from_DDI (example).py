@@ -27,6 +27,7 @@ response = nada.create_survey_dataset_from_DDI(
 
 print(response)
 
+# upload temporary thumbnail
 dataset_id = response['survey']['idno']
 thumbnail_path = nada.text_to_thumbnail("Survey\nDataset")
 nada.upload_thumbnail(dataset_id, thumbnail_path)
