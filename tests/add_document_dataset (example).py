@@ -56,6 +56,6 @@ print(response)
 
 
 # If you have pdf file, generate thumbnail from it.
-pdf_file_path = Path('../../../Documents/WPS8038.pdf')
+pdf_file_path = 'WPS8038.pdf'
 thumbnail_path = utils.pdf_to_thumbnail(pdf_file_path, page_no = 1)
 create_and_import.upload_thumbnail(dataset_id, thumbnail_path)

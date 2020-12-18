@@ -9,14 +9,14 @@ nada.set_api_key(api_key)
 # create_document_dataset example
 ##################################
 
-dataset_id = "WPS8038"
+dataset_id = "DOCUMENT-DATASET-SAMPLE-02"
 repository_id = "central"
 published = 1
 overwrite = "yes"
 document_description = {
     "title_statement": {
-        "title": "The economics of forced displacement: An introduction",
-        "idno": "WPS8038"
+        "title": "[Example] Document Dataset Sample 02",
+        "idno": "DOCUMENT-DATASET-SAMPLE-02"
     },
     "date_published": "2017-04-25",
     "authors": [
@@ -55,6 +55,6 @@ print(response)
 
 
 # If you have pdf file, generate thumbnail from it.
-pdf_file_path = Path('../../../Documents/WPS8038.pdf')
+pdf_file_path = 'WPS8038.pdf'
 thumbnail_path = nada.pdf_to_thumbnail(pdf_file_path, page_no = 1)
 nada.upload_thumbnail(dataset_id, thumbnail_path)
