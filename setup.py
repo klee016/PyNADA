@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 BASE_DIR = pathlib.Path(__file__).parent
 
 PACKAGE_NAME = 'pynada'
-VERSION = '0.0.16'
+VERSION = '0.0.17'
 AUTHOR = 'Kamwoo Lee'
 URL = 'https://github.com/kl9ch/PyNADA'
 
