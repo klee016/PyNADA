@@ -10,12 +10,12 @@ nada.set_api_key(api_key)
 #####################################
 
 dataset_id = "GEOSPATIAL_DATASET_SAMPLE_01"
-repository_id = "central"
-published = 0
-overwrite = "yes"
+repository_id = "central"  # Collection ID that owns the dataset
+published = 0  # Status of the dataset: 0=draft, 1=published
+overwrite = "yes"  # Overwrite if already exists? Valid values: "yes""no"
 metadata_maintenance = {
-	"update_frequency": "maintenance update_frequency",
-	"note": "maintenance note",
+	"update_frequency": "maintenance update_frequency",  # Maintenance Frequency e.g., continual, daily, weekly, fortnightly, monthly, quarterly, biannually, annually, asNeeded, irregular, not-Planned, unknown
+	"note": "maintenance note",  # Maintenance Note
 	"contact": [
 		{
 			"person_name": "maintenance contact person_name",
@@ -34,15 +34,15 @@ metadata_maintenance = {
 			"country": "maintenance contact country"
 		}
 	],
-	"prod_date": "2020-12-31",
-	"version": "the current version of the dataset"
+	"prod_date": "2020-12-31",  # Document production date using format(YYYY-MM-DD)
+	"version": "the current version of the dataset"  # Identify and describe the current version of the document
 }
 dataset_description = {
-	"file_identifier": "GEOSPATIAL_DATASET_SAMPLE_01",
-	"language": "language code",
+	"file_identifier": dataset_id,  # Must be same as dataset_id
+	"language": "language code",  # Language code
 	"charset_code": "UTF-8",  # character encoding used
-	"hierarchy_level": "geospatial dataset hierarchy_level",
-	"date_stamp": "2009-11-17T10:00:00",
+	"hierarchy_level": "geospatial dataset hierarchy_level",  # Hierarchy level e.g. dataset, series
+	"date_stamp": "2009-11-17T10:00:00",  # Date and time when the metadata record was created or updated. Requires an extended ISO 8601 formatted combined UTC date and time string (2009-11-17T10:00:00)
 	"contact": [
 		{
 			"person_name": "contact person_name",
@@ -61,7 +61,7 @@ dataset_description = {
 			"country": "contact country"
 		}
 	],
-	"identification_info": {
+	"identification_info": {  # Resource Dataset or Dataset Series Identification
 		"title": "[Template] Geospatial Dataset Sample 01",
 		"alternate_title": "Geospatial Dataset Sample 01 (alternate_title)",
 		"date": [
@@ -70,13 +70,13 @@ dataset_description = {
 				"type": "type of event e.g. publication"
 			}
 		],
-		"edition": "Edition e.g. first",
+		"edition": "first",  # Edition e.g. first
 		"identifiers": [
 			{
 				"identifier": "geospatial data identifier"
 			}
 		],
-		"presentation_form": "e.g. documentDigital",
+		"presentation_form": "e.g. documentDigital",  # documentDigital, documentHardcopy, imageDigital, image-Hardcopy, mapDigital, mapHardcopy, modelDigital, model-Hardcopy, profileDigital, profileHardcopy, tableDigital, tableHardcopy, videoDigital, videoHardcopy, audioDigital
 		"abstract": inspect.cleandoc("""\
 		
 			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vel ante venenatis, dictum leo in, eleifend lectus. Fusce blandit at nisl eu pellentesque. Curabitur massa ante, rutrum vitae nibh nec, volutpat dignissim urna. 
@@ -85,19 +85,19 @@ dataset_description = {
 			non elementum lorem nisl quis augue. Aenean lobortis augue et massa interdum faucibus. Vivamus mattis imperdiet urna, 
 			sit amet tempus eros tristique eu. Morbi ultrices mauris dignissim lacus dapibus efficitur. 
 			
-		"""),
+		"""),  # A free text summary of the content, significance, purpose, scope, etc. of the resource.
 		"purpose": inspect.cleandoc("""\
 		
 			Pellentesque elementum massa mauris, ac tincidunt orci scelerisque nec. Sed mattis mauris sed dolor elementum, eget facilisis purus aliquet. Praesent eget iaculis augue, vel elementum purus. 
 			Proin aliquam eleifend urna, ut rhoncus neque semper in. Integer a viverra tellus, quis tincidunt sem. Fusce nulla dui, commodo sit amet sem id, mattis eleifend lectus. Suspendisse eget tempus tortor. In quis cursus nulla.
 			
-		"""),
+		"""),  # Summary of the intentions for which the dataset was developed. Purpose includes objectives for creating the dataset and what the dataset is to support.
 		"credit": inspect.cleandoc("""\
 		
 			In posuere tempus mi, in vehicula mi tristique nec. Phasellus neque ipsum, ultrices in interdum eget, vehicula id quam. Aliquam cursus euismod maximus.
 						
 		"""),
-		"status": "status code e.g. historicalArchive",
+		"status": "completed",  # Status code - completed, historicalArchive, obsolete, onGoing, planned, required, underDevelopment
 		"point_of_contact": [
 			{
 				"person_name": "point_of_contact person_name",
@@ -117,9 +117,9 @@ dataset_description = {
 			}
 		],
 		"resource_maintenance": {
-			"maintenance_frequency": "maintenance frequency code e.g. weekly"
+			"maintenance_frequency": "continual"  # Maintenance frequency code - continual, daily, weekly, fortnightly, monthly, quarterly, biannually, annually, asNeeded, irregular, not-Planned, unknown
 		},
-		"graphic_overview": [
+		"graphic_overview": [  # Graphic overview of resource
 			{
 				"name": "graphic_overview name",
 				"type": "graphic_overview type",
@@ -146,7 +146,7 @@ dataset_description = {
 		},
 		"spatial_representation_type": "vector",  # Spatial Representation type - vector, grid, textTable, tin, stereoModel, video
 		"representative_fraction_denominator": "100000",  # Spatial Resolution Fraction
-		"language": "identification_info language",
+		"language": "identification_info language",  # Language code
 		"charset_code": "identification_info charset_code",
 		"topics": [
 			{
@@ -158,10 +158,10 @@ dataset_description = {
 		"extent": {
 			"geographic_bounding_box": [
 				{
-					"south": 0,
-					"west": 30,
-					"north": 20,
-					"east": 0
+					"south": 0,  # South (number) [ -180 .. 180 ]
+					"west": 30,  # West (number) [ -180 .. 180 ]
+					"north": 20,  # North (number) [ -180 .. 180 ]
+					"east": 0  # East (number) [ -180 .. 180 ]
 				}
 			]
 		},
@@ -196,14 +196,14 @@ dataset_description = {
 		]
 	},
 	"data_quality_info": {
-		"Scope": "data_quality_info scope",
-		"lineage": "data_quality_info lineage statement"
+		"Scope": "dataset",  # Scope code - dataset, series, collectionSession, etc.
+		"lineage": "data_quality_info lineage statement"  # Data quality lineage statement
 	},
-	"spatial_representation_info": {
+	"spatial_representation_info": {  # Resource spatial representation - Spatial representation information for the dataset (resource). Best practice is to include metadata for spatial representation if the described resource is a georeferenced dataset.
 		"topology_level": "geometryOnly",  # Topology Level Code: {geometryOnly, topology1D, planarGraph, fullPlanarGraph, surfaceGraph, fullSurfaceGraph, topology3D, fullTopology3D, abstract}
 		"Geometric_object_code": "complex"  # Geometric Object Type Code codes ={complex, composite, curve, point, solid, surface}
 	},
-	"reference_system_info": {
+	"reference_system_info": {  # Resource’s spatial reference system - Description of the spatial and/or temporal reference systems used in the dataset.
 		"code": "EPSG:5701",  # reference_system Identifier Code
 		"code_space": "urn:ogc:def:crs"  # spatial reference system code_space
 	}
@@ -222,7 +222,6 @@ response = nada.create_geospatial_dataset(
 	additional=additional
 )
 
-print(response)
 
 # upload temporary thumbnail
 thumbnail_path = nada.text_to_thumbnail("Geospatial\nDataset")

@@ -1,20 +1,21 @@
-import pynada as nada
+from pynada import create_and_import
+from pynada import utils
 import inspect
 
-nada.set_api_url('http://training.ihsn.org/index.php/api/')
+create_and_import.set_api_url('http://training.ihsn.org/index.php/api/')
 api_key = 'cf16a23a3cfc6a928f63dd3c8daf8796'
-nada.set_api_key(api_key)
+create_and_import.set_api_key(api_key)
 
 #####################################
 # create_timeseries_dataset template
 #####################################
 
 dataset_id = "TIMESERIES_DATASET_SAMPLE_01"
-repository_id = "central"  # Collection that owns the series
-access_policy = "na"  # Valid values - "direct" "open" "public" "licensed" "remote" "na"
+repository_id = "central"  # Collection ID that owns the series
+access_policy = "na"  # Data access policy for attached microdata resources. Valid values - "direct" "open" "public" "licensed" "remote" "na"
 data_remote_url = "http://example.org/data_remote_url"  # Link to the website where the data is available, this is only needed if access_policy is set to "remote".
-published = 0  # 0=draft, 1=published
-overwrite = "yes"  # Valid values - "yes" "no"
+published = 0  # Status of the study: 0=draft, 1=published
+overwrite = "yes"  # Overwrite database if already exists? Valid values - "yes" "no"
 metadata_creation = {  # Information on who generated the documentation
 	"producers": [
 		{
@@ -28,7 +29,7 @@ metadata_creation = {  # Information on who generated the documentation
 	"version": "v_0.0.1"  # Identify and describe the current version of the document
 }
 series_description = {
-	"idno": "TIMESERIES_DATASET_SAMPLE_01",  # Unique series ID
+	"idno": dataset_id,  # Must be same as dataset_id
 	"name": "[Template] Timeseries Dataset Sample 01",
 	"database_id": "TimeseriesDB_01",
 	"aliases": [
@@ -98,9 +99,9 @@ series_description = {
 			"uri": "http://example.org/series_description/topics/uri"  # Link to the controlled vocabulary web page, if the topic is from a taxonomy.
 		}
 	],
-	"disciplines": [  # Disciplines e.g. Social sciences, economics, Natural sciences, biology
+	"disciplines": [
 		{
-			"name": "discipline name",
+			"name": "discipline name",  # Disciplines e.g. Social sciences, economics, Natural sciences, biology
 			"vocabulary": "discipline vocabulary",
 			"uri": "http://example.org/series_description/disciplines/uri"
 		}
@@ -230,9 +231,9 @@ series_description = {
 		}
 	]
 }
-additional = {}
+additional = {}  # Any other custom metadata not covered by the schema
 
-response = nada.create_timeseries_dataset(
+response = create_and_import.create_timeseries_dataset(
 	dataset_id=dataset_id,
 	repository_id=repository_id,
 	access_policy=access_policy,
@@ -246,5 +247,5 @@ response = nada.create_timeseries_dataset(
 print(response)
 
 # upload temporary thumbnail
-thumbnail_path = nada.text_to_thumbnail("Timeseries\nDataset")
-nada.upload_thumbnail(dataset_id, thumbnail_path)
+thumbnail_path = utils.text_to_thumbnail("Timeseries\nDataset")
+create_and_import.upload_thumbnail(dataset_id, thumbnail_path)

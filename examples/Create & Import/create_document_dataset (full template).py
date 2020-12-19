@@ -1,19 +1,18 @@
-from pynada import create_and_import
-from pynada import utils
+import pynada as nada
 import inspect
 
-create_and_import.set_api_url('http://training.ihsn.org/index.php/api/')
+nada.set_api_url('http://training.ihsn.org/index.php/api/')
 api_key = 'cf16a23a3cfc6a928f63dd3c8daf8796'
-create_and_import.set_api_key(api_key)
+nada.set_api_key(api_key)
 
 ###################################
 # create_document_dataset template
 ###################################
 
 dataset_id = "DOCUMENT-DATASET-SAMPLE-01"
-repository_id = "string"
-published = 0
-overwrite = "yes"
+repository_id = "string"  # Collection ID that owns the document
+published = 0  # Status: 0=draft, 1=published
+overwrite = "yes"  # Valid values: "yes" "no"
 metadata_information = {
 	"title": "metadata title",
 	"idno": "metadata id",
@@ -25,25 +24,25 @@ metadata_information = {
 			"role": "metadata producer role"
 		}
 	],
-	"production_date": "2020-12-31",
-	"version": "metadata version"
+	"production_date": "2020-12-31",  # Document production date using format(YYYY-MM-DD)
+	"version": "metadata version"  # Identify and describe the current version of the document
 }
 document_description = {
 	"title_statement": {
-		"idno": "DOCUMENT-DATASET-SAMPLE-01",
+		"idno": dataset_id,  # Must be same as dataset_id
 		"title": "[Template] Document Dataset Sample 01",
 		"sub_title": "Document Dataset Sample 01 (sub_title)",
 		"alternate_title": "Document Dataset Sample 01 (alternate_title)",
 		"abbreviated_title": "Document Dataset Sample 01 (abbreviated_title)"
 	},
 	"type": "article",  # Valid values: "article" "book" "booklet" "collection" "conference" "inbook" "incollection" "inproceeding" "manual" "masterthesis" "patent" "phdthesis" "proceedings" "techreport" "working-paper" "website" "other"
-	"description": "description",
-	"toc": "Table of contents",
+	"description": "description",  # An account of the content of the resource.
+	"toc": "Table of contents",  # Table of contents
 	"toc_structured": [
 		{
 			"id": "TOC id",
-			"parent_id": "parent TOC ID",
-			"name": "TOC name"
+			"parent_id": "parent TOC ID",  # For sub levels, provide the ID of the parent TOC ID
+			"name": "TOC name"  # Title
 		}
 	],
 	"abstract": inspect.cleandoc("""\
@@ -54,7 +53,7 @@ document_description = {
 		non elementum lorem nisl quis augue. Aenean lobortis augue et massa interdum faucibus. Vivamus mattis imperdiet urna, 
 		sit amet tempus eros tristique eu. Morbi ultrices mauris dignissim lacus dapibus efficitur. 
 		
-	"""),
+	"""),  # A summary of the content
 	"notes": [
 		{
 			"note": inspect.cleandoc("""\
@@ -77,13 +76,13 @@ document_description = {
 		Pellentesque vehicula nisl sed leo consequat, interdum congue diam maximus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec nec ex egestas, congue libero sit amet, tincidunt risus.
 		Cras sed ligula pellentesque, efficitur ex nec, gravida sapien. Nulla mollis, tortor vitae ullamcorper iaculis, felis metus molestie massa, nec fringilla eros arcu quis tortor.
 
-	"""),
+	"""),  # The spatial extent or scope of the content of the resource.
 	"temporal_coverage": inspect.cleandoc("""\
 	
 		Pellentesque vehicula nisl sed leo consequat, interdum congue diam maximus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec nec ex egestas, congue libero sit amet, tincidunt risus.
 		Cras sed ligula pellentesque, efficitur ex nec, gravida sapien. Nulla mollis, tortor vitae ullamcorper iaculis, felis metus molestie massa, nec fringilla eros arcu quis tortor.
 
-	"""),
+	"""),  # The temporal extent or scope of the content of the resource.
 	"date_created": "2020-12-31",  # Date of creation
 	"date_available": "From 2020-01-01 To 2020-12-31",  # Date (often a range) that the resource will become or did become available.
 	"date_modified": "2020-08-01",  # Date on which the resource was changed.
@@ -176,18 +175,18 @@ document_description = {
 			"uri": "http://example.org/document_description/theme/uri"
 		}
 	],
-	"topics": [
+	"topics": [  # Topics covered by the table (ideally, the list of topics will be a controlled vocabulary)
 		{
 			"id": "topic id",
 			"name": "topic name",
-			"parent_id": "topic parent_id",
-			"vocabulary": "topic vocabulary",
-			"uri": "http://example.org/document_description/topics/uri"
+			"parent_id": "topic parent_id",  # For subtopics, provide the ID of the parent topic
+			"vocabulary": "topic vocabulary",  # Name of the controlled vocabulary, if the topic is from a taxonomy.
+			"uri": "http://example.org/document_description/topics/uri"  # Link to the controlled vocabulary web page, if the topic is from a taxonomy.
 		}
 	],
 	"disciplines": [
 		{
-			"name": "discipline name",
+			"name": "discipline name",  # e.g. Social sciences, economics, Natural sciences, biology
 			"vocabulary": "discipline vocabulary",
 			"uri": "http://example.org/document_description/discipline/uri"
 		}
@@ -253,7 +252,7 @@ files = [
 	}
 ]
 
-response = create_and_import.create_document_dataset(
+response = nada.create_document_dataset(
 	dataset_id=dataset_id,
 	repository_id=repository_id,
 	published=published,
@@ -264,8 +263,7 @@ response = create_and_import.create_document_dataset(
 	files=files
 )
 
-print(response)
 
 # upload temporary thumbnail
-thumbnail_path = utils.text_to_thumbnail("Document\nDataset")
-create_and_import.upload_thumbnail(dataset_id, thumbnail_path)
+thumbnail_path = nada.text_to_thumbnail("Document\nDataset")
+nada.upload_thumbnail(dataset_id, thumbnail_path)

@@ -5,7 +5,7 @@ api_key = 'cf16a23a3cfc6a928f63dd3c8daf8796'
 search_and_browse.set_api_key(api_key)
 
 result = search_and_browse.list_datasets()
-# print("okay")
+print("okay")
 
 #print(search_and_browse.list_collections())
 

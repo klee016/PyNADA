@@ -1,18 +1,19 @@
-import pynada as nada
+from pynada import create_and_import
+from pynada import utils
 import inspect
 
-nada.set_api_url('http://training.ihsn.org/index.php/api/')
+create_and_import.set_api_url('http://training.ihsn.org/index.php/api/')
 api_key = 'cf16a23a3cfc6a928f63dd3c8daf8796'
-nada.set_api_key(api_key)
+create_and_import.set_api_key(api_key)
 
 ########################################
 # create_visualization_dataset template
 ########################################
 
 dataset_id = "VISUALIZATION_DATASET_SAMPLE_01"
-repository_id = "central"
-published = 0
-overwrite = "yes"
+repository_id = "central"  # Collection ID that owns the document
+published = 0  # Status: 0=draft, 1=published
+overwrite = "yes"  # Overwrite document if already exists? Valid values "yes" "no"
 metadata_information = {
 	"idno": "metadata info id",
 	"producers": [
@@ -23,20 +24,20 @@ metadata_information = {
 			"role": "metadata producer role"
 		}
 	],
-	"production_date": "2020-12-31",
-	"version": "metadata version"
+	"production_date": "2020-12-31",  # Document production date using format(YYYY-MM-DD)
+	"version": "metadata version"  # Identify and describe the current version of the document
 }
 visualization_description = {
 	"title_statement": {
-		"idno": "VISUALIZATION_DATASET_SAMPLE_01",
+		"idno": dataset_id,  # Must be same as dataset_id
 		"visualization_number": "visualization_no_01",
 		"title": "[Template] Visualization Dataset Sample 01",
-		"sub_title": "Visualization Dataset Sample 01 (sub_title)",
-		"alternate_title": "Visualization Dataset Sample 01 (alternate_title)",
-		"abbreviated_title": "Visualization Dataset Sample 01 (abbreviated_title)",
-		"legend": "legend"
+		"sub_title": "Visualization Dataset Sample 01 (sub_title)",  # A short subtitle for the table
+		"alternate_title": "Visualization Dataset Sample 01 (alternate_title)",  # Any form of the title used as a substitute or alternative to the formal title of the resource.
+		"abbreviated_title": "Visualization Dataset Sample 01 (abbreviated_title)",  # Title as abbreviated for indexing or identification.
+		"legend": "legend"  # Legend for the visualization
 	},
-	"sub_chart_titles": [
+	"sub_chart_titles": [  # Titls for each chart included in the visualization
 		{
 			"title": "title for each chart"
 		}
@@ -47,17 +48,17 @@ visualization_description = {
 			"text": "chart_footnote text"
 		}
 	],
-	"id_numbers": {
-		"type": "ID number type",
+	"id_numbers": {  # Numbers e.g. Any unique identifiers such as DOI
+		"type": "ID number type",  # ID number type such as DOI
 		"value": "type_ID_01"
 	},
 	"visualization_types": [
 		{
-			"type": "visualization_type",
+			"type": "visualization_type",  # Visualization type e.g. scatter plot, line chart, choropleth
 			"note": "visualization_type note"
 		}
 	],
-	"animated": True,
+	"animated": True,  # Visualization uses animation?
 	"description": inspect.cleandoc("""\
 		
 		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vel ante venenatis, dictum leo in, eleifend lectus. Fusce blandit at nisl eu pellentesque. Curabitur massa ante, rutrum vitae nibh nec, volutpat dignissim urna. 
@@ -96,7 +97,7 @@ visualization_description = {
 		}
 	],
 	"acknowledgements": {
-		"name": "acknowledgement name",
+		"name": "acknowledgement name",  # Name of the person or organization
 		"role": "acknowledgement role"
 	},
 	"date_created": "2020-10-01",
@@ -118,8 +119,8 @@ visualization_description = {
 	],
 	"time_periods": [
 		{
-			"from": "2020-01-01",
-			"to": "2020-12-31"
+			"from": "2020-01-01",  # Date in ISO format (YYYY-MM-DD). Partial dates are supported
+			"to": "2020-12-31"  # Date in ISO format (YYYY-MM-DD). Partial dates are supported
 		}
 	],
 	"universe": [
@@ -133,14 +134,14 @@ visualization_description = {
 			"code": "TMP"
 		}
 	],
-	"geographic_units": [
+	"geographic_units": [  # List of geographic units (regions, countries, states, provinces, etc.) for which data are available in the database.
 		{
-			"name": "geographic_units name",
-			"code": "geographic_units code",
-			"type": "geographic_units type"
+			"name": "geographic_units name",  # Name of the geographic unit e.g. 'World', 'Africa', 'Afghanistan'
+			"code": "geographic_units code",  # Code of the geographic unit (for countries, preferred = ISO3 code)
+			"type": "geographic_units type"  # Type of geographic unit e.g. country, state, region, province etc
 		}
 	],
-	"geographic_granularity": "geographic_granularity",
+	"geographic_granularity": "geographic_granularity",  # Granularity of geographic coverage. examples national, regional, provincial
 	"languages": [
 		{
 			"name": "visualization language name",
@@ -151,7 +152,7 @@ visualization_description = {
 	"data": [
 		{
 			"dataset": "visualization data dataset",
-			"access_type": "visualization data access_type",
+			"access_type": "visualization data access_type",  # Data accessible via `API`, `Bulk download`, `Embedded in script`, etc (string)
 			"uri": "http://example.org/visualization_description/data/uri",
 			"note": "visualization data note"
 		}
@@ -165,7 +166,7 @@ visualization_description = {
 			"script_uri": "http://example.org/visualization_description/scripts/uri"
 		}
 	],
-	"embed_uri": "http://example.org/visualization_description/embed_uri/uri",
+	"embed_uri": "http://example.org/visualization_description/embed_uri/uri",  # Link for embedding the visualization
 	"publications": [
 		{
 			"title": "publication title",
@@ -186,34 +187,34 @@ visualization_description = {
 			"uri": "http://example.org/visualization_description/themes/uri"
 		}
 	],
-	"topics": [
+	"topics": [  # Topics covered by the visualization (ideally, the list of topics will be a controlled vocabulary)
 		{
 			"id": "topic id",
 			"name": "topic name",
-			"parent_id": "topic parent_id",
-			"vocabulary": "topic vocabulary",
-			"uri": "http://example.org/visualization_description/topics/uri"
+			"parent_id": "topic parent_id",  # For subtopics, provide the ID of the parent topic
+			"vocabulary": "topic vocabulary",  # Name of the controlled vocabulary, if the topic is from a taxonomy.
+			"uri": "http://example.org/visualization_description/topics/uri"  # Link to the controlled vocabulary web page, if the topic is from a taxonomy.
 		}
 	],
 	"disciplines": [
 		{
-			"name": "discipline name",
+			"name": "discipline name",  # Disciplines e.g. Social sciences, economics, Natural sciences, biology
 			"vocabulary": "discipline vocabulary",
 			"uri": "http://example.org/visualization_description/disciplines/uri"
 		}
 	],
-	"definitions": [
+	"definitions": [  # Definitions or concepts covered by the visualization
 		{
 			"name": "definition name",
 			"definition": "definition text",
 			"uri": "http://example.org/visualization_description/definitions/uri"
 		}
 	],
-	"classifications": [
+	"classifications": [  # Classifications used in the visualization
 		{
 			"name": "classification name",
 			"version": "classification version",
-			"organization": "classification organization",
+			"organization": "classification organization",  # Organization responsible for the classification
 			"uri": "http://example.org/visualization_description/classifications/uri"
 		}
 	],
@@ -224,7 +225,7 @@ visualization_description = {
 			"uri": "http://example.org/visualization_description/license/uri"
 		}
 	],
-	"citation": "reference for the resource",
+	"citation": "reference for the resource",  # A bibliographic reference for the resource.
 	"disclaimer": inspect.cleandoc("""\
 						
 		Proin aliquam eleifend urna, ut rhoncus neque semper in. Integer a viverra tellus, quis tincidunt sem. 
@@ -262,7 +263,7 @@ visualization_description = {
 	"relations": [
 		{
 			"name": "Related document name",
-			"type": "isPartOf"
+			"type": "isPartOf"  # Valid values: "isPartOf" "hasPart" "isVersionOf" "isFormatOf" "hasFormat" "references" "isReferencedBy" "isBasedOn" "isBasisFor" "requires" "isRequiredBy"
 		}
 	],
 	"tags": [
@@ -273,8 +274,8 @@ visualization_description = {
 }
 files = [
 	{
-		"file_uri": "http://example.org/files/file.uri",
-		"format": "file format",
+		"file_uri": "http://example.org/files/file.uri",  # Provide file name, path or URL
+		"format": "file format",  # The file format, physical medium, or dimensions of the resource.
 		"location": "file location",
 		"note": "file note"
 	}
@@ -283,7 +284,7 @@ additional = {
 	"additional": "additional info"
 }
 
-response = nada.create_visualization_dataset(
+response = create_and_import.create_visualization_dataset(
 	dataset_id=dataset_id,
 	repository_id=repository_id,
 	published=published,
@@ -297,5 +298,5 @@ response = nada.create_visualization_dataset(
 print(response)
 
 # upload temporary thumbnail
-thumbnail_path = nada.text_to_thumbnail("Visualization\nDataset")
-nada.upload_thumbnail(dataset_id, thumbnail_path)
+thumbnail_path = utils.text_to_thumbnail("Visualization\nDataset")
+create_and_import.upload_thumbnail(dataset_id, thumbnail_path)
