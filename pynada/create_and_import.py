@@ -22,6 +22,25 @@ def create_collection(
     return pd.DataFrame.from_dict(response, orient='index')
 
 
+def create_entry(**kwargs):
+    if 'study_desc' in kwargs:
+        return create_survey_dataset(**kwargs)
+    elif 'document_description' in kwargs:
+        return create_document_dataset(**kwargs)
+    elif 'image_description' in kwargs:
+        return create_image_dataset(**kwargs)
+    elif 'project_desc' in kwargs:
+        return create_script_dataset(**kwargs)
+    elif 'table_description' in kwargs:
+        return create_table_dataset(**kwargs)
+    elif 'visualization_description' in kwargs:
+        return create_visualization_dataset(**kwargs)
+    elif 'dataset_description' in kwargs:
+        return create_geospatial_dataset(**kwargs)
+    elif 'series_description' in kwargs:
+        return create_timeseries_dataset(**kwargs)
+
+
 def create_survey_dataset(
         dataset_id=None,
         repository_id=None,
