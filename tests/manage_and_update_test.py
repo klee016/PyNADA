@@ -17,10 +17,10 @@ manage_and_update.set_api_key(api_key)
 
 #manage_and_update.upload_file('SCRIPT_DATASET_SAMPLE_01', 'predicting_food_crises.R')
 
-manage_and_update.add_resource(
-	dataset_id="SCRIPT_DATASET_SAMPLE_01",
-	dctype="Document [doc/oth]",
-	title="predicting_food_crises",
-	filename="predicting_food_crises.R",
-	overwrite="yes"
-)
+# manage_and_update.add_resource(
+# 	dataset_id="SCRIPT_DATASET_SAMPLE_01",
+# 	dctype="Document [doc/oth]",
+# 	title="predicting_food_crises",
+# 	filename="predicting_food_crises.R",
+# 	overwrite="yes"
+# )
