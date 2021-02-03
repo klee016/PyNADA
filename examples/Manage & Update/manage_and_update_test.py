@@ -1,7 +1,7 @@
 import pynada as nada
 
 nada.set_api_url('http://training.ihsn.org/index.php/api/')
-api_key = open("API Key.txt", "r").read()
+api_key = open("../API Key.txt", "r").read()
 nada.set_api_key(api_key)
 
 # idno = "WPS8038"
@@ -17,10 +17,15 @@ nada.set_api_key(api_key)
 
 #nada.upload_file('SCRIPT_DATASET_SAMPLE_01', 'predicting_food_crises.R')
 
-nada.add_resource(
-	dataset_id="SCRIPT_DATASET_SAMPLE_01",
-	dctype="Document [doc/oth]",
-	title="predicting_food_crises",
-	filename="predicting_food_crises.R",
-	overwrite="yes"
+# nada.add_resource(
+# 	dataset_id="GEOSPATIAL_places-buildings-roads_SD",
+# 	dctype="Geospatial [tbl]",
+# 	title="sudan_POIs",
+# 	filename="sudan_POIs.csv",
+# 	overwrite="yes"
+# )
+
+nada.delete_file(
+	dataset_id="GEOSPATIAL_places-buildings-roads_SD",
+	file_name='sudan_buildings.csv'
 )
