@@ -13,7 +13,7 @@ DESCRIPTION = 'Python client for NADA API'
 LONG_DESCRIPTION = (BASE_DIR / "README.md").read_text()
 LONG_DESC_TYPE = "text/markdown"
 
-INSTALL_REQUIRES = ['requests', 'pandas', 'pathlib', 'validators', 'pdf2image']
+INSTALL_REQUIRES = ['requests', 'pandas', 'pathlib', 'validators', 'poppler', 'pdf2image']
 
 
 # Setting up

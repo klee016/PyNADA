@@ -1,5 +1,4 @@
 from .commons import *
-from .utils import *
 
 
 def list_collections():
