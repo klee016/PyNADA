@@ -12,7 +12,7 @@ def create_collection(
         Collection's unique IDNo
     """
 
-    data = {}
+    data ={}
 
     response = make_post_request('collections/' + repository_id, data)
 
@@ -119,7 +119,8 @@ def create_document_dataset(
         metadata_information=None,
         document_description=None,
         tags=None,
-        files=None
+        resources=None,
+        files=None  # deprecated - use resources
 ):
     """Add a new document dataset to the catalog
 
@@ -139,6 +140,8 @@ def create_document_dataset(
         Document Description
     tags : list of dict
         Tags
+    resources : list of dict
+        Resources
     files : list of dict
         Files
 
@@ -155,6 +158,7 @@ def create_document_dataset(
         "metadata_information": metadata_information,
         "document_description": document_description,
         "tags": tags,
+        "resources": resources,
         "files": files
     }
 
@@ -164,14 +168,15 @@ def create_document_dataset(
     response = make_post_request('datasets/create/document/'+dataset_id, data)
 
     if response['status'] == 'success':
-        if files is not None and len(files) > 0:
+        # for old codes that use files parameter instead of resources parameter
+        if resources is None and files is not None and len(files) > 0:
             for file in files:
                 add_resource(
-                    dataset_id = dataset_id,
-                    dctype = "Document [doc/oth]",
-                    title = PurePath(file['file_uri']).stem,
-                    filename = file['file_uri'],
-                    overwrite = overwrite
+                    dataset_id=dataset_id,
+                    dctype="Document [doc/oth]",
+                    title=PurePath(file['file_uri']).stem,
+                    filename=file['file_uri'],
+                    overwrite=overwrite
                 )
         print("Document dataset successfully added to the catalog.")
 

@@ -16,7 +16,7 @@ overwrite = "yes"
 document_description = {
     "title_statement": {
         "title": "[Example] Document Dataset Sample 02",
-        "idno": "DOCUMENT-DATASET-SAMPLE-02"
+        "idno": dataset_id
     },
     "date_published": "2017-04-25",
     "authors": [
@@ -35,11 +35,20 @@ document_description = {
         }
     ]
 }
-files = [
+resources = [
     {
-        "file_uri": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2958540"
+        "id": dataset_id,
+        "dctype": "Document [doc/oth]",
+        "title": "The economics of forced displacement: An introduction",
+        "filename": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2958540",
+        "overwrite": "yes"
     }
 ]
+# files = [
+#     {
+#         "file_uri": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2958540"
+#     }
+# ]
 
 
 response = nada.create_document_dataset(
@@ -48,7 +57,8 @@ response = nada.create_document_dataset(
     published=published,
     overwrite=overwrite,
     document_description=document_description,
-    files=files
+    resources=resources
+    #files=files
 )
 
 print(response)

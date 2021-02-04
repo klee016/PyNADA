@@ -10,14 +10,14 @@ create_and_import.set_api_key(api_key)
 # create_document_dataset example
 ##################################
 
-dataset_id = "WPS8038"
+dataset_id = "DOCUMENT-DATASET-SAMPLE-02"
 repository_id = "central"
 published = 0
 overwrite = "yes"
 document_description = {
     "title_statement": {
-        "title": "The economics of forced displacement: An introduction",
-        "idno": "WPS8038"
+        "title": "[Example] Document Dataset Sample 02",
+        "idno": dataset_id
     },
     "date_published": "2017-04-25",
     "authors": [
@@ -36,11 +36,20 @@ document_description = {
         }
     ]
 }
-files = [
+resources = [
     {
-        "file_uri": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2958540"
+        "id": dataset_id,
+        "dctype": "Document [doc/oth]",
+        "title": "The economics of forced displacement: An introduction",
+        "filename": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2958540",
+        "overwrite": "yes"
     }
 ]
+# files = [
+#     {
+#         "file_uri": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2958540"
+#     }
+# ]
 
 
 response = create_and_import.create_document_dataset(
@@ -49,7 +58,8 @@ response = create_and_import.create_document_dataset(
     published=published,
     overwrite=overwrite,
     document_description=document_description,
-    files=files
+    resources=resources
+    #files=files
 )
 
 print(response)
@@ -57,5 +67,5 @@ print(response)
 
 # If you have pdf file, generate thumbnail from it.
 pdf_file_path = 'WPS8038.pdf'
-thumbnail_path = utils.pdf_to_thumbnail(pdf_file_path, page_no = 1)
+thumbnail_path = utils.pdf_to_thumbnail(pdf_file_path, page_no=1)
 create_and_import.upload_thumbnail(dataset_id, thumbnail_path)

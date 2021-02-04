@@ -243,14 +243,45 @@ tags = [
 		"tag": "tag"
 	}
 ]
-files = [
+resources = [
 	{
-		"file_uri": "http://example.org/files/file.uri",  # File name or URL
-		"format": "application/excel",  # The file format, physical medium, or dimensions of the resource.
-		"location": "100",  # Page number or sheet name for the table
-		"note": "file note text"  # file note
+		"id": dataset_id,
+		"dctype": "doc/oth",
+		"dcformat": "application/zip",
+		"title": "resource title",
+		"author": "resource author",
+		"dcdate": "2020-12-31",
+		"country": "resource country",
+		"language": "resource language",
+		"contributor": "resource contributor",
+		"publisher": "resource publisher",
+		"rights": "resource rights",
+		"description": inspect.cleandoc("""\
+
+			Pellentesque vehicula nisl sed leo consequat, interdum congue diam maximus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec nec ex egestas, congue libero sit amet, tincidunt risus.
+			Cras sed ligula pellentesque, efficitur ex nec, gravida sapien. Nulla mollis, tortor vitae ullamcorper iaculis, felis metus molestie massa, nec fringilla eros arcu quis tortor.
+
+		"""),
+		"abstract": inspect.cleandoc("""\
+
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vel ante venenatis, dictum leo in, eleifend lectus. Fusce blandit at nisl eu pellentesque. Curabitur massa ante, rutrum vitae nibh nec, volutpat dignissim urna. 
+			Aliquam luctus dolor sem, ac accumsan sapien elementum a. Aenean porttitor vel turpis ac consectetur. 
+
+		"""),
+		"toc": "resource TOC",
+		"filename": "resource_file.name",
+		"overwrite": "yes"
 	}
 ]
+# files parameter is deprecated - use resources
+# files = [
+# 	{
+# 		"file_uri": "http://example.org/files/file.uri",  # File name or URL
+# 		"format": "application/excel",  # The file format, physical medium, or dimensions of the resource.
+# 		"location": "100",  # Page number or sheet name for the table
+# 		"note": "file note text"  # file note
+# 	}
+# ]
 
 response = nada.create_document_dataset(
 	dataset_id=dataset_id,
@@ -260,7 +291,8 @@ response = nada.create_document_dataset(
 	metadata_information=metadata_information,
 	document_description=document_description,
 	tags=tags,
-	files=files
+	resources=resources
+	#files=files
 )
 
 print(response)
