@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 BASE_DIR = pathlib.Path(__file__).parent
 
 PACKAGE_NAME = 'pynada'
-VERSION = '0.0.22'
+VERSION = '0.0.23'
 AUTHOR = 'Kamwoo Lee'
 URL = 'https://github.com/kl9ch/PyNADA'
 
@@ -13,7 +13,7 @@ DESCRIPTION = 'Python client for NADA API'
 LONG_DESCRIPTION = (BASE_DIR / "README.md").read_text()
 LONG_DESC_TYPE = "text/markdown"
 
-INSTALL_REQUIRES = ['requests', 'pandas', 'pathlib', 'validators', 'poppler', 'pdf2image']
+INSTALL_REQUIRES = ['requests', 'pandas', 'pathlib', 'validators', 'pdf2image']
 
 
 # Setting up
