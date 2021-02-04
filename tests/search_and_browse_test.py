@@ -4,12 +4,10 @@ search_and_browse.set_api_url('http://training.ihsn.org/index.php/api/')
 api_key = open("API Key.txt", "r").read()
 search_and_browse.set_api_key(api_key)
 
-result = search_and_browse.list_datasets()
-print("okay")
 
 #print(search_and_browse.list_collections())
 
-#print(search_and_browse.list_datasets())
+print(search_and_browse.list_datasets())
 
 #print(search_and_browse.get_dataset_info('IMAGE-DATASET-SAMPLE-01'))
 

@@ -228,14 +228,14 @@ document_description = {
 					]
 				}
 			],
-			"word_vectors": [
-				{
-					"id": "word_vectors id",
-					"description": "word_vectors description",
-					"date": "2020-12-31",
-					"vector": {}
-				}
-			]
+			# "word_vectors": [
+			# 	{
+			# 		"id": "word_vectors id",
+			# 		"description": "word_vectors description",
+			# 		"date": "2020-12-31",
+			# 		"vector": {}
+			# 	}
+			# ]
 		}
 	]
 }

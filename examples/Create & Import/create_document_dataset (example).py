@@ -1,7 +1,7 @@
 import pynada as nada
 
 nada.set_api_url('http://training.ihsn.org/index.php/api/')
-api_key = open("API Key.txt", "r").read()
+api_key = open("../API Key.txt", "r").read()
 nada.set_api_key(api_key)
 
 
@@ -11,7 +11,7 @@ nada.set_api_key(api_key)
 
 dataset_id = "DOCUMENT-DATASET-SAMPLE-02"
 repository_id = "central"
-published = 1
+published = 0
 overwrite = "yes"
 document_description = {
     "title_statement": {
@@ -56,5 +56,5 @@ print(response)
 
 # If you have pdf file, generate thumbnail from it.
 pdf_file_path = 'WPS8038.pdf'
-thumbnail_path = nada.pdf_to_thumbnail(pdf_file_path, page_no = 1)
+thumbnail_path = nada.pdf_to_thumbnail(pdf_file_path, page_no=1)
 nada.upload_thumbnail(dataset_id, thumbnail_path)
