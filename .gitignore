@@ -4,6 +4,6 @@ dist/*
 pynada.egg-info/*
 maintenance_commands.txt
 /.vscode/
-temp_thumbnail.jpg
 API_keys.csv
 API Key.txt
+*.jpg
