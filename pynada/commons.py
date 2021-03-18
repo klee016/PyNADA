@@ -83,8 +83,12 @@ def make_get_request(endpoint, params):
     if response.status_code != 200:
         raise Exception('GET /'+endpoint+'/ {}'.format(response.status_code) + ' ' + f'{response.text}')
 
-    #print(response.text)
-    return response.json()
+    try:
+        json_response = response.json()
+    except ValueError:
+        raise Exception('GET /' + endpoint + '/ {}'.format(response.status_code) + ' ' + f'{response.text}')
+
+    return json_response
 
    
 def make_post_request(endpoint, data, files=None):
@@ -120,8 +124,12 @@ def make_post_request(endpoint, data, files=None):
         print(response.request.body)
         raise Exception('POST /'+endpoint+'/ {}'.format(response.status_code) + ' ' + f'{response.text}')
 
-    #print(response.text)
-    return response.json()
+    try:
+        json_response = response.json()
+    except ValueError:
+        raise Exception('GET /' + endpoint + '/ {}'.format(response.status_code) + ' ' + f'{response.text}')
+
+    return json_response
 
 
 def make_put_request(endpoint, data):
@@ -155,8 +163,12 @@ def make_put_request(endpoint, data):
         print(response.request.body)
         raise Exception('PUT /'+endpoint+'/ {}'.format(response.status_code) + ' ' + f'{response.text}')
 
-    #print(response.text)
-    return response.json()
+    try:
+        json_response = response.json()
+    except ValueError:
+        raise Exception('GET /' + endpoint + '/ {}'.format(response.status_code) + ' ' + f'{response.text}')
+
+    return json_response
 
 
 def make_delete_request(endpoint):
@@ -183,8 +195,12 @@ def make_delete_request(endpoint):
         print(response.request.body)
         raise Exception('DELETE /' + endpoint + '/ {}'.format(response.status_code) + ' ' + f'{response.text}')
 
-    #print(response.text)
-    return response.json()
+    try:
+        json_response = response.json()
+    except ValueError:
+        raise Exception('GET /' + endpoint + '/ {}'.format(response.status_code) + ' ' + f'{response.text}')
+
+    return json_response
 
 
 def depth(d):
