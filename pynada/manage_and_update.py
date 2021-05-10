@@ -496,7 +496,7 @@ def delete_DDI_metadata(
 
 def set_dataset_numid(
         dataset_id=None,
-        new_id=None
+        new_numid=None
 ):
     """Change the dataset internal numeric database ID
 
@@ -514,7 +514,7 @@ def set_dataset_numid(
     }
 
     data = {key: value for key, value in data.items() if value is not None}
-    response = make_put_request('datasets/update_id/'+dataset_id+'/'+new_id, data)
+    response = make_put_request('datasets/update_id/'+dataset_id+'/'+str(new_numid), data)
 
     if response['status'] == 'success':
         print("Dataset numeric ID successfully changed.")
@@ -556,3 +556,73 @@ def generate_metadata_PDF(
 
     if response['status'] == 'success':
         print("PDF metadata documentation successfully generated.")
+
+
+def upload_widget(
+        widget_id=None,
+        title=None,
+        file_path=None,
+        thumbnail=None,
+        description=None,
+):
+    """Upload a widget (ex: chart, map, diagram) to the catalog
+
+    Parameters
+    ----------
+    widget_id : str
+        Widget UUID
+    title : str
+        Title of the graphic
+    file_path : str
+        Path and file name of a zip file containing HTML, CSS, JS, etc.
+    thumbnail : str
+        Name of the image file to use as thumbnail
+    description: : str
+        Description of the widget
+    """
+
+    if Path(file_path).exists() and PurePath(file_path).suffix == '.zip':
+        print("You provided a zip file. Processing...")
+        file = {'file': open(Path(file_path), 'rb')}
+    else:
+        raise Exception("The file_path you provided doesn't seem to be a valid file path or a zip file.")
+
+    data = {
+        "title": title
+    }
+
+    data = {key: value for key, value in data.items() if value is not None}
+    response = make_post_request('widgets/'+widget_id, data, file)
+
+    if response['status'] == 'success':
+        print('Widget successfully uploaded to the catalog.')
+
+    return pd.DataFrame.from_dict(response)
+
+
+def attach_widget(
+        dataset_id=None,
+        widget_id=None
+):
+    """Attach a widget (ex: chart, map, diagram) to a dataset
+
+    Parameters
+    ----------
+    dataset_id : str
+        Dataset IDNo
+    widget_id : str
+        Widget UUID
+    """
+
+    data = {
+        "idno": dataset_id,
+        "uuid": widget_id
+    }
+
+    data = {key: value for key, value in data.items() if value is not None}
+    response = make_post_request('widgets/attach_to_study', data)
+
+    if response['status'] == 'success':
+        print('Widget successfully attached to the dataset.')
+
+    return pd.DataFrame.from_dict(response)

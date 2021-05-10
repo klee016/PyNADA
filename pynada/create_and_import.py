@@ -557,8 +557,6 @@ def create_timeseries_dataset(
 
 
 def create_timeseries_database(
-        dataset_id=None,
-        repository_id=None,
         published=None,
         overwrite=None,
         database_description=None,
@@ -568,54 +566,39 @@ def create_timeseries_database(
 
     Parameters
     ----------
-    dataset_id : str
-        Dataset IDNo
-    repository_id : str
-        Collection that owns the timeseries dataset
-    access_policy : str
-        Data access policy. Valid values - "direct" "open" "public" "licensed" "remote" "na"
-    data_remote_url: str
-        Link to the website where the data is available, this is only needed if access_policy is set to "remote"
     published : int
         Set status for study - 0 = Draft, 1 = Published
     overwrite : str
         Overwrite if a study with the same ID already exists? Valid values "yes", "no"
-    metadata_creation : dict
-        Information on who generated the documentation
-    series_description : dict
-        Description on the timeseries dataset
+    database_description : dict
+        Metadata for the database
     additional : dict
         Any other custom metadata not covered by the schema
 
     Returns
     -------
     DataFrame
-        Information on the added timeseries dataset
+        Information on the added database
     """
 
     data = {
-        "repositoryid": repository_id,
-        "access_policy": access_policy,
-        "data_remote_url": data_remote_url,
         "published": published,
         "overwrite": overwrite,
-        "metadata_creation": metadata_creation,
-        "series_description": series_description,
+        "database_description": database_description,
         "additional": additional
     }
 
-    assert dataset_id == series_description["idno"]
-
     data = {key: value for key, value in data.items() if value is not None}
-    response = make_post_request('datasets/create/timeseries/'+dataset_id, data)
+    response = make_post_request('datasets/create/timeseriesdb', data)
 
     if response['status'] == 'success':
         print("Timeseries database successfully added to the catalog.")
 
-    return pd.DataFrame.from_dict(response['dataset'], orient='index')
+    return response
+    #return pd.DataFrame.from_dict(response['dataset'], orient='index')
 
 
-def create_survey_dataset_from_DDI(
+def import_DDI(
         file=None,
         overwrite=None,
         repository_id=None,
@@ -655,7 +638,7 @@ def create_survey_dataset_from_DDI(
                         "If it is a URL, make sure to add a proper prefix such as http://")
 
     if rdf is not None:
-        if validator.url(rdf):
+        if validators.url(rdf):
             print("You provided a URL for the RDF. Processing...")
         elif Path(rdf).exists():
             print("You provided a file for the RDF. Processing...")
@@ -684,7 +667,7 @@ def create_survey_dataset_from_DDI(
     return pd.DataFrame.from_dict(response['dataset'], orient='index')
 
 
-def add_resource_from_RDF(
+def import_RDF(
         dataset_id=None,
         file=None
 ):

@@ -115,7 +115,7 @@ def make_post_request(endpoint, data, files=None):
 
     if len(data) == 0:
         data = ""
-    elif depth(data) > 1:
+    elif depth(data) > 0 and files is None:
         data = json.dumps(data)
 
     response = requests.post(api_base_url + endpoint, headers=headers, data=data, files=files)
