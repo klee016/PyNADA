@@ -8,3 +8,4 @@ API_keys.csv
 API Key.txt
 *.jpg
 /tests/
+/.idea/
