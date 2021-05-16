@@ -445,6 +445,7 @@ def create_geospatial_dataset(
         repository_id=None,
         published=None,
         overwrite=None,
+        type=None,
         dataset_metadata=None,
         service_metadata=None,
         feature_catalogue=None,
@@ -462,6 +463,8 @@ def create_geospatial_dataset(
         Set status for study - 0 = Draft, 1 = Published
     overwrite : str
         Overwrite if a study with the same ID already exists? Valid values "yes", "no"
+    type : str
+        Geospatial metadata type - dataset, service
     dataset_metadata : dict
         Dataset description following ISO 19115 / ISO/TS 19139 metadata standard
     service_metadata : dict
@@ -481,6 +484,8 @@ def create_geospatial_dataset(
         "repositoryid": repository_id,
         "published": published,
         "overwrite": overwrite,
+        "type": type,
+        "idno": dataset_id,
         "dataset_metadata": dataset_metadata,
         "service_metadata": service_metadata,
         "feature_catalogue": feature_catalogue,
