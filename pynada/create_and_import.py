@@ -445,8 +445,9 @@ def create_geospatial_dataset(
         repository_id=None,
         published=None,
         overwrite=None,
-        metadata_maintenance=None,
-        dataset_description=None,
+        dataset_metadata=None,
+        service_metadata=None,
+        feature_catalogue=None,
         additional=None
 ):
     """Add a new geospatial dataset to the catalog
@@ -461,10 +462,12 @@ def create_geospatial_dataset(
         Set status for study - 0 = Draft, 1 = Published
     overwrite : str
         Overwrite if a study with the same ID already exists? Valid values "yes", "no"
-    metadata_maintenance : dict
-        Metadata information for the geospatial dataset
-    dataset_description : dict
-        Description of the geospatial dataset
+    dataset_metadata : dict
+        Dataset description following ISO 19115 / ISO/TS 19139 metadata standard
+    service_metadata : dict
+        Service description following ISO 19119 / ISO/TS 19139 metadata standard
+    feature_catalogue : dict
+        Feature catalogue
     additional : dict
         Any other custom metadata not covered by the schema
 
@@ -478,12 +481,13 @@ def create_geospatial_dataset(
         "repositoryid": repository_id,
         "published": published,
         "overwrite": overwrite,
-        "metadata_maintenance": metadata_maintenance,
-        "dataset_description": dataset_description,
+        "dataset_metadata": dataset_metadata,
+        "service_metadata": service_metadata,
+        "feature_catalogue": feature_catalogue,
         "additional": additional
     }
 
-    assert dataset_id == dataset_description["file_identifier"]
+    assert dataset_id == dataset_metadata["fileIdentifier"]
 
     data = {key: value for key, value in data.items() if value is not None}
     response = make_post_request('datasets/create/geospatial/'+dataset_id, data)
