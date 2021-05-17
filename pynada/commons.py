@@ -90,7 +90,7 @@ def set_api_env(url=None, key=None, auth=None):
     Parameters
     ----------
     url : str
-        URL string
+        Base URL string
     key : str
         API key
     auth : str
