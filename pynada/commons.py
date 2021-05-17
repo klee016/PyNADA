@@ -6,6 +6,7 @@ import pandas as pd
 
 api_key = ''
 api_base_url = ''
+api_auth = ''
 
 
 def set_api_key(key):
@@ -58,6 +59,52 @@ def get_api_url():
     return api_base_url
 
 
+def set_api_auth(auth):
+    """Set authorization string
+
+    Parameters
+    ----------
+    auth : str
+        Authorization string
+    """
+
+    global api_auth
+    api_auth = auth
+
+
+def get_api_auth():
+    """Get authorization string
+
+    Returns
+    -------
+    auth : str
+        Authorization string
+    """
+
+    return api_auth
+
+
+def set_api_env(url=None, key=None, auth=None):
+    """Set base URL, API key and authorization string
+
+    Parameters
+    ----------
+    url : str
+        URL string
+    key : str
+        API key
+    auth : str
+        Authorization string
+    """
+
+    global api_base_url
+    global api_key
+    global api_auth
+    api_base_url = url
+    api_key = key
+    api_auth = auth
+
+
 def make_get_request(endpoint, params):
     """Make a general GET HTTP request
 
@@ -75,7 +122,8 @@ def make_get_request(endpoint, params):
     """
     
     headers = {
-        'X-API-KEY': api_key
+        'X-API-KEY': api_key,
+        'Authorization': api_auth
     }
 
     response = requests.get(api_base_url + endpoint, headers=headers, params=params)
@@ -110,7 +158,8 @@ def make_post_request(endpoint, data, files=None):
     """
 
     headers = {
-        'X-API-KEY': api_key
+        'X-API-KEY': api_key,
+        'Authorization': api_auth
     }
 
     if len(data) == 0:
@@ -149,7 +198,8 @@ def make_put_request(endpoint, data):
     """
 
     headers = {
-        'X-API-KEY': api_key
+        'X-API-KEY': api_key,
+        'Authorization': api_auth
     }
 
     if len(data) == 0:
@@ -186,7 +236,8 @@ def make_delete_request(endpoint):
     """
 
     headers = {
-        'X-API-KEY': api_key
+        'X-API-KEY': api_key,
+        'Authorization': api_auth
     }
 
     response = requests.delete(api_base_url + endpoint, headers=headers)
