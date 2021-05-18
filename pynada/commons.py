@@ -4,9 +4,8 @@ import sys
 import pandas as pd
 
 
-api_key = ''
 api_base_url = ''
-api_auth = ''
+http_headers = {}
 
 
 def set_api_key(key):
@@ -17,9 +16,11 @@ def set_api_key(key):
     key : str
         API key
     """
-    
-    global api_key
-    api_key = key
+
+    # global api_key
+    # api_key = key
+    global http_headers
+    http_headers['X-API-KEY'] = key
 
 
 def get_api_key():
@@ -31,7 +32,8 @@ def get_api_key():
         API key
     """
     
-    return api_key
+    # return api_key
+    return http_headers['X-API-KEY']
 
 
 def set_api_url(url):
@@ -68,8 +70,8 @@ def set_api_auth(auth):
         Authorization string
     """
 
-    global api_auth
-    api_auth = auth
+    global http_headers
+    http_headers['Authorization'] = auth
 
 
 def get_api_auth():
@@ -81,28 +83,24 @@ def get_api_auth():
         Authorization string
     """
 
-    return api_auth
+    return http_headers['Authorization']
 
 
-def set_api_env(url=None, key=None, auth=None):
-    """Set base URL, API key and authorization string
+def set_api_env(url=None, headers=None):
+    """Set base URL and http headers
 
     Parameters
     ----------
     url : str
         Base URL string
-    key : str
-        API key
-    auth : str
-        Authorization string
+    headers : dict
+        Http headers
     """
 
     global api_base_url
-    global api_key
-    global api_auth
+    global http_headers
     api_base_url = url
-    api_key = key
-    api_auth = auth
+    http_headers = headers
 
 
 def make_get_request(endpoint, params):
@@ -120,13 +118,8 @@ def make_get_request(endpoint, params):
     response : dict
         HTTP response
     """
-    
-    headers = {
-        'X-API-KEY': api_key,
-        'Authorization': api_auth
-    }
 
-    response = requests.get(api_base_url + endpoint, headers=headers, params=params)
+    response = requests.get(api_base_url + endpoint, headers=http_headers, params=params)
     
     if response.status_code != 200:
         raise Exception('GET /'+endpoint+'/ {}'.format(response.status_code) + ' ' + f'{response.text}')
@@ -157,17 +150,12 @@ def make_post_request(endpoint, data, files=None):
         HTTP response
     """
 
-    headers = {
-        'X-API-KEY': api_key,
-        'Authorization': api_auth
-    }
-
     if len(data) == 0:
         data = ""
     elif depth(data) > 0 and files is None:
         data = json.dumps(data)
 
-    response = requests.post(api_base_url + endpoint, headers=headers, data=data, files=files)
+    response = requests.post(api_base_url + endpoint, headers=http_headers, data=data, files=files)
 
     if response.status_code != 200:
         print(response.request.body)
@@ -197,17 +185,12 @@ def make_put_request(endpoint, data):
         HTTP response
     """
 
-    headers = {
-        'X-API-KEY': api_key,
-        'Authorization': api_auth
-    }
-
     if len(data) == 0:
         data = ""
     elif depth(data) > 1:
         data = json.dumps(data)
 
-    response = requests.put(api_base_url + endpoint, headers=headers, data=data)
+    response = requests.put(api_base_url + endpoint, headers=http_headers, data=data)
 
     if response.status_code != 200:
         print(response.request.body)
@@ -235,12 +218,7 @@ def make_delete_request(endpoint):
         HTTP response
     """
 
-    headers = {
-        'X-API-KEY': api_key,
-        'Authorization': api_auth
-    }
-
-    response = requests.delete(api_base_url + endpoint, headers=headers)
+    response = requests.delete(api_base_url + endpoint, headers=http_headers)
 
     if response.status_code != 200:
         print(response.request.body)
