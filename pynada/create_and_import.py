@@ -673,7 +673,7 @@ def import_DDI(
     if response['status'] == 'success':
         print("Survey dataset successfully added to the catalog.")
 
-    return pd.DataFrame.from_dict(response['dataset'], orient='index')
+    return response['survey']
 
 
 def import_RDF(
@@ -705,4 +705,4 @@ def import_RDF(
     if response['status'] == 'success':
         print("Resource(s) successfully added to the dataset.")
 
-    return pd.DataFrame(response, orient='index')
+    return response
