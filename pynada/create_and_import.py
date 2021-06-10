@@ -445,10 +445,9 @@ def create_geospatial_dataset(
         repository_id=None,
         published=None,
         overwrite=None,
-        type=None,
-        dataset_metadata=None,
-        service_metadata=None,
-        feature_catalogue=None,
+        description=None,
+        tags=None,
+        provenance=None,
         additional=None
 ):
     """Add a new geospatial dataset to the catalog
@@ -463,14 +462,12 @@ def create_geospatial_dataset(
         Set status for study - 0 = Draft, 1 = Published
     overwrite : str
         Overwrite if a study with the same ID already exists? Valid values "yes", "no"
-    type : str
-        Geospatial metadata type - dataset, service
-    dataset_metadata : dict
-        Dataset description following ISO 19115 / ISO/TS 19139 metadata standard
-    service_metadata : dict
-        Service description following ISO 19119 / ISO/TS 19139 metadata standard
-    feature_catalogue : dict
-        Feature catalogue
+    description : dict
+        Dataset description following ISO 19115 / ISO 19119 / ISO/TS 19139 metadata standard
+    tags : list of dict
+        Tags
+    provenance : list of dict
+        Provenance of metadata based on the OAI provenance schema (http://www.openarchives.org/OAI/2.0/provenance.xsd)
     additional : dict
         Any other custom metadata not covered by the schema
 
@@ -484,15 +481,13 @@ def create_geospatial_dataset(
         "repositoryid": repository_id,
         "published": published,
         "overwrite": overwrite,
-        "type": type,
-        "idno": dataset_id,
-        "dataset_metadata": dataset_metadata,
-        "service_metadata": service_metadata,
-        "feature_catalogue": feature_catalogue,
+        "description": description,
+        "tags": tags,
+        "provenance": provenance,
         "additional": additional
     }
 
-    assert dataset_id == dataset_metadata["fileIdentifier"]
+    assert dataset_id == description["idno"]
 
     data = {key: value for key, value in data.items() if value is not None}
     response = make_post_request('datasets/create/geospatial/'+dataset_id, data)
