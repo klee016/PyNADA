@@ -158,7 +158,6 @@ def make_post_request(endpoint, data, files=None):
     response = requests.post(api_base_url + endpoint, headers=http_headers, data=data, files=files)
 
     if response.status_code != 200:
-        print(response.request.body)
         raise Exception('POST /'+endpoint+'/ {}'.format(response.status_code) + ' ' + f'{response.text}')
 
     try:
@@ -193,7 +192,6 @@ def make_put_request(endpoint, data):
     response = requests.put(api_base_url + endpoint, headers=http_headers, data=data)
 
     if response.status_code != 200:
-        print(response.request.body)
         raise Exception('PUT /'+endpoint+'/ {}'.format(response.status_code) + ' ' + f'{response.text}')
 
     try:
@@ -221,7 +219,6 @@ def make_delete_request(endpoint):
     response = requests.delete(api_base_url + endpoint, headers=http_headers)
 
     if response.status_code != 200:
-        print(response.request.body)
         raise Exception('DELETE /' + endpoint + '/ {}'.format(response.status_code) + ' ' + f'{response.text}')
 
     try:
