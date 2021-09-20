@@ -51,6 +51,7 @@ def dataset_collections_list(limit=None):
 
     return pd.DataFrame.from_dict(response['datasets']).set_index('id')
 
+
 def list_datasets():
     """Returns a list of all datasets in the catalog
 
