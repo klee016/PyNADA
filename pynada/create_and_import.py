@@ -2,19 +2,66 @@ from .manage_and_update import *
 
 
 def create_collection(
-        repository_id
+        repositoryid=None,
+        title=None,
+        short_text=None,
+        long_text=None,
+        thumbnail_path=None,
+        weight=None,
+        section=None,
+        ispublished=None
 ):
     """Create new collection
     
     Parameters
     ----------
     repository_id : str
-        Collection's unique IDNo
+        Collection identifier containing numbers and letters only
+    title: str
+        Collection Title
+    short_text: str
+        A short description for the collection
+    long_text: str
+        Detailed collection description. This field supports basic html and image tags.
+    thumbnail: str
+        Upload an image file or provide path/url
+    weight: int
+        Provide weight to arrange display of collection
+    section: int
+        2 = Regional collection, 3 = Specialized collection
+    ispublished: 0
+        0= draft, 1=published
     """
 
-    data ={}
+    data ={
+        "repositoryid":repositoryid,
+        "title":title,
+        "short_text" :short_text,
+        "long_text":long_text,
+        "weight":weight,
+        "section":section,
+        "ispublished":ispublished
+    }
+    thumbnail_fname = os.path.basename(thumbnail_path)
+    thumbnail_ext = os.path.splitext(thumbnail_fname)[1]
+    if thumbnail_ext == ".jpg":
+        thumbnail_format = "jpeg"
+    elif thumbnail_ext == ".png":
+        thumbnail_format = "png"
+    elif thumbnail_ext == ".gif":
+        thumbnail_format = "gif"
+    else:
+        print(
+            f"Warning: Thumbnail not uploaded. The {thumbnail_ext} filetype you attempted to upload is not allowed. Allowable file types are .jpg, .png and .gif")
+        thumbnail_path = thumbnail_fname = thumbnail_format = files = None
 
-    response = make_post_request('collections/' + repository_id, data)
+    if thumbnail_path:
+        files = [
+            ('thumbnail',
+             (thumbnail_fname, open(f'{thumbnail_path}', 'rb'), f'image/{thumbnail_format}'))
+        ]
+
+    response = make_post_request('collections/' + repositoryid, data, files=files)
 
     if response['status'] == 'success':
         print("Collection successfully created.")

@@ -626,3 +626,162 @@ def attach_widget(
         print('Widget successfully attached to the dataset.')
 
     return pd.DataFrame.from_dict(response)
+
+def update_collection(
+        repositoryid=None,
+        title=None,
+        short_text=None,
+        long_text=None,
+        thumbnail_path=None,
+        weight=None,
+        section=None,
+        ispublished=None
+):
+    """Update existing collection
+
+    Parameters
+    ----------
+    repository_id : str
+        Collection identifier containing numbers and letters only
+    title: str
+        Collection Title
+    short_text: str
+        A short description for the collection
+    long_text: str
+        Detailed collection description. This field supports basic html and image tags.
+    thumbnail_path: str
+        Upload an image file or provide path/url
+    weight: int
+        Provide weight to arrange display of collection
+    section: int
+        2 = Regional collection, 3 = Specialized collection
+    ispublished: 0
+        0= draft, 1=published
+    """
+
+    data = {
+        "repositoryid": repositoryid,
+        "title": title,
+        "short_text": short_text,
+        "long_text": long_text,
+        "weight": weight,
+        "section": section,
+        "ispublished": ispublished
+    }
+    data = {key: value for key, value in data.items() if value is not None}
+
+    thumbnail_fname=os.path.basename(thumbnail_path)
+    thumbnail_ext = os.path.splitext(thumbnail_fname)[1]
+    if thumbnail_ext == ".jpg":
+        thumbnail_format = "jpeg"
+    elif thumbnail_ext == ".png":
+        thumbnail_format = "png"
+    elif thumbnail_ext == ".gif":
+        thumbnail_format = "gif"
+    else:
+        print(f"The {thumbnail_ext} filetype you attempted to upload is not allowed. Allowable file types are .jpg, .png and .gif")
+
+    if thumbnail_path:
+        files = [
+            ('thumbnail',
+             (thumbnail_fname, open(f'{thumbnail_path}', 'rb'), f'image/{thumbnail_format}'))
+        ]
+    else:
+        files = None
+
+    response = make_post_request('collections/update/'+repositoryid, data, files=files)
+
+    if response['status'] == 'success':
+        print("Collection successfully updated.")
+
+    return pd.DataFrame.from_dict(response, orient='index')
+
+def rename_collection(
+        old_repositoryid=None,
+        new_repositoryid=None
+):
+    """Update existing collection
+
+    Parameters
+    ----------
+    old_repository_id : str
+        Collection identifier containing numbers and letters only
+    new_repositoryid:str
+    """
+
+    data = {'old_repositoryid': old_repositoryid,
+               'new_repositoryid': new_repositoryid}
+    # files=[]
+    # response = requests.request("POST", url, headers=headers, data=payload, files=files)
+    response = make_post_request('collections/rename/', data)
+
+    if response['status'] == 'success':
+        print("Collection ID successfully renamed.")
+
+    return pd.DataFrame.from_dict(response, orient='index')
+
+def delete_collection(
+        repositoryid=None
+):
+    """Update existing collection
+
+    Parameters
+    ----------
+    old_repository_id : str
+        Collection identifier containing numbers and letters only
+    new_repositoryid:str
+    """
+
+    data = {
+        "repositoryid": repositoryid,
+          }
+
+    response = make_delete_request('collections/'+ repositoryid)
+
+    if response['status'] == 'success':
+        print(f"Collection {repositoryid} successfully deleted.")
+
+    return pd.DataFrame.from_dict(response, orient='index')
+
+def dataset_attach_collections(
+        study_idno = None,
+        owner_collection = None,
+        link_collections = None,
+        mode = None
+):
+    """Attach study(ies) to existing collection
+
+    Parameters
+    ----------
+    study_idno: str
+        Study ID - Required
+    owner_collection: str
+        Collection's id that owns the dataset/study. (optional) if a value is provided,
+        it will replace the owner collection for the study.
+    link_collections: Array of string - Required
+        List of collections that will display the dataset/study
+    mode:str
+        Select flag to update or replace the linked collections (string) Required.
+        Default - "update"
+        Valid values - "replace""update"
+    """
+    if link_collections is None:
+        link_collections=[]
+
+    data = json.dumps([
+        {
+            "study_idno": study_idno,
+            "owner_collection": owner_collection,
+            "link_collections": link_collections,
+            "mode": mode
+        }
+    ])
+    response = make_post_request('datasets/collections/', data)
+
+    if response['status'] == 'success'and link_collections:
+        print(f"{study_idno} successfully attached to {owner_collection} collection and linked to {link_collections}.")
+    elif response['status'] == 'success' and not link_collections:
+        print(f"{study_idno} successfully attached to {owner_collection} collection")
+    else:
+        print(response['status'])
+    return pd.DataFrame.from_dict(response, orient='index')
