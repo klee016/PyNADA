@@ -2,14 +2,14 @@ from .manage_and_update import *
 
 
 def create_collection(
-        repositoryid=None,
+        repository_id=None,
         title=None,
         short_text=None,
         long_text=None,
         thumbnail_path=None,
         weight=None,
         section=None,
-        ispublished=None
+        is_published=None
 ):
     """Create new collection
     
@@ -23,27 +23,27 @@ def create_collection(
         A short description for the collection
     long_text: str
         Detailed collection description. This field supports basic html and image tags.
-    thumbnail: str
+    thumbnail_path: str
         Upload an image file or provide path/url
     weight: int
         Provide weight to arrange display of collection
     section: int
         2 = Regional collection, 3 = Specialized collection
-    ispublished: 0
+    is_published: 0
         0= draft, 1=published
     """
 
     data ={
-        "repositoryid":repositoryid,
-        "title":title,
-        "short_text" :short_text,
-        "long_text":long_text,
-        "weight":weight,
-        "section":section,
-        "ispublished":ispublished
+        "repositoryid": repository_id,
+        "title": title,
+        "short_text": short_text,
+        "long_text": long_text,
+        "weight": weight,
+        "section": section,
+        "ispublished": is_published
     }
-    thumbnail_fname = os.path.basename(thumbnail_path)
-    thumbnail_ext = os.path.splitext(thumbnail_fname)[1]
+    thumbnail_fname = PurePath(thumbnail_path).name
+    thumbnail_ext = PurePath(thumbnail_fname).suffix
     if thumbnail_ext == ".jpg":
         thumbnail_format = "jpeg"
     elif thumbnail_ext == ".png":
@@ -61,7 +61,7 @@ def create_collection(
              (thumbnail_fname, open(f'{thumbnail_path}', 'rb'), f'image/{thumbnail_format}'))
         ]
 
-    response = make_post_request('collections/' + repositoryid, data, files=files)
+    response = make_post_request('collections/' + repository_id, data, files=files)
 
     if response['status'] == 'success':
         print("Collection successfully created.")

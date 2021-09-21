@@ -627,15 +627,16 @@ def attach_widget(
 
     return pd.DataFrame.from_dict(response)
 
+
 def update_collection(
-        repositoryid=None,
+        repository_id=None,
         title=None,
         short_text=None,
         long_text=None,
         thumbnail_path=None,
         weight=None,
         section=None,
-        ispublished=None
+        is_published=None
 ):
     """Update existing collection
 
@@ -655,23 +656,23 @@ def update_collection(
         Provide weight to arrange display of collection
     section: int
         2 = Regional collection, 3 = Specialized collection
-    ispublished: 0
+    is_published: 0
         0= draft, 1=published
     """
 
     data = {
-        "repositoryid": repositoryid,
+        "repositoryid": repository_id,
         "title": title,
         "short_text": short_text,
         "long_text": long_text,
         "weight": weight,
         "section": section,
-        "ispublished": ispublished
+        "ispublished": is_published
     }
     data = {key: value for key, value in data.items() if value is not None}
 
-    thumbnail_fname=os.path.basename(thumbnail_path)
-    thumbnail_ext = os.path.splitext(thumbnail_fname)[1]
+    thumbnail_fname = PurePath(thumbnail_path).name
+    thumbnail_ext = PurePath(thumbnail_fname).suffix
     if thumbnail_ext == ".jpg":
         thumbnail_format = "jpeg"
     elif thumbnail_ext == ".png":
@@ -689,16 +690,17 @@ def update_collection(
     else:
         files = None
 
-    response = make_post_request('collections/update/'+repositoryid, data, files=files)
+    response = make_post_request('collections/update/'+repository_id, data, files=files)
 
     if response['status'] == 'success':
         print("Collection successfully updated.")
 
     return pd.DataFrame.from_dict(response, orient='index')
 
+
 def rename_collection(
-        old_repositoryid=None,
-        new_repositoryid=None
+        old_repository_id=None,
+        new_repository_id=None
 ):
     """Update existing collection
 
@@ -706,11 +708,11 @@ def rename_collection(
     ----------
     old_repository_id : str
         Collection identifier containing numbers and letters only
-    new_repositoryid:str
+    new_repository_id:str
     """
 
-    data = {'old_repositoryid': old_repositoryid,
-               'new_repositoryid': new_repositoryid}
+    data = {'old_repositoryid': old_repository_id,
+            'new_repositoryid': new_repository_id}
     # files=[]
     # response = requests.request("POST", url, headers=headers, data=payload, files=files)
     response = make_post_request('collections/rename/', data)
@@ -720,36 +722,33 @@ def rename_collection(
 
     return pd.DataFrame.from_dict(response, orient='index')
 
+
 def delete_collection(
-        repositoryid=None
+        repository_id=None
 ):
     """Update existing collection
 
     Parameters
     ----------
-    old_repository_id : str
+    repository_id : str
         Collection identifier containing numbers and letters only
-    new_repositoryid:str
     """
 
-    data = {
-        "repositoryid": repositoryid,
-          }
-
-    response = make_delete_request('collections/'+ repositoryid)
+    response = make_delete_request('collections/' + repository_id)
 
     if response['status'] == 'success':
-        print(f"Collection {repositoryid} successfully deleted.")
+        print(f"Collection {repository_id} successfully deleted.")
 
     return pd.DataFrame.from_dict(response, orient='index')
 
-def dataset_attach_collections(
+
+def attach_dataset(
         study_idno = None,
         owner_collection = None,
         link_collections = None,
         mode = None
 ):
-    """Attach study(ies) to existing collection
+    """Attach a dataset to existing collection(s)
 
     Parameters
     ----------
@@ -763,10 +762,11 @@ def dataset_attach_collections(
     mode:str
         Select flag to update or replace the linked collections (string) Required.
         Default - "update"
-        Valid values - "replace""update"
+        Valid values - "replace", "update"
     """
+
     if link_collections is None:
-        link_collections=[]
+        link_collections = []
 
     data = json.dumps([
         {
@@ -778,7 +778,7 @@ def dataset_attach_collections(
     ])
     response = make_post_request('datasets/collections/', data)
 
-    if response['status'] == 'success'and link_collections:
+    if response['status'] == 'success' and link_collections:
         print(f"{study_idno} successfully attached to {owner_collection} collection and linked to {link_collections}.")
     elif response['status'] == 'success' and not link_collections:
         print(f"{study_idno} successfully attached to {owner_collection} collection")

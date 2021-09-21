@@ -35,7 +35,8 @@ def get_collection_info(repository_id):
 
     return pd.DataFrame.from_dict(response['collection'], orient='index')
 
-def dataset_collections_list(limit=None):
+
+def list_datasets_collections(limit=None):
     """List datasets along with the collections they are linked and owned
 
     Returns
@@ -45,7 +46,7 @@ def dataset_collections_list(limit=None):
     """
 
     params = {
-        'limit':limit
+        'limit': limit
     }
     response = make_get_request('datasets/collections', params)
 
