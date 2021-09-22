@@ -17,7 +17,7 @@ def list_collections(published=None):
 
     params = {}
     if published is not None:
-        params = {"published": published}
+        params['published'] = published
     response = make_get_request('collections', params)
 
     return pd.DataFrame.from_dict(response['collections']).set_index('id')
@@ -43,21 +43,30 @@ def get_collection_info(repository_id):
     return pd.DataFrame.from_dict(response['collection'], orient='index')
 
 
-def list_datasets_collections(limit=None):
+def list_dataset_placements(dataset_id=None, limit=None):
     """List datasets along with the collections they are linked and owned
+
+    Parameters
+    ----------
+    dataset_id : str
+        Dataset IDNo
 
     Returns
     -------
     pd.DataFrame
-        dataset information
+        dataset placement information
     """
 
-    params = {
-        'limit': limit
-    }
+    params = {}
+    if limit is not None:
+        params['limit'] = limit
     response = make_get_request('datasets/collections', params)
 
-    return pd.DataFrame.from_dict(response['datasets']).set_index('id')
+    placement_info = pd.DataFrame.from_dict(response['datasets']).set_index('id')
+    if dataset_id is not None:
+        placement_info = placement_info[placement_info['idno'].str.contains(dataset_id)]
+
+    return placement_info
 
 
 def list_datasets():
