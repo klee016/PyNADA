@@ -2,8 +2,12 @@ from .commons import *
 import pandas as pd
 
 
-def list_collections():
+def list_collections(published=None):
     """Returns a list of all collections in the catalog
+    Parameters
+    ----------
+    published : int
+        (Optional) Filter by published status - 0=draft, 1=published
 
     Returns
     -------
@@ -12,6 +16,8 @@ def list_collections():
     """
 
     params = {}
+    if published is not None:
+        params = {"published": published}
     response = make_get_request('collections', params)
 
     return pd.DataFrame.from_dict(response['collections']).set_index('id')
