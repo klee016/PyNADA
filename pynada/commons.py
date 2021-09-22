@@ -15,8 +15,6 @@ def set_api_key(key):
         API key
     """
 
-    # global api_key
-    # api_key = key
     global http_headers
     http_headers['X-API-KEY'] = key
 
@@ -29,8 +27,7 @@ def get_api_key():
     api_key : str
         API key
     """
-    
-    # return api_key
+
     return http_headers['X-API-KEY']
 
 
