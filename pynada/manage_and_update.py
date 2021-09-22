@@ -742,18 +742,18 @@ def delete_collection(
     return pd.DataFrame.from_dict(response, orient='index')
 
 
-def attach_dataset(
-        study_idno = None,
-        owner_collection = None,
-        link_collections = None,
-        mode = None
+def place_dataset(
+        dataset_id=None,
+        owner_collection=None,
+        link_collections=None,
+        mode=None
 ):
-    """Attach a dataset to existing collection(s)
+    """Replace or attach a dataset to collection(s)
 
     Parameters
     ----------
-    study_idno: str
-        Study ID - Required
+    dataset_id: str
+        Dataset IDNo - Required
     owner_collection: str
         Collection's id that owns the dataset/study. (optional) if a value is provided,
         it will replace the owner collection for the study.
@@ -770,18 +770,19 @@ def attach_dataset(
 
     data = json.dumps([
         {
-            "study_idno": study_idno,
+            "study_idno": dataset_id,
             "owner_collection": owner_collection,
             "link_collections": link_collections,
             "mode": mode
         }
     ])
+
     response = make_post_request('datasets/collections/', data)
 
-    if response['status'] == 'success' and link_collections:
-        print(f"{study_idno} successfully attached to {owner_collection} collection and linked to {link_collections}.")
-    elif response['status'] == 'success' and not link_collections:
-        print(f"{study_idno} successfully attached to {owner_collection} collection")
+    if response['status'] == 'success' and owner_collection:
+        print(f"{dataset_id} successfully attached to {owner_collection} collection and linked to {link_collections}.")
+    elif response['status'] == 'success' and not owner_collection:
+        print(f"{dataset_id} successfully linked to {link_collections} collection")
     else:
         print(response['status'])
     return pd.DataFrame.from_dict(response, orient='index')
