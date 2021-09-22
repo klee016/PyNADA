@@ -117,12 +117,12 @@ def make_get_request(endpoint, params):
     response = requests.get(api_base_url + endpoint, headers=http_headers, params=params)
     
     if response.status_code != 200:
-        raise Exception('GET /'+endpoint+'/ {}'.format(response.status_code) + ' ' + f'{response.text}')
+        raise Exception("GET /"+endpoint+"/ {}".format(response.status_code) + " " + f"{response.text}")
 
     try:
         json_response = response.json()
     except ValueError:
-        raise Exception('GET /' + endpoint + '/ {}'.format(response.status_code) + ' ' + f'{response.text}')
+        raise Exception("GET /" + endpoint + "/ {}".format(response.status_code) + " " + f"{response.text}")
 
     return json_response
 
@@ -153,12 +153,12 @@ def make_post_request(endpoint, data, files=None):
     response = requests.post(api_base_url + endpoint, headers=http_headers, data=data, files=files)
 
     if response.status_code != 200:
-        raise Exception('POST /'+endpoint+'/ {}'.format(response.status_code) + ' ' + f'{response.text}')
+        raise Exception("POST /"+endpoint+"/ {}".format(response.status_code) + " " + f"{response.text}")
 
     try:
         json_response = response.json()
     except ValueError:
-        raise Exception('GET /' + endpoint + '/ {}'.format(response.status_code) + ' ' + f'{response.text}')
+        raise Exception("GET /" + endpoint + "/ {}".format(response.status_code) + " " + f"{response.text}")
 
     return json_response
 
@@ -187,12 +187,12 @@ def make_put_request(endpoint, data):
     response = requests.put(api_base_url + endpoint, headers=http_headers, data=data)
 
     if response.status_code != 200:
-        raise Exception('PUT /'+endpoint+'/ {}'.format(response.status_code) + ' ' + f'{response.text}')
+        raise Exception("PUT /"+endpoint+"/ {}".format(response.status_code) + " " + f"{response.text}")
 
     try:
         json_response = response.json()
     except ValueError:
-        raise Exception('GET /' + endpoint + '/ {}'.format(response.status_code) + ' ' + f'{response.text}')
+        raise Exception("GET /" + endpoint + "/ {}".format(response.status_code) + " " + f"{response.text}")
 
     return json_response
 
@@ -214,12 +214,12 @@ def make_delete_request(endpoint):
     response = requests.delete(api_base_url + endpoint, headers=http_headers)
 
     if response.status_code != 200:
-        raise Exception('DELETE /' + endpoint + '/ {}'.format(response.status_code) + ' ' + f'{response.text}')
+        raise Exception("DELETE /" + endpoint + "/ {}".format(response.status_code) + " " + f"{response.text}")
 
     try:
         json_response = response.json()
     except ValueError:
-        raise Exception('GET /' + endpoint + '/ {}'.format(response.status_code) + ' ' + f'{response.text}')
+        raise Exception("GET /" + endpoint + "/ {}".format(response.status_code) + " " + f"{response.text}")
 
     return json_response
 

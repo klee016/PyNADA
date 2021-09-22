@@ -18,7 +18,7 @@ def list_collections(published=None):
     params = {}
     if published is not None:
         params['published'] = published
-    response = make_get_request('collections', params)
+    response = make_get_request("collections", params)
 
     return pd.DataFrame.from_dict(response['collections']).set_index('id')
 
@@ -38,7 +38,7 @@ def get_collection_info(repository_id):
     """
 
     params = {}
-    response = make_get_request('collections/' + repository_id, params)
+    response = make_get_request("collections/" + repository_id, params)
 
     return pd.DataFrame.from_dict(response['collection'], orient='index')
 
@@ -60,7 +60,7 @@ def list_dataset_placements(dataset_id=None, limit=None):
     params = {}
     if limit is not None:
         params['limit'] = limit
-    response = make_get_request('datasets/collections', params)
+    response = make_get_request("datasets/collections", params)
 
     placement_info = pd.DataFrame.from_dict(response['datasets']).set_index('id')
     if dataset_id is not None:
@@ -135,7 +135,7 @@ def get_dataset_info(dataset_id):
     """
 
     params = {}
-    response = make_get_request('datasets/' + dataset_id, params)
+    response = make_get_request("datasets/" + dataset_id, params)
 
     # return response
     return pd.DataFrame.from_dict(response['dataset'], orient='index')
@@ -156,7 +156,7 @@ def get_dataset_info_by_numid(numeric_id):
     """
 
     params = {}
-    response = make_get_request('datasets/find_by_id/' + str(numeric_id), params)
+    response = make_get_request("datasets/find_by_id/" + str(numeric_id), params)
 
     return pd.DataFrame.from_dict(response['dataset'], orient='index')
 
@@ -176,7 +176,7 @@ def list_tags(dataset_id):
     """
 
     params = {}
-    response = make_get_request('datasets/tags/' + dataset_id, params)
+    response = make_get_request("datasets/tags/" + dataset_id, params)
 
     return pd.DataFrame.from_dict(response['records'])
 
@@ -196,7 +196,7 @@ def list_aliases(dataset_id):
     """
 
     params = {}
-    response = make_get_request('datasets/aliases/' + dataset_id, params)
+    response = make_get_request("datasets/aliases/" + dataset_id, params)
 
     return pd.DataFrame(response['records'])
 
@@ -216,7 +216,7 @@ def list_resources(dataset_id):
     """
 
     params = {}
-    response = make_get_request('datasets/' + dataset_id + '/resources', params)
+    response = make_get_request("datasets/" + dataset_id + "/resources", params)
 
     return pd.DataFrame.from_dict(response['resources']).set_index('resource_id')
 
@@ -238,7 +238,7 @@ def get_resource_info(dataset_id, resource_id):
     """
 
     params = {}
-    response = make_get_request('datasets/' + dataset_id + '/resources/' + str(resource_id), params)
+    response = make_get_request("datasets/" + dataset_id + "/resources/" + str(resource_id), params)
 
     # return response
     return pd.DataFrame.from_dict(response, orient='index')
@@ -259,7 +259,7 @@ def list_datafiles(dataset_id):
     """
 
     params = {}
-    response = make_get_request('datasets/datafiles/' + dataset_id, params)
+    response = make_get_request("datasets/datafiles/" + dataset_id, params)
 
     # return response
     if response['datafiles']:
@@ -283,7 +283,7 @@ def list_files(dataset_id):
     """
 
     params = {}
-    response = make_get_request('datasets/' + dataset_id + '/files/', params)
+    response = make_get_request("datasets/" + dataset_id + "/files/", params)
 
     # return response
     return pd.DataFrame.from_dict(response['files'])
@@ -304,7 +304,7 @@ def list_variables(dataset_id):
     """
 
     params = {}
-    response = make_get_request('datasets/variables/' + dataset_id, params)
+    response = make_get_request("datasets/variables/" + dataset_id, params)
 
     # return response
     return pd.DataFrame(response['variables'])
@@ -327,7 +327,7 @@ def list_variables_by_file(dataset_id, file_id):
     """
 
     params = {}
-    response = make_get_request('datasets/variables/' + dataset_id + '/' + file_id, params)
+    response = make_get_request("datasets/variables/" + dataset_id + "/" + file_id, params)
 
     # return response
     return pd.DataFrame(response['variables'])
@@ -350,7 +350,7 @@ def get_variable_info(dataset_id, var_id):
     """
 
     params = {}
-    response = make_get_request('datasets/variable/' + dataset_id + '/' + var_id, params)
+    response = make_get_request("datasets/variable/" + dataset_id + "/" + var_id, params)
 
     # return response
     return pd.DataFrame.from_dict(response['variable'], orient='index')
@@ -366,7 +366,7 @@ def list_citations():
     """
 
     params = {}
-    response = make_get_request('citations', params)
+    response = make_get_request("citations", params)
     return pd.DataFrame.from_dict(response['citations']).set_index('id')
 
 
@@ -385,7 +385,7 @@ def get_citation_info(citation_id):
     """
 
     params = {}
-    response = make_get_request('citation/' + citation_id, params)
+    response = make_get_request("citation/" + citation_id, params)
 
     return response
     # return pd.DataFrame.from_dict(response['dataset']).set_index('id')
@@ -406,7 +406,7 @@ def find_citation_by_dataset(dataset_id):
     """
 
     params = {}
-    response = make_get_request('citations/by_dataset/' + dataset_id, params)
+    response = make_get_request("citations/by_dataset/" + dataset_id, params)
 
     return response
     # return pd.DataFrame.from_dict(response['dataset']).set_index('id')
@@ -422,6 +422,6 @@ def list_widgets():
     """
 
     params = {}
-    response = make_get_request('widgets', params)
+    response = make_get_request("widgets", params)
 
     return pd.DataFrame.from_dict(response['records']).set_index('id')

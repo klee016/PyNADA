@@ -12,10 +12,10 @@ def delete_dataset(dataset_id):
         Dataset IDNo
     """
 
-    response = make_delete_request('datasets/' + dataset_id)
+    response = make_delete_request("datasets/" + dataset_id)
 
-    if response['status'] == 'success':
-        print('Dataset successfully deleted from the catalog.')
+    if response['status'] == "success":
+        print("Dataset successfully deleted from the catalog.")
 
 
 def upload_file(dataset_id, file_path):
@@ -36,11 +36,11 @@ def upload_file(dataset_id, file_path):
     else:
         raise Exception("The file you provided doesn't seem to be a valid file. Please check the path.")
 
-    response = make_post_request('datasets/' + dataset_id + '/files', data, file)
+    response = make_post_request("datasets/" + dataset_id + "/files", data, file)
 
     #print(response)
-    if response['status'] == 'success':
-        print('File successfully uploaded.')
+    if response['status'] == "success":
+        print("File successfully uploaded.")
 
 
 def delete_file(dataset_id, file_name):
@@ -58,11 +58,11 @@ def delete_file(dataset_id, file_name):
     base64 = df_files[df_files['name'] == file_name]['base64'].values[0]
 
     #print('datasets/' + idno + '/files/' + base64)
-    response = make_delete_request('datasets/' + dataset_id + '/files/' + base64)
+    response = make_delete_request("datasets/" + dataset_id + "/files/" + base64)
 
     #print(response)
-    if response['status'] == 'success':
-        print('File successfully deleted.')
+    if response['status'] == "success":
+        print("File successfully deleted.")
 
 
 def upload_thumbnail(dataset_id, file_path):
@@ -83,11 +83,11 @@ def upload_thumbnail(dataset_id, file_path):
     else:
         raise Exception("The thumbnail file you provided doesn't seem to be a valid file. Please check the path.")
 
-    response = make_post_request('datasets/thumbnail/' + dataset_id, data, file)
+    response = make_post_request("datasets/thumbnail/" + dataset_id, data, file)
 
     #print(response)
-    if response['status'] == 'success':
-        print('Thumbnail successfully uploaded.')
+    if response['status'] == "success":
+        print("Thumbnail successfully uploaded.")
 
 
 def add_resource(
@@ -161,30 +161,30 @@ def add_resource(
                         "If it is a URL, make sure to add a proper prefix such as http://")
 
     data = {
-        "dctype": dctype,
-        "dcformat": dcformat,
-        "title": title,
-        "author": author,
-        "dcdate": dcdate,
-        "country": country,
-        "language": language,
-        "contributor": contributor,
-        "publisher": publisher,
-        "rights": rights,
-        "description": description,
-        "abstract": abstract,
-        "toc": toc,
-        "filename": filename,
-        "created": created,
-        "changed": changed,
-        "overwrite": overwrite
+        'dctype': dctype,
+        'dcformat': dcformat,
+        'title': title,
+        'author': author,
+        'dcdate': dcdate,
+        'country': country,
+        'language': language,
+        'contributor': contributor,
+        'publisher': publisher,
+        'rights': rights,
+        'description': description,
+        'abstract': abstract,
+        'toc': toc,
+        'filename': filename,
+        'created': created,
+        'changed': changed,
+        'overwrite': overwrite
     }
 
     data = {key: value for key, value in data.items() if value is not None}
-    response = make_post_request('datasets/'+dataset_id+'/resources', data)
+    response = make_post_request("datasets/"+dataset_id+"/resources", data)
 
-    if response['status'] == 'success':
-        print('Resource successfully added to the dataset.')
+    if response['status'] == "success":
+        print("Resource successfully added to the dataset.")
 
 
 def delete_variables_by_file(dataset_id, file_id):
@@ -198,10 +198,10 @@ def delete_variables_by_file(dataset_id, file_id):
         file IDNo
     """
 
-    response = make_delete_request('datasets/batch_delete_vars/' + dataset_id + '/' + file_id)
+    response = make_delete_request("datasets/batch_delete_vars/" + dataset_id + "/" + file_id)
 
-    if response['status'] == 'success':
-        print('Files successfully deleted.')
+    if response['status'] == "success":
+        print("Files successfully deleted.")
 
 
 def update_survey_dataset(
@@ -251,24 +251,24 @@ def update_survey_dataset(
     """
 
     data = {
-        "repositoryid": repository_id,
-        "access_policy": access_policy,
-        "published": published,
-        "overwrite": overwrite,
-        "doc_desc": doc_desc,
-        "study_desc": study_desc,
-        "data_files": data_files,
-        "variables": variables,
-        "variable_groups": variable_groups,
-        "additional": additional
+        'repositoryid': repository_id,
+        'access_policy': access_policy,
+        'published': published,
+        'overwrite': overwrite,
+        'doc_desc': doc_desc,
+        'study_desc': study_desc,
+        'data_files': data_files,
+        'variables': variables,
+        'variable_groups': variable_groups,
+        'additional': additional
     }
 
-    assert dataset_id == study_desc["title_statement"]["idno"]
+    assert dataset_id == study_desc['title_statement']['idno']
 
     data = {key: value for key, value in data.items() if value is not None}
-    response = make_post_request('datasets/update/survey/'+dataset_id, data)
+    response = make_post_request("datasets/update/survey/"+dataset_id, data)
 
-    if response['status'] == 'success':
+    if response['status'] == "success":
         print("Survey dataset successfully updated.")
 
     return pd.DataFrame.from_dict(response['dataset'], orient='index')
@@ -366,37 +366,37 @@ def add_variables(
     """
 
     data = {
-        "file_id": file_id,
-        "vid": vid,
-        "name": name,
-        "labl": labl,
-        "var_intrvl": var_intrvl,
-        "var_dcml": var_dcml,
-        "var_wgt": var_wgt,
-        "var_start_pos": var_start_pos,
-        "var_end_pos": var_end_pos,
-        "var_width": var_width,
-        "var_imputation": var_imputation,
-        "var_security": var_security,
-        "var_respunit": var_respunit,
-        "var_qstn_preqtxt": var_qstn_preqtxt,
-        "var_qstn_qstnlit": var_qstn_qstnlit,
-        "var_qstn_postqtxt": var_qstn_postqtxt,
-        "var_qstn_ivulnstr": var_qstn_ivulnstr,
-        "var_universe": var_universe,
-        "var_sumstat": var_sumstat,
-        "var_txt": var_txt,
-        "var_catgry": var_catgry,
-        "var_codinstr": var_codinstr,
-        "var_concept": var_concept,
-        "var_format": var_format,
-        "var_notes": var_notes
+        'file_id': file_id,
+        'vid': vid,
+        'name': name,
+        'labl': labl,
+        'var_intrvl': var_intrvl,
+        'var_dcml': var_dcml,
+        'var_wgt': var_wgt,
+        'var_start_pos': var_start_pos,
+        'var_end_pos': var_end_pos,
+        'var_width': var_width,
+        'var_imputation': var_imputation,
+        'var_security': var_security,
+        'var_respunit': var_respunit,
+        'var_qstn_preqtxt': var_qstn_preqtxt,
+        'var_qstn_qstnlit': var_qstn_qstnlit,
+        'var_qstn_postqtxt': var_qstn_postqtxt,
+        'var_qstn_ivulnstr': var_qstn_ivulnstr,
+        'var_universe': var_universe,
+        'var_sumstat': var_sumstat,
+        'var_txt': var_txt,
+        'var_catgry': var_catgry,
+        'var_codinstr': var_codinstr,
+        'var_concept': var_concept,
+        'var_format': var_format,
+        'var_notes': var_notes
     }
 
     data = {key: value for key, value in data.items() if value is not None}
     response = make_post_request('datasets/variables/'+dataset_id+'/'+file_id, data)
 
-    if response['status'] == 'success':
+    if response['status'] == "success":
         print("Variable successfully added to the survey dataset.")
 
     return pd.DataFrame(response, orient='index')
@@ -447,21 +447,21 @@ def set_dataset_options(
     """
 
     data = {
-        "access_policy": access_policy,
-        "data_remote_url": data_remote_url,
-        "published": published,
-        "tags": tags,
-        "aliases": aliases,
-        "owner_collection": owner_collection,
-        "linked_collections": linked_collections,
-        "link_study": link_study,
-        "link_indicator": link_indicator
+        'access_policy': access_policy,
+        'data_remote_url': data_remote_url,
+        'published': published,
+        'tags': tags,
+        'aliases': aliases,
+        'owner_collection': owner_collection,
+        'linked_collections': linked_collections,
+        'link_study': link_study,
+        'link_indicator': link_indicator
     }
 
     data = {key: value for key, value in data.items() if value is not None}
-    response = make_put_request('datasets/'+dataset_id, data)
+    response = make_put_request("datasets/"+dataset_id, data)
 
-    if response['status'] == 'success':
+    if response['status'] == "success":
         print("Dataset options successfully set.")
 
     return pd.DataFrame(response, orient='index')
@@ -483,14 +483,14 @@ def delete_DDI_metadata(
     """
 
     data = {
-        "dataset_id": dataset_id,
-        "options": options
+        'dataset_id': dataset_id,
+        'options': options
     }
 
     data = {key: value for key, value in data.items() if value is not None}
-    response = make_put_request('datasets/strip_ddi/'+dataset_id+'/'+options, data)
+    response = make_put_request("datasets/strip_ddi/"+dataset_id+"/"+options, data)
 
-    if response['status'] == 'success':
+    if response['status'] == "success":
         print("DDI metadata successfully removed.")
 
 
@@ -509,14 +509,14 @@ def set_dataset_numid(
     """
 
     data = {
-        "dataset_id": dataset_id,
-        "new_id": new_numid
+        'dataset_id': dataset_id,
+        'new_id': new_numid
     }
 
     data = {key: value for key, value in data.items() if value is not None}
-    response = make_put_request('datasets/update_id/'+dataset_id+'/'+str(new_numid), data)
+    response = make_put_request("datasets/update_id/"+dataset_id+"/"+str(new_numid), data)
 
-    if response['status'] == 'success':
+    if response['status'] == "success":
         print("Dataset numeric ID successfully changed.")
 
 
@@ -544,17 +544,17 @@ def generate_metadata_PDF(
     """
 
     data = {
-        "dataset_id": dataset_id,
-        "variable_toc": variable_toc,
-        "variable_description": variable_description,
-        "include_resources": include_resources,
-        "language": language
+        'dataset_id': dataset_id,
+        'variable_toc': variable_toc,
+        'variable_description': variable_description,
+        'include_resources': include_resources,
+        'language': language
     }
 
     data = {key: value for key, value in data.items() if value is not None}
-    response = make_put_request('datasets/generate_pdf/'+dataset_id, data)
+    response = make_put_request("datasets/generate_pdf/"+dataset_id, data)
 
-    if response['status'] == 'success':
+    if response['status'] == "success":
         print("PDF metadata documentation successfully generated.")
 
 
@@ -581,21 +581,21 @@ def upload_widget(
         Description of the widget
     """
 
-    if Path(file_path).exists() and PurePath(file_path).suffix == '.zip':
+    if Path(file_path).exists() and PurePath(file_path).suffix == ".zip":
         print("You provided a zip file. Processing...")
         file = {'file': open(Path(file_path), 'rb')}
     else:
         raise Exception("The file_path you provided doesn't seem to be a valid file path or a zip file.")
 
     data = {
-        "title": title
+        'title': title
     }
 
     data = {key: value for key, value in data.items() if value is not None}
-    response = make_post_request('widgets/'+widget_id, data, file)
+    response = make_post_request("widgets/"+widget_id, data, file)
 
-    if response['status'] == 'success':
-        print('Widget successfully uploaded to the catalog.')
+    if response['status'] == "success":
+        print("Widget successfully uploaded to the catalog.")
 
     return pd.DataFrame.from_dict(response)
 
@@ -615,15 +615,15 @@ def attach_widget(
     """
 
     data = {
-        "idno": dataset_id,
-        "uuid": widget_id
+        'idno': dataset_id,
+        'uuid': widget_id
     }
 
     data = {key: value for key, value in data.items() if value is not None}
-    response = make_post_request('widgets/attach_to_study', data)
+    response = make_post_request("widgets/attach_to_study", data)
 
-    if response['status'] == 'success':
-        print('Widget successfully attached to the dataset.')
+    if response['status'] == "success":
+        print("Widget successfully attached to the dataset.")
 
     return pd.DataFrame.from_dict(response)
 
@@ -661,13 +661,13 @@ def update_collection(
     """
 
     data = {
-        "repositoryid": repository_id,
-        "title": title,
-        "short_text": short_text,
-        "long_text": long_text,
-        "weight": weight,
-        "section": section,
-        "ispublished": is_published
+        'repositoryid': repository_id,
+        'title': title,
+        'short_text': short_text,
+        'long_text': long_text,
+        'weight': weight,
+        'section': section,
+        'ispublished': is_published
     }
     data = {key: value for key, value in data.items() if value is not None}
 
@@ -685,14 +685,14 @@ def update_collection(
     if thumbnail_path:
         files = [
             ('thumbnail',
-             (thumbnail_fname, open(f'{thumbnail_path}', 'rb'), f'image/{thumbnail_format}'))
+             (thumbnail_fname, open(f"{thumbnail_path}", 'rb'), f"image/{thumbnail_format}"))
         ]
     else:
         files = None
 
-    response = make_post_request('collections/update/'+repository_id, data, files=files)
+    response = make_post_request("collections/update/"+repository_id, data, files=files)
 
-    if response['status'] == 'success':
+    if response['status'] == "success":
         print("Collection successfully updated.")
 
     return pd.DataFrame.from_dict(response, orient='index')
@@ -715,9 +715,9 @@ def rename_collection(
             'new_repositoryid': new_repository_id}
     # files=[]
     # response = requests.request("POST", url, headers=headers, data=payload, files=files)
-    response = make_post_request('collections/rename/', data)
+    response = make_post_request("collections/rename/", data)
 
-    if response['status'] == 'success':
+    if response['status'] == "success":
         print("Collection ID successfully renamed.")
 
     return pd.DataFrame.from_dict(response, orient='index')
@@ -734,9 +734,9 @@ def delete_collection(
         Collection identifier containing numbers and letters only
     """
 
-    response = make_delete_request('collections/' + repository_id)
+    response = make_delete_request("collections/" + repository_id)
 
-    if response['status'] == 'success':
+    if response['status'] == "success":
         print(f"Collection {repository_id} successfully deleted.")
 
     return pd.DataFrame.from_dict(response, orient='index')
@@ -770,18 +770,18 @@ def place_dataset(
 
     data = json.dumps([
         {
-            "study_idno": dataset_id,
-            "owner_collection": owner_collection,
-            "link_collections": link_collections,
-            "mode": mode
+            'study_idno': dataset_id,
+            'owner_collection': owner_collection,
+            'link_collections': link_collections,
+            'mode': mode
         }
     ])
 
-    response = make_post_request('datasets/collections/', data)
+    response = make_post_request("datasets/collections/", data)
 
-    if response['status'] == 'success' and owner_collection:
+    if response['status'] == "success" and owner_collection:
         print(f"{dataset_id} successfully attached to {owner_collection} collection and linked to {link_collections}.")
-    elif response['status'] == 'success' and not owner_collection:
+    elif response['status'] == "success" and not owner_collection:
         print(f"{dataset_id} successfully linked to {link_collections} collection")
     else:
         print(response['status'])

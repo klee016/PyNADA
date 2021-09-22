@@ -34,13 +34,13 @@ def create_collection(
     """
 
     data ={
-        "repositoryid": repository_id,
-        "title": title,
-        "short_text": short_text,
-        "long_text": long_text,
-        "weight": weight,
-        "section": section,
-        "ispublished": is_published
+        'repositoryid': repository_id,
+        'title': title,
+        'short_text': short_text,
+        'long_text': long_text,
+        'weight': weight,
+        'section': section,
+        'ispublished': is_published
     }
     thumbnail_fname = PurePath(thumbnail_path).name
     thumbnail_ext = PurePath(thumbnail_fname).suffix
@@ -58,12 +58,12 @@ def create_collection(
     if thumbnail_path:
         files = [
             ('thumbnail',
-             (thumbnail_fname, open(f'{thumbnail_path}', 'rb'), f'image/{thumbnail_format}'))
+             (thumbnail_fname, open(f"{thumbnail_path}", 'rb'), f"image/{thumbnail_format}"))
         ]
 
-    response = make_post_request('collections/' + repository_id, data, files=files)
+    response = make_post_request("collections/" + repository_id, data, files=files)
 
-    if response['status'] == 'success':
+    if response['status'] == "success":
         print("Collection successfully created.")
 
     return pd.DataFrame.from_dict(response, orient='index')
@@ -135,24 +135,24 @@ def create_survey_dataset(
     """
 
     data = {
-        "repositoryid": repository_id,
-        "access_policy": access_policy,
-        "published": published,
-        "overwrite": overwrite,
-        "doc_desc": doc_desc,
-        "study_desc": study_desc,
-        "data_files": data_files,
-        "variables": variables,
-        "variable_groups": variable_groups,
-        "additional": additional
+        'repositoryid': repository_id,
+        'access_policy': access_policy,
+        'published': published,
+        'overwrite': overwrite,
+        'doc_desc': doc_desc,
+        'study_desc': study_desc,
+        'data_files': data_files,
+        'variables': variables,
+        'variable_groups': variable_groups,
+        'additional': additional
     }
 
-    assert dataset_id == study_desc["title_statement"]["idno"]
+    assert dataset_id == study_desc['title_statement']['idno']
 
     data = {key: value for key, value in data.items() if value is not None}
-    response = make_post_request('datasets/create/survey/'+dataset_id, data)
+    response = make_post_request("datasets/create/survey/"+dataset_id, data)
 
-    if response['status'] == 'success':
+    if response['status'] == "success":
         print("Survey dataset successfully added to the catalog.")
 
     return pd.DataFrame.from_dict(response['dataset'], orient='index')
@@ -199,22 +199,22 @@ def create_document_dataset(
     """
 
     data = {
-        "repositoryid": repository_id,
-        "published": published,
-        "overwrite": overwrite,
-        "metadata_information": metadata_information,
-        "document_description": document_description,
-        "tags": tags,
-        "resources": resources,
-        "files": files
+        'repositoryid': repository_id,
+        'published': published,
+        'overwrite': overwrite,
+        'metadata_information': metadata_information,
+        'document_description': document_description,
+        'tags': tags,
+        'resources': resources,
+        'files': files
     }
 
-    assert dataset_id == document_description["title_statement"]["idno"]
+    assert dataset_id == document_description['title_statement']['idno']
 
     data = {key: value for key, value in data.items() if value is not None}
-    response = make_post_request('datasets/create/document/'+dataset_id, data)
+    response = make_post_request("datasets/create/document/"+dataset_id, data)
 
-    if response['status'] == 'success':
+    if response['status'] == "success":
         # for old codes that use files parameter instead of resources parameter
         if resources is None and files is not None and len(files) > 0:
             for file in files:
@@ -262,27 +262,27 @@ def create_image_dataset(
     """
 
     data = {
-        "repositoryid": repository_id,
-        "published": published,
-        "overwrite": overwrite,
-        "metadata_information": metadata_information,
-        "image_description": image_description
+        'repositoryid': repository_id,
+        'published': published,
+        'overwrite': overwrite,
+        'metadata_information': metadata_information,
+        'image_description': image_description
     }
 
-    assert dataset_id == image_description["iptc"]["photoVideoMetadataIPTC"]["digitalImageGuid"]
+    assert dataset_id == image_description['iptc']['photoVideoMetadataIPTC']['digitalImageGuid']
 
     data = {key: value for key, value in data.items() if value is not None}
-    response = make_post_request('datasets/create/image/'+dataset_id, data)
+    response = make_post_request("datasets/create/image/"+dataset_id, data)
 
-    if response['status'] == 'success':
-        if "files" in image_description and len(image_description["files"]) > 0:
-            for file in image_description["files"]:
+    if response['status'] == "success":
+        if 'files' in image_description and len(image_description['files']) > 0:
+            for file in image_description['files']:
                 add_resource(
-                    dataset_id = dataset_id,
-                    dctype = "Document [doc/oth]",
-                    title = PurePath(file['file_uri']).stem,
-                    filename = file['file_uri'],
-                    overwrite = overwrite
+                    dataset_id=dataset_id,
+                    dctype="Document [doc/oth]",
+                    title=PurePath(file['file_uri']).stem,
+                    filename=file['file_uri'],
+                    overwrite=overwrite
                 )
         print("Image dataset successfully added to the catalog.")
 
@@ -321,21 +321,21 @@ def create_script_dataset(
     """
 
     data = {
-        "repositoryid": repository_id,
-        "published": published,
-        "overwrite": overwrite,
-        "doc_desc": doc_desc,
-        "project_desc": project_desc
+        'repositoryid': repository_id,
+        'published': published,
+        'overwrite': overwrite,
+        'doc_desc': doc_desc,
+        'project_desc': project_desc
     }
 
-    assert dataset_id == project_desc["title_statement"]["idno"]
+    assert dataset_id == project_desc['title_statement']['idno']
 
     data = {key: value for key, value in data.items() if value is not None}
-    response = make_post_request('datasets/create/script/'+dataset_id, data)
+    response = make_post_request("datasets/create/script/"+dataset_id, data)
 
     if response['status'] == 'success':
-        if "scripts" in project_desc and len(project_desc["scripts"] > 0):
-            for script in project_desc["scripts"]:
+        if 'scripts' in project_desc and len(project_desc['scripts'] > 0):
+            for script in project_desc['scripts']:
                 add_resource(
                     dataset_id = dataset_id,
                     dctype = "Document [doc/oth]",
@@ -390,30 +390,30 @@ def create_table_dataset(
     """
 
     data = {
-        "repositoryid": repository_id,
-        "published": published,
-        "overwrite": overwrite,
-        "metadata_information": metadata_information,
-        "table_description": table_description,
-        "files": files,
-        "tags": tags,
-        "additional": additional
+        'repositoryid': repository_id,
+        'published': published,
+        'overwrite': overwrite,
+        'metadata_information': metadata_information,
+        'table_description': table_description,
+        'files': files,
+        'tags': tags,
+        'additional': additional
     }
 
-    assert dataset_id == table_description["title_statement"]["idno"]
+    assert dataset_id == table_description['title_statement']['idno']
 
     data = {key: value for key, value in data.items() if value is not None}
-    response = make_post_request('datasets/create/table/'+dataset_id, data)
+    response = make_post_request("datasets/create/table/"+dataset_id, data)
 
-    if response['status'] == 'success':
+    if response['status'] == "success":
         if files is not None and len(files) > 0:
             for file in files:
                 add_resource(
-                    dataset_id = dataset_id,
-                    dctype = "Document [doc/oth]",
-                    title = PurePath(file['file_uri']).stem,
-                    filename = file['file_uri'],
-                    overwrite = overwrite
+                    dataset_id=dataset_id,
+                    dctype="Document [doc/oth]",
+                    title=PurePath(file['file_uri']).stem,
+                    filename=file['file_uri'],
+                    overwrite=overwrite
                 )
         print("Table dataset successfully added to the catalog.")
 
@@ -458,29 +458,29 @@ def create_visualization_dataset(
     """
 
     data = {
-        "repositoryid": repository_id,
-        "published": published,
-        "overwrite": overwrite,
-        "metadata_information": metadata_information,
-        "visualization_description": visualization_description,
-        "files": files,
-        "additional": additional
+        'repositoryid': repository_id,
+        'published': published,
+        'overwrite': overwrite,
+        'metadata_information': metadata_information,
+        'visualization_description': visualization_description,
+        'files': files,
+        'additional': additional
     }
 
-    assert dataset_id == visualization_description["title_statement"]["idno"]
+    assert dataset_id == visualization_description['title_statement']['idno']
 
     data = {key: value for key, value in data.items() if value is not None}
-    response = make_post_request('datasets/create/visualization/'+dataset_id, data)
+    response = make_post_request("datasets/create/visualization/"+dataset_id, data)
 
-    if response['status'] == 'success':
+    if response['status'] == "success":
         if files is not None and len(files) > 0:
             for file in files:
                 add_resource(
-                    dataset_id = dataset_id,
-                    dctype = "Document [doc/oth]",
-                    title = PurePath(file['file_uri']).stem,
-                    filename = file['file_uri'],
-                    overwrite = overwrite
+                    dataset_id=dataset_id,
+                    dctype="Document [doc/oth]",
+                    title=PurePath(file['file_uri']).stem,
+                    filename=file['file_uri'],
+                    overwrite=overwrite
                 )
         print("Visualization dataset successfully added to the catalog.")
 
@@ -525,21 +525,21 @@ def create_geospatial_dataset(
     """
 
     data = {
-        "repositoryid": repository_id,
-        "published": published,
-        "overwrite": overwrite,
-        "description": description,
-        "tags": tags,
-        "provenance": provenance,
-        "additional": additional
+        'repositoryid': repository_id,
+        'published': published,
+        'overwrite': overwrite,
+        'description': description,
+        'tags': tags,
+        'provenance': provenance,
+        'additional': additional
     }
 
-    assert dataset_id == description["idno"]
+    assert dataset_id == description['idno']
 
     data = {key: value for key, value in data.items() if value is not None}
-    response = make_post_request('datasets/create/geospatial/'+dataset_id, data)
+    response = make_post_request("datasets/create/geospatial/"+dataset_id, data)
 
-    if response['status'] == 'success':
+    if response['status'] == "success":
         print("Geospatial dataset successfully added to the catalog.")
 
     return pd.DataFrame.from_dict(response['dataset'], orient='index')
@@ -586,22 +586,22 @@ def create_timeseries_dataset(
     """
 
     data = {
-        "repositoryid": repository_id,
-        "access_policy": access_policy,
-        "data_remote_url": data_remote_url,
-        "published": published,
-        "overwrite": overwrite,
-        "metadata_creation": metadata_creation,
-        "series_description": series_description,
-        "additional": additional
+        'repositoryid': repository_id,
+        'access_policy': access_policy,
+        'data_remote_url': data_remote_url,
+        'published': published,
+        'overwrite': overwrite,
+        'metadata_creation': metadata_creation,
+        'series_description': series_description,
+        'additional': additional
     }
 
-    assert dataset_id == series_description["idno"]
+    assert dataset_id == series_description['idno']
 
     data = {key: value for key, value in data.items() if value is not None}
-    response = make_post_request('datasets/create/timeseries/'+dataset_id, data)
+    response = make_post_request("datasets/create/timeseries/"+dataset_id, data)
 
-    if response['status'] == 'success':
+    if response['status'] == "success":
         print("Timeseries dataset successfully added to the catalog.")
 
     return pd.DataFrame.from_dict(response['dataset'], orient='index')
@@ -633,16 +633,16 @@ def create_timeseries_database(
     """
 
     data = {
-        "published": published,
-        "overwrite": overwrite,
-        "database_description": database_description,
-        "additional": additional
+        'published': published,
+        'overwrite': overwrite,
+        'database_description': database_description,
+        'additional': additional
     }
 
     data = {key: value for key, value in data.items() if value is not None}
-    response = make_post_request('datasets/create/timeseriesdb', data)
+    response = make_post_request("datasets/create/timeseriesdb", data)
 
-    if response['status'] == 'success':
+    if response['status'] == "success":
         print("Timeseries database successfully added to the catalog.")
 
     return response
@@ -700,19 +700,19 @@ def import_DDI(
                             "If it is a URL, make sure to add a proper prefix such as http://")
 
     data = {
-        # "file": file,
-        "overwrite": overwrite,
-        "repositoryid": repository_id,
-        "access_policy": access_policy,
-        "data_remote_url": data_remote_url,
-        "rdf": rdf,
-        "published": published,
+        # 'file': file,
+        'overwrite': overwrite,
+        'repositoryid': repository_id,
+        'access_policy': access_policy,
+        'data_remote_url': data_remote_url,
+        'rdf': rdf,
+        'published': published,
     }
 
     data = {key: value for key, value in data.items() if value is not None}
-    response = make_post_request('datasets/import_ddi', data, file)
+    response = make_post_request("datasets/import_ddi", data, file)
 
-    if response['status'] == 'success':
+    if response['status'] == "success":
         print("Survey dataset successfully added to the catalog.")
 
     return response['survey']
@@ -742,9 +742,9 @@ def import_RDF(
     }
 
     data = {key: value for key, value in data.items() if value is not None}
-    response = make_post_request('datasets/'+dataset_id+'/resources/import_rdf', data, file)
+    response = make_post_request("datasets/"+dataset_id+"/resources/import_rdf", data, file)
 
-    if response['status'] == 'success':
+    if response['status'] == "success":
         print("Resource(s) successfully added to the dataset.")
 
     return response
