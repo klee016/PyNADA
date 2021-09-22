@@ -1,7 +1,5 @@
 import requests
 import json
-import sys
-import pandas as pd
 
 
 api_base_url = ''

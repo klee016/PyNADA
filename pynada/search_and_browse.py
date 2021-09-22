@@ -1,4 +1,5 @@
 from .commons import *
+import pandas as pd
 
 
 def list_collections():
