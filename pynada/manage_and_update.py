@@ -742,7 +742,7 @@ def delete_collection(
     return pd.DataFrame.from_dict(response, orient='index')
 
 
-def place_dataset(
+def attach_dataset(
         dataset_id=None,
         owner_collection=None,
         link_collections=None,

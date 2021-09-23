@@ -43,7 +43,7 @@ def get_collection_info(repository_id):
     return pd.DataFrame.from_dict(response['collection'], orient='index')
 
 
-def list_dataset_placements(dataset_id=None, limit=None):
+def list_dataset_attachments(dataset_id=None, limit=None):
     """List datasets along with the collections they are linked and owned
 
     Parameters
