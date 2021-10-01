@@ -187,10 +187,16 @@ def add_resource(
         print("Resource successfully added to the dataset.")
 
         
-def delete_resource(
-    dataset_id=None,
-    resource_id=None):
-    data={}
+def delete_resource(dataset_id,resource_id):    
+    """Delete resource from a Dataset.
+    
+     Parameters
+    ----------
+    dataset_id : str
+        Dataset IDNo
+    resource_id : int
+        resource id
+    """
     response = make_delete_request('/datasets/' + dataset_id + '/resources/' + str(resource_id))
 
     if response['status'] == 'success':
