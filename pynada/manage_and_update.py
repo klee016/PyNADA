@@ -186,7 +186,16 @@ def add_resource(
     if response['status'] == "success":
         print("Resource successfully added to the dataset.")
 
+        
+def delete_resource(
+    dataset_id=None,
+    resource_id=None):
+    data={}
+    response = make_delete_request('/datasets/' + dataset_id + '/resources/' + str(resource_id))
 
+    if response['status'] == 'success':
+        print('Resource successfully deleted.')
+        
 def delete_variables_by_file(dataset_id, file_id):
     """Batch delete all variables from a datafile or Dataset.
 
