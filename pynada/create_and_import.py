@@ -289,6 +289,65 @@ def create_image_dataset(
     return pd.DataFrame.from_dict(response['dataset'], orient='index')
 
 
+def create_video_dataset(
+        dataset_id=None,
+        repository_id=None,
+        published=None,
+        overwrite=None,
+        metadata_information=None,
+        video_description=None,
+        provenance=None,
+        tags=None,
+        additional=None
+):
+    """Add a new video dataset to the catalog
+
+    Parameters
+    ----------
+    dataset_id : str
+        Dataset IDNo
+    repository_id : str
+        Collection ID that owns the geospatial dataset
+    published : int
+        Set status for study - 0 = Draft, 1 = Published
+    overwrite : str
+        Overwrite if a study with the same ID already exists? Valid values "yes", "no"
+    metadata_information : dict
+        Document description
+    video_description: dict
+        Video description
+    provenance : list of dict
+        Provenance of metadata based on the OAI provenance schema (http://www.openarchives.org/OAI/2.0/provenance.xsd)
+    tags : list of dict
+        Tags
+    additional : dict
+        Any other custom metadata not covered by the schema
+
+    Returns
+    -------
+    DataFrame
+        Information on the added video dataset
+    """
+    data = {
+        'repositoryid': repository_id,
+        'published': published,
+        'overwrite': overwrite,
+        'metadata_information': metadata_information,
+        'video_description': video_description,
+        'provenance': provenance,
+        'tags': tags,
+        'additional': additional
+    }
+    data = {key: value for key, value in data.items() if value is not None}
+    response = make_post_request('datasets/create/video/'+dataset_id, data)
+
+    if response['status'] == "success":
+        print("Video dataset successfully added to the catalog.")
+
+    # return pd.DataFrame.from_dict(response['dataset'], orient='index')
+    return response
+
+
 def create_script_dataset(
         dataset_id=None,
         repository_id=None,
@@ -749,73 +808,4 @@ def import_RDF(
 
     return response
 
-def upload_video(
-        idno,
-        metadata=None,
-        published=None,
-        overwrite=None,
-        thumbnail=None,
-        tags=None,
-        repositoryid=None
-):
-    """Add a video to the catalog
-    Returns
-    -------
-    :param  thumbnail: str. path to thumbnail
-    :param  idno: str. Unique video identifier. Required
-    :param  metadata: obj. contains the following
-            title: str. Title. Required
-            alt_title: str. Alternate title or other title
-            description: str. Description
-            genre: str. Genre
-            keywords: str. Keywords
-            topics_list: array. Topic Classification formatted as [{"topic":"","vocab":"", "uri":""}]
-            persons_list: array. Persons, formatted as [{"name":"", "role":""}]. Required
-            main_entity:str. Primary entity described in the video
-            video_provider: str. Video provider e.g. youtube, vimeo, facebook
-            video_url: str. Video URL
-            embed_url: str. Video embed URL
-            encoding_format: str. Encoding format (string). Media type using a MIME format
-            duration: str. The duration of the video in ISO 8601 date time format -hh:mm:ss
-            content_location: str. Location depicted or described in the video
-            spatial_coverage: str. Place(s) which are the focus of the content
-            content_reference_time: str. Specific time described by a creative work, for works that emphasize a particular moment within an Event
-            temporal_coverage: str. Period that the content applies to using ISO 8601 date time format
-            audience: str. Intended audience
-            country: str.
-            language: str.
-            creator: str. Author
-            publisher: str. Publisher
-            contributor: str. Contributor
-            funder: str. Funder
-            translator: str. Organization or person who adapts a creative work to different languages
-            rights: str. Rights
-            copyright_holder: str. The party holding the legal copyright
-            copyright_notice: str. Text of a notice describing the copyright
-            copyright_year: str. Year during which claimed copyright for the video was first asserted
-            date_created: str. Date of creation (YYYY-MM-DD)
-            date_published: str. Date published (YYYY-MM-DD)
-            version: str. Version
-            status: str. Status of a creative work in terms of its stage in lifecycle. e.g. incomplete, draft, published,obsolete
-            is_based_on: str. A resource from which this work is derived or from which it is a modification or adaption
-            metadata_information: obj. {"producers":[{"name":""}],"production_date":"","version_date":"YYYY-MM-DD"}
-    :param  tags: array. Tags formatted as [{"tag":"", "tag_group":""}]
-    :param  repositoryid: str. Repository ID
-    :param  published: int. Draft=0, Published=1
-    :param  overwrite: str. values: "yes"/"no"
-    """
-    data = {
-        "repositoryid": repositoryid,
-        "published": published,
-        "overwrite": overwrite,
-        "video_description": metadata['video_description'],
-        "tags": tags,
-        "additional": metadata['metadata_information]
-    }
-    data = {key: value for key, value in data.items() if value is not None}
-    response = make_post_request('datasets/create/video/', data)
 
-    if response['status'] == 'success':
-        print("Video successfully added to the catalog.")
-    if thumbnail:
-        upload_thumbnail(idno, thumbnail)

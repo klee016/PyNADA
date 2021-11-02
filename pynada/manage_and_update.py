@@ -201,6 +201,109 @@ def delete_resource(dataset_id,resource_id):
 
     if response['status'] == 'success':
         print('Resource successfully deleted.')
+
+
+def delete_all_resources(dataset_id):
+    """Delete all resources from a Dataset.
+
+     Parameters
+    ----------
+    dataset_id : str
+        Dataset IDNo
+    """
+    response = make_delete_request('/datasets/' + dataset_id + '/resources/delete_all')
+
+    if response['status'] == 'success':
+        print('All resource successfully deleted.')
+
+
+def update_resource(
+        dataset_id=None,
+        resource_id=None,
+        dctype=None,
+        dcformat=None,
+        title=None,
+        author=None,
+        dcdate=None,
+        country=None,
+        language=None,
+        contributor=None,
+        publisher=None,
+        rights=None,
+        description=None,
+        abstract=None,
+        toc=None,
+        filename=None,
+        created=None,
+        changed=None,
+):
+    """Update an existing external resource
+
+    Parameters
+    ----------
+    dataset_id : str
+        Dataset IDNo
+    resource_id : int
+        Resource ID
+    dctype : str
+        Document types for external resource
+    dcformat : str
+        Document file format
+    title: str
+        Title of the source
+    author : str
+        Author of the source
+    dcdate : str
+        Date
+    country : str
+        country
+    language : str
+        language
+    contributor : str
+        contributor
+    publisher : str
+        publisher
+    rights : str
+        rights
+    description : str
+        Description of the source
+    abstract : str
+        Abstract of the source
+    toc : str
+        toc
+    filename : str
+        File name or URL. For uploading files, use the 'upload_file' function and make sure the file name is exactly the same.
+    created : str
+        Creation date-time of the resource
+    changed : str
+        Modification date-time of the resource
+    """
+
+    data = {
+        'dctype': dctype,
+        'dcformat': dcformat,
+        'title': title,
+        'author': author,
+        'dcdate': dcdate,
+        'country': country,
+        'language': language,
+        'contributor': contributor,
+        'publisher': publisher,
+        'rights': rights,
+        'description': description,
+        'abstract': abstract,
+        'toc': toc,
+        'filename': filename,
+        'created': created,
+        'changed': changed
+    }
+
+    data = {key: value for key, value in data.items() if value is not None}
+    response = make_put_request("datasets/" + dataset_id + "/resources/" + resource_id, data)
+
+    if response['status'] == 'success':
+        print('Resource successfully updated.')
+
         
 def delete_variables_by_file(dataset_id, file_id):
     """Batch delete all variables from a datafile or Dataset.
