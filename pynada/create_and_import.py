@@ -393,7 +393,7 @@ def create_script_dataset(
     response = make_post_request("datasets/create/script/"+dataset_id, data)
 
     if response['status'] == 'success':
-        if 'scripts' in project_desc and len(project_desc['scripts'] > 0):
+        if 'scripts' in project_desc and len(project_desc['scripts']) > 0:
             for script in project_desc['scripts']:
                 add_resource(
                     dataset_id = dataset_id,
