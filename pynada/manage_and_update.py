@@ -746,6 +746,48 @@ def attach_widget(
     return pd.DataFrame.from_dict(response)
 
 
+def detach_widget(
+        dataset_id=None,
+        widget_id=None
+):
+    """Detach a widget (ex: chart, map, diagram) to a dataset
+
+    Parameters
+    ----------
+    dataset_id : str
+        Dataset IDNo
+    widget_id : str
+        Widget UUID
+    """
+
+    data = {
+        'idno': dataset_id,
+        'uuid': widget_id
+    }
+
+    data = {key: value for key, value in data.items() if value is not None}
+    response = make_post_request("widgets/detach_study", data)
+
+    if response['status'] == "success":
+        print("Widget successfully detached from the dataset.")
+
+    return pd.DataFrame.from_dict(response)
+
+
+def delete_widget(widget_id):
+    """Delete a widget
+
+     Parameters
+    ----------
+    widget_id : str
+        Widget UUID
+    """
+    response = make_delete_request('/widgets/' + widget_id)
+
+    if response['status'] == 'success':
+        print('Widget successfully deleted.')
+
+
 def update_collection(
         repository_id=None,
         title=None,
