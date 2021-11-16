@@ -808,16 +808,27 @@ def import_RDF(
 
     return response
 
-def data_api_import_csv(db_id, table_id, csv_path, overwrite):
-    
+
+def import_data_api_csv(
+        db_id=None,
+        table_id=None,
+        csv_path=None,
+        overwrite=None
+):
     """Import a csv data table to the database
-            Parameters
-            ----------
-            :param db_id: str. Required: Database name
-            :param table_id: str. Required: Table name
-            :param csv_path: str.  path to csv file
-            :param overwrite: str. "yes"/"no"
-            """
+
+    Parameters
+    ----------
+    db_id: str
+        Database name (required)
+    table_id: str
+        Table name (required)
+    csv_path: str
+        path to csv file
+    overwrite: str
+        "yes"/"no"
+    """
+
     if not Path(csv_path).exists() and PurePath(csv_path).suffix == '.csv':
         raise Exception(
             "The file_path you provided doesn't seem to be a valid file path "
@@ -831,53 +842,65 @@ def data_api_import_csv(db_id, table_id, csv_path, overwrite):
                        'overwrite': overwrite
                        }
         response = make_post_request(
-            'tables/upload/' + db_id + '/' + table_id, data=csv_options,
-            files=file)
+            'tables/upload/' + db_id + '/' + table_id,
+            data=csv_options,
+            files=file
+        )
         if response['status'] == 'success':
             print("CSV successfully imported to database.")
 
 
-def data_api_create_table(db_id=None,
-                          table_id=None,
-                          table_metadata=None,
-                          ):
-    
+def create_data_api_table(
+        db_id=None,
+        table_id=None,
+        table_metadata=None,
+):
     """Create a data table in the database with data using CSV
-            Parameters
-            ----------
-            :param db_id: str. Required: Database name
-            :param table_id: str. Required: Table name
-            :param table_metadata: dict
-            """
+
+    Parameters
+    ----------
+    db_id: str
+        Database name (required)
+    table_id: str
+        Table name (required)
+    table_metadata: dict
+        Metadata for table
+    """
+
     data = table_metadata
     assert table_id == table_metadata["table_id"]
     data = {key: value for key, value in data.items() if value is not None}
-    response = make_post_request(
-        'tables/create_table/' + db_id + '/' + table_id, data)
+    response = make_post_request('tables/create_table/' + db_id + '/' + table_id, data)
     if response['status'] == 'success':
         print("Table successfully created in database.")
 
 
 def data_api_publish_table(
-        db_id,
-        table_id,
-        table_metadata,
-        csv_path,
+        db_id=None,
+        table_id=None,
+        table_metadata=None,
+        csv_path=None,
         overwrite="no"
 ):
-    """Publish a data table in the database 
+    """Publish a data table in the database
+
         Parameters
         ----------
-        :param db_id: str. Required: Database name
-        :param table_id: str. Required: Table name
-        :param table_metadata: dict
-        :param csv_path: str.  path to csv file
-        :param overwrite: str. "yes"/"no". (Default set to 'no')
+        db_id: str
+            Database name (required)
+        table_id: str
+            Table name (required)
+        table_metadata: dict
+            Metadata for table
+        csv_path: str
+            path to csv file
+        overwrite: str
+            "yes"/"no". (default set to 'no')
         """
+
     # define table
-    data_api_create_table(db_id=db_id, table_id=table_id,
-                          table_metadata=table_metadata)
+    create_data_api_table(db_id=db_id, table_id=table_id, table_metadata=table_metadata)
 
     # import csv
-    data_api_import_csv(db_id=db_id, table_id=table_id,
-                        csv_path=csv_path, overwrite=overwrite)
+    import_data_api_csv(db_id=db_id, table_id=table_id, csv_path=csv_path, overwrite=overwrite)
+
