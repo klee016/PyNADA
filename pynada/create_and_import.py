@@ -596,12 +596,12 @@ def create_geospatial_dataset(
         'repositoryid': repository_id,
         'published': published,
         'overwrite': overwrite,
-        'metadata_information': metadata_information
+        'metadata_information': metadata_information,
         'description': description,
         'provenance': provenance,
         'tags': tags,
         'lda_topics': lda_topics,
-        'embeddings': embeddings
+        'embeddings': embeddings,
         'additional': additional
     }
 
