@@ -1,4 +1,5 @@
 import pynada as nada
+import json
 
 nada.set_api_url('http://training.ihsn.org/index.php/api/')
 api_key = open("../API Key.txt", "r").read()
@@ -6,9 +7,12 @@ nada.set_api_key(api_key)
 
 #print(nada.list_collections())
 
-print(nada.list_datasets())
+#print(nada.list_datasets())
 
 #print(nada.get_dataset_info('IMAGE-DATASET-SAMPLE-01'))
+
+dataset_info = nada.get_dataset_info('IMAGE-DATASET-SAMPLE-01')
+print(json.dumps(dataset_info.loc['metadata', 0], indent=2))
 
 #print(nada.list_tags('IMAGE-DATASET-SAMPLE-01'))
 

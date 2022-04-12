@@ -2,7 +2,7 @@ import pynada as nada
 import inspect
 
 nada.set_api_url('http://training.ihsn.org/index.php/api/')
-api_key = open("API Key.txt", "r").read()
+api_key = open("../API Key.txt", "r").read()
 nada.set_api_key(api_key)
 
 #################################

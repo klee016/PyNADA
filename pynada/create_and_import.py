@@ -307,7 +307,7 @@ def create_video_dataset(
     dataset_id : str
         Dataset IDNo
     repository_id : str
-        Collection ID that owns the geospatial dataset
+        Collection ID that owns the video dataset
     published : int
         Set status for study - 0 = Draft, 1 = Published
     overwrite : str
@@ -551,9 +551,12 @@ def create_geospatial_dataset(
         repository_id=None,
         published=None,
         overwrite=None,
+        metadata_information=None,
         description=None,
-        tags=None,
         provenance=None,
+        tags=None,
+        lda_topics=None,
+        embeddings=None,
         additional=None
 ):
     """Add a new geospatial dataset to the catalog
@@ -568,12 +571,18 @@ def create_geospatial_dataset(
         Set status for study - 0 = Draft, 1 = Published
     overwrite : str
         Overwrite if a study with the same ID already exists? Valid values "yes", "no"
+    metadata_information : dict
+        Geospatial metadata information
     description : dict
         Dataset description following ISO 19115 / ISO 19119 / ISO/TS 19139 metadata standard
-    tags : list of dict
-        Tags
     provenance : list of dict
         Provenance of metadata based on the OAI provenance schema (http://www.openarchives.org/OAI/2.0/provenance.xsd)
+    tags : list of dict
+        Tags
+    lda_topics : list of dict
+        LDA topics
+    embeddings : list of dict
+        Word embeddings
     additional : dict
         Any other custom metadata not covered by the schema
 
@@ -587,9 +596,12 @@ def create_geospatial_dataset(
         'repositoryid': repository_id,
         'published': published,
         'overwrite': overwrite,
+        'metadata_information': metadata_information
         'description': description,
-        'tags': tags,
         'provenance': provenance,
+        'tags': tags,
+        'lda_topics': lda_topics,
+        'embeddings': embeddings
         'additional': additional
     }
 
