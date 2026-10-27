@@ -616,6 +616,73 @@ def create_geospatial_dataset(
     return pd.DataFrame.from_dict(response['dataset'], orient='index')
 
 
+def timeseries_study_payload(
+        dataset_id=None,
+        repository_id=None,
+        access_policy=None,
+        data_remote_url=None,
+        published=None,
+        overwrite=None,
+        metadata_creation=None,
+        metadata_information=None,
+        series_description=None,
+        data_structure_reference=None,
+        data_notes=None,
+        tags=None,
+        provenance=None,
+        embeddings=None,
+        lda_topics=None,
+        additional=None,
+        merge_options=None,
+):
+    """JSON body for creating or updating an indicator study."""
+    data = {
+        'repositoryid': repository_id,
+        'access_policy': access_policy,
+        'data_remote_url': data_remote_url,
+        'published': published,
+        'overwrite': overwrite,
+        'metadata_creation': metadata_creation,
+        'metadata_information': metadata_information,
+        'series_description': series_description,
+        'data_structure_reference': data_structure_reference,
+        'data_notes': data_notes,
+        'tags': tags,
+        'provenance': provenance,
+        'embeddings': embeddings,
+        'lda_topics': lda_topics,
+        'additional': additional,
+        'merge_options': merge_options,
+    }
+    return {key: value for key, value in data.items() if value is not None}
+
+
+def timeseries_database_payload(
+        published=None,
+        overwrite=None,
+        database_description=None,
+        additional=None,
+        metadata_information=None,
+        provenance=None,
+        embeddings=None,
+        lda_topics=None,
+        tags=None,
+):
+    """JSON body for creating or updating an indicator source database."""
+    data = {
+        'published': published,
+        'overwrite': overwrite,
+        'database_description': database_description,
+        'additional': additional,
+        'metadata_information': metadata_information,
+        'provenance': provenance,
+        'embeddings': embeddings,
+        'lda_topics': lda_topics,
+        'tags': tags,
+    }
+    return {key: value for key, value in data.items() if value is not None}
+
+
 def create_timeseries_dataset(
         dataset_id=None,
         repository_id=None,
@@ -625,7 +692,14 @@ def create_timeseries_dataset(
         overwrite=None,
         metadata_creation=None,
         series_description=None,
-        additional=None
+        additional=None,
+        metadata_information=None,
+        data_structure_reference=None,
+        data_notes=None,
+        tags=None,
+        provenance=None,
+        embeddings=None,
+        lda_topics=None,
 ):
     """Add a new timeseries dataset to the catalog
 
@@ -649,6 +723,20 @@ def create_timeseries_dataset(
         Description on the timeseries dataset
     additional : dict
         Any other custom metadata not covered by the schema
+    metadata_information : dict
+        Metadata production statement (metadata_information section).
+    data_structure_reference : dict or str
+        Link to a catalogue data structure (idno, or a reference object)
+    data_notes : dict
+        Indicator footnote definitions
+    tags : list
+        Free-text tags
+    provenance : dict
+        Metadata provenance
+    embeddings : dict
+        Embeddings block stored with the study
+    lda_topics : dict
+        Topic model block stored with the study
 
     Returns
     -------
@@ -656,20 +744,26 @@ def create_timeseries_dataset(
         Information on the added timeseries dataset
     """
 
-    data = {
-        'repositoryid': repository_id,
-        'access_policy': access_policy,
-        'data_remote_url': data_remote_url,
-        'published': published,
-        'overwrite': overwrite,
-        'metadata_creation': metadata_creation,
-        'series_description': series_description,
-        'additional': additional
-    }
-
     assert dataset_id == series_description['idno']
 
-    data = {key: value for key, value in data.items() if value is not None}
+    data = timeseries_study_payload(
+        dataset_id=dataset_id,
+        repository_id=repository_id,
+        access_policy=access_policy,
+        data_remote_url=data_remote_url,
+        published=published,
+        overwrite=overwrite,
+        metadata_creation=metadata_creation,
+        metadata_information=metadata_information,
+        series_description=series_description,
+        data_structure_reference=data_structure_reference,
+        data_notes=data_notes,
+        tags=tags,
+        provenance=provenance,
+        embeddings=embeddings,
+        lda_topics=lda_topics,
+        additional=additional,
+    )
     response = make_post_request("datasets/create/timeseries/"+dataset_id, data)
 
     if response['status'] == "success":
@@ -682,7 +776,12 @@ def create_timeseries_database(
         published=None,
         overwrite=None,
         database_description=None,
-        additional=None
+        additional=None,
+        metadata_information=None,
+        provenance=None,
+        embeddings=None,
+        lda_topics=None,
+        tags=None,
 ):
     """Add a new timeseries database to the catalog
 
@@ -696,6 +795,16 @@ def create_timeseries_database(
         Metadata for the database
     additional : dict
         Any other custom metadata not covered by the schema
+    metadata_information : dict
+        Document metadata information
+    provenance : dict
+        Metadata provenance
+    embeddings : dict
+        Embeddings block stored with the database
+    lda_topics : dict
+        Topic model block stored with the database
+    tags : list
+        Free-text tags
 
     Returns
     -------
@@ -703,14 +812,17 @@ def create_timeseries_database(
         Information on the added database
     """
 
-    data = {
-        'published': published,
-        'overwrite': overwrite,
-        'database_description': database_description,
-        'additional': additional
-    }
-
-    data = {key: value for key, value in data.items() if value is not None}
+    data = timeseries_database_payload(
+        published=published,
+        overwrite=overwrite,
+        database_description=database_description,
+        additional=additional,
+        metadata_information=metadata_information,
+        provenance=provenance,
+        embeddings=embeddings,
+        lda_topics=lda_topics,
+        tags=tags,
+    )
     response = make_post_request("datasets/create/timeseriesdb", data)
 
     if response['status'] == "success":
